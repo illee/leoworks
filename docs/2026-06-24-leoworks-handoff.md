@@ -1,15 +1,15 @@
 # LeoWorks 사이트·도메인 핸드오프 — 2026-06-24 (자기완결)
 
-> 상태: **사이트 라이브(HTTP) · HTTPS 인증서만 발급 대기** · 관점: 다음 세션에서 이 파일만 읽고 바로 마무리할 수 있도록 자기완결.
-> 한 줄: LeoWorks 회사 랜딩을 `leoworks.kr`에 GitHub Pages로 배포 완료. 남은 건 GitHub HTTPS 인증서 발급(= DNS 네거티브 캐시 만료 대기, 최대 24h) 하나뿐.
+> 상태: **✅ 완료 — `https://leoworks.kr` 풀 라이브(HTTPS·http→https 리다이렉트 적용).** 인증서는 2026-06-24 익일 네거티브 캐시 만료 후 자동 발급됨.
+> 한 줄: LeoWorks 회사 랜딩을 `leoworks.kr`에 GitHub Pages로 배포 + 커스텀 도메인 + HTTPS까지 완료. 메일은 ImprovMX로 dev@/support@ → Gmail 포워딩(DNS 검증 완료).
 
 ---
 
 ## 0. 핵심 요약 (먼저 읽기)
 - **무엇**: LeoWorks(개발사) 공식 랜딩 + 4개 앱 소개 + 개인정보처리방침 허브. 애플·구글 법인 계정 심사가 요구하는 "작동하는 회사 사이트" 겸용.
 - **어디**: repo `github.com/illee/leoworks` (GitHub Pages, `main` 브랜치 `/root`), 도메인 `leoworks.kr`(가비아 구매).
-- **지금 상태**: `http://leoworks.kr` **정상 서빙**. `https://`는 **인증서 발급 전**이라 아직 안 됨.
-- **마지막 한 걸음**: 인증서 발급되면 → GitHub **Enforce HTTPS** 켜고 → http→https 리다이렉트·privacy 링크 최종 검증 → 끝.
+- **지금 상태**: ✅ `https://leoworks.kr` 200, http→301→https 리다이렉트, privacy 2종 https 200. Enforce HTTPS ON. **완전 라이브.**
+- **메일**: ImprovMX로 dev@/support@leoworks.kr → leodev19lee@gmail.com 포워딩. MX(mx1/mx2.improvmx.com)+SPF DNS 검증 완료(웹 A레코드 무영향).
 
 ---
 
@@ -31,9 +31,10 @@
 |---|---|
 | 랜딩 페이지 | ✅ 완료·리뷰·배포 |
 | `leoworks.kr` DNS | ✅ A레코드 4개 정상(8.8.8.8/1.1.1.1 일치, NS=gabia) |
-| 사이트(HTTP) | ✅ `http://leoworks.kr` 200, privacy 2종 200, 다운타임 0 |
-| HTTPS 인증서 | 🔄 발급 대기(`cert.state: new`, GitHub "will begin shortly") |
-| Enforce HTTPS | ⏳ 발급 후 ON 예정 |
+| 사이트 | ✅ `https://leoworks.kr` 200, http→301→https, privacy 2종 https 200 |
+| HTTPS 인증서 | ✅ 발급 완료(`cert.state: approved`) — 네거티브 캐시 만료 후 자동 |
+| Enforce HTTPS | ✅ ON (`https_enforced: true`) |
+| 메일 포워딩 | ✅ ImprovMX MX+SPF DNS 검증 완료(dev@/support@ → Gmail). 실수신 테스트는 사용자 확인 권장 |
 
 ---
 
