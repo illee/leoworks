@@ -3,147 +3,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LeoWorks</title>
-<meta name="description" content="LeoWorks — 일상을 조금 더 낫게 만드는 모바일 앱을 만드는 스튜디오.">
+<title>LeoWorks — 일상을 더 낫게 만드는 앱</title>
+<meta name="description" content="LeoWorks는 일상에 자연스럽게 스며드는 모바일 앱을 만드는 1인 개발 스튜디오입니다. Lessi · 멍냥로그 · 오솔로그.">
 <link rel="canonical" href="https://leoworks.kr/">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="LeoWorks">
+<meta property="og:description" content="일상을 조금 더 낫게 만드는 앱을 만듭니다.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://leoworks.kr/">
 <style>
   :root{
-    --bg:#FBF7F0; --ink:#3A322A; --accent:#B5824D; --muted:#A39684;
-    --card:#FFFFFF; --line:#EDE4D6;
+    --bg:#FBF7F0; --bg-2:#F4EDE1; --card:#FFFFFF;
+    --ink:#3A322A; --ink-2:#6F6354; --muted:#9C8F7D;
+    --accent:#B5824D; --accent-deep:#9A6A35; --line:#ECE2D2;
+    --shadow:0 1px 2px rgba(58,50,42,.04), 0 8px 24px rgba(58,50,42,.06);
+    --shadow-lg:0 2px 6px rgba(58,50,42,.06), 0 18px 40px rgba(58,50,42,.12);
+    --r:20px;
   }
   *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   body{
     margin:0; background:var(--bg); color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
-    line-height:1.6; -webkit-font-smoothing:antialiased;
+    font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
-  a{color:var(--accent); text-decoration:none;}
-  a:hover{text-decoration:underline;}
-  .wrap{max-width:880px; margin:0 auto; padding:0 24px;}
-  header.nav{display:flex; align-items:center; justify-content:space-between; padding:20px 0;}
-  .brand{font-size:18px; font-weight:700; letter-spacing:.2px;}
-  .lang-toggle{display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden;}
-  .lang-toggle button{
-    appearance:none; border:0; background:transparent; color:var(--muted);
-    font:inherit; font-size:13px; padding:6px 12px; cursor:pointer;
-  }
-  .lang-toggle button[aria-pressed="true"]{background:var(--accent); color:#fff;}
-  .hero{padding:56px 0 40px; text-align:center;}
-  .hero h1{font-size:40px; margin:0 0 12px; letter-spacing:.5px;}
-  .hero p{font-size:18px; color:var(--muted); margin:0;}
-  section{padding:32px 0;}
-  h2{font-size:14px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin:0 0 18px;}
-  .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
-  .card{
-    background:var(--card); border:1px solid var(--line); border-radius:14px;
-    padding:20px; display:flex; flex-direction:column; gap:8px;
-  }
-  .card .top{display:flex; align-items:center; justify-content:space-between;}
-  .card .icon{font-size:28px;}
-  .badge{
-    font-size:11px; color:var(--accent); border:1px solid var(--accent);
-    border-radius:999px; padding:2px 10px; white-space:nowrap;
-  }
-  .card h3{margin:4px 0 0; font-size:18px;}
-  .card p{margin:0; color:var(--muted); font-size:14px;}
-  .about p{font-size:16px; max-width:60ch;}
-  .contact a{font-size:18px; font-weight:600;}
-  footer{border-top:1px solid var(--line); margin-top:24px; padding:24px 0 40px; text-align:center;}
-  footer .links{display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin-bottom:10px;}
-  footer .copy{color:var(--muted); font-size:13px;}
-  @media (max-width:600px){
-    .grid{grid-template-columns:1fr;}
-    .hero h1{font-size:32px;}
-    .hero{padding:40px 0 28px;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  .eyebrow{font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
+
+  /* nav */
+  header.nav{position:sticky; top:0; z-index:50;
+    backdrop-filter:saturate(160%) blur(12px); -webkit-backdrop-filter:saturate(160%) blur(12px);
+    background:rgba(251,247,240,.78); border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1080px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:9px; font-size:18px; font-weight:800; letter-spacing:-.01em;}
+  .brand .dot{width:22px; height:22px; border-radius:7px; background:var(--accent); display:inline-grid; place-items:center; color:#fff; font-size:13px; font-weight:800;}
+  .nav-right{display:flex; align-items:center; gap:22px;}
+  .nav-links{display:flex; gap:22px;}
+  .nav-links a{font-size:14px; color:var(--ink-2); transition:color .15s;}
+  .nav-links a:hover{color:var(--ink);}
+  .lang{display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; background:#fff;}
+  .lang button{appearance:none; border:0; background:transparent; color:var(--muted); font:inherit; font-size:12.5px; font-weight:600; padding:5px 11px; cursor:pointer; transition:.15s;}
+  .lang button[aria-pressed="true"]{background:var(--accent); color:#fff;}
+
+  /* hero */
+  .hero{position:relative; text-align:center; padding:104px 0 72px; overflow:hidden;}
+  .hero::before{content:""; position:absolute; inset:-20% 0 auto 0; height:520px; z-index:0;
+    background:radial-gradient(60% 80% at 50% 0%, rgba(181,130,77,.16), rgba(181,130,77,0) 70%);}
+  .hero > *{position:relative; z-index:1;}
+  .hero h1{font-size:clamp(42px,7vw,68px); line-height:1.05; letter-spacing:-.03em; margin:18px 0 0; font-weight:800;}
+  .hero .lead{font-size:clamp(17px,2.4vw,21px); color:var(--ink-2); max-width:30ch; margin:18px auto 0;}
+  .hero .sub{font-size:15px; color:var(--muted); max-width:46ch; margin:14px auto 0;}
+  .hero-cta{margin-top:30px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+
+  .btn{display:inline-flex; align-items:center; gap:7px; font-size:14.5px; font-weight:600; padding:11px 20px; border-radius:999px; transition:.18s; cursor:pointer; border:1px solid transparent;}
+  .btn-primary{background:var(--accent); color:#fff;}
+  .btn-primary:hover{background:var(--accent-deep); transform:translateY(-1px);}
+  .btn-ghost{background:#fff; color:var(--ink); border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--accent); color:var(--accent-deep);}
+
+  /* sections */
+  section{padding:64px 0;}
+  .section-head{text-align:center; margin-bottom:40px;}
+  .section-head h2{font-size:clamp(26px,4vw,34px); letter-spacing:-.02em; margin:10px 0 0; font-weight:800;}
+  .section-head p{color:var(--ink-2); margin:10px auto 0; max-width:48ch;}
+
+  /* product cards */
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:26px;
+    box-shadow:var(--shadow); display:flex; flex-direction:column; transition:transform .2s, box-shadow .2s;}
+  .card:hover{transform:translateY(-5px); box-shadow:var(--shadow-lg);}
+  .logo-tile{width:88px; height:88px; border-radius:22px; background:#fff; border:1px solid var(--line);
+    display:grid; place-items:center; overflow:hidden; box-shadow:0 4px 14px rgba(58,50,42,.08);}
+  .logo-tile img{max-width:74%; max-height:74%; object-fit:contain;}
+  .logo-tile.icon{border:0; box-shadow:0 6px 18px rgba(58,50,42,.18);}
+  .logo-tile.icon img{max-width:100%; max-height:100%; width:100%; height:100%; object-fit:cover;}
+  .card h3{font-size:21px; font-weight:800; letter-spacing:-.01em; margin:18px 0 0;}
+  .card .desc{color:var(--ink-2); font-size:15px; margin:10px 0 0;}
+  .card .foot{margin-top:auto; padding-top:20px;}
+  .pill{display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:600; color:var(--accent-deep);
+    background:rgba(181,130,77,.1); border:1px solid rgba(181,130,77,.22); border-radius:999px; padding:6px 13px;}
+  .pill::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--accent);}
+  .link-cta{display:inline-flex; align-items:center; gap:6px; font-size:14.5px; font-weight:700; color:var(--accent-deep);}
+  .link-cta:hover{gap:9px;}
+
+  /* about */
+  .about{background:var(--bg-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .about .wrap{max-width:720px; text-align:center;}
+  .about p{font-size:clamp(17px,2.3vw,20px); color:var(--ink); margin:14px 0 0; line-height:1.7;}
+
+  /* contact */
+  .contact{text-align:center;}
+  .contact .mail{display:inline-flex; align-items:center; gap:9px; margin-top:18px; font-size:clamp(20px,3vw,26px); font-weight:800; color:var(--accent-deep); letter-spacing:-.01em;}
+  .contact .mail:hover{color:var(--accent);}
+
+  /* footer */
+  footer{border-top:1px solid var(--line); padding:34px 0 48px;}
+  footer .wrap{display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center;}
+  .foot-links{display:flex; gap:10px 22px; flex-wrap:wrap; justify-content:center;}
+  .foot-links a{font-size:13.5px; color:var(--ink-2);}
+  .foot-links a:hover{color:var(--accent-deep);}
+  .copy{color:var(--muted); font-size:13px;}
+
+  @media (max-width:860px){
+    .grid{grid-template-columns:1fr; max-width:440px; margin:0 auto;}
+    .nav-links{display:none;}
+    section{padding:52px 0;}
+    .hero{padding:80px 0 56px;}
   }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header class="nav">
-    <div class="brand">LeoWorks</div>
-    <div class="lang-toggle" role="group" aria-label="Language">
-      <button type="button" data-lang-btn="ko" aria-pressed="true">KO</button>
-      <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top"><span class="dot">L</span>LeoWorks</a>
+    <div class="nav-right">
+      <nav class="nav-links">
+        <a href="#products" data-ko="제품" data-en="Products">제품</a>
+        <a href="#about" data-ko="소개" data-en="About">소개</a>
+        <a href="#contact" data-ko="문의" data-en="Contact">문의</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="ko" aria-pressed="true">KO</button>
+        <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+      </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main>
-    <div class="hero">
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow" data-ko="1인 개발 스튜디오" data-en="Indie app studio">1인 개발 스튜디오</span>
       <h1>LeoWorks</h1>
-      <p data-ko="일상을 조금 더 낫게 만드는 앱을 만듭니다"
-         data-en="We build apps that make everyday life a little better">일상을 조금 더 낫게 만드는 앱을 만듭니다</p>
+      <p class="lead" data-ko="일상을 조금 더 낫게 만드는 앱을 만듭니다."
+         data-en="We build apps that make everyday life a little better.">일상을 조금 더 낫게 만드는 앱을 만듭니다.</p>
+      <p class="sub" data-ko="운동, 반려, 야외 활동 — 매일의 루틴에 자연스럽게 스며드는 모바일 제품을 직접 기획하고 만듭니다."
+         data-en="Fitness, pets, the outdoors — we design and build mobile products that fit naturally into your daily routine.">운동, 반려, 야외 활동 — 매일의 루틴에 자연스럽게 스며드는 모바일 제품을 직접 기획하고 만듭니다.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#products" data-ko="제품 둘러보기" data-en="Explore products">제품 둘러보기</a>
+        <a class="btn btn-ghost" href="#contact" data-ko="문의하기" data-en="Get in touch">문의하기</a>
+      </div>
     </div>
+  </section>
 
-    <section class="products">
-      <h2 data-ko="제품" data-en="Products">제품</h2>
+  <section id="products">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-ko="제품" data-en="Products">제품</span>
+        <h2 data-ko="우리가 만든 제품" data-en="What we build">우리가 만든 제품</h2>
+        <p data-ko="작지만 단단한 제품으로, 매일 쓰는 순간을 더 좋게 만듭니다." data-en="Small, well-crafted products that make everyday moments better.">작지만 단단한 제품으로, 매일 쓰는 순간을 더 좋게 만듭니다.</p>
+      </div>
+
       <div class="grid">
 
         <article class="card">
-          <div class="top">
-            <span class="icon">🧘</span>
-            <span class="badge" data-ko="준비중" data-en="Coming soon">준비중</span>
+          <div class="logo-tile"><img src="./assets/lessi.png" alt="Lessi logo"></div>
+          <h3>Lessi</h3>
+          <p class="desc" data-ko="필라테스·골프 등 1:1 레슨 강사와 회원을 잇는 올인원 플랫폼. 강사는 나만의 공개 페이지로 회원을 모으고, 예약·수업권·정산까지 한 곳에서 관리합니다."
+             data-en="An all-in-one platform connecting 1:1 lesson instructors — pilates, golf and more — with their clients. Instructors grow with a public page and manage booking, class passes, and payouts in one place.">필라테스·골프 등 1:1 레슨 강사와 회원을 잇는 올인원 플랫폼. 강사는 나만의 공개 페이지로 회원을 모으고, 예약·수업권·정산까지 한 곳에서 관리합니다.</p>
+          <div class="foot">
+            <a class="link-cta" href="https://lessi.co.kr" target="_blank" rel="noopener" data-ko="서비스 바로가기 ↗" data-en="Visit lessi.co.kr ↗">서비스 바로가기 ↗</a>
           </div>
-          <h3 data-ko="Lessi" data-en="Lessi">Lessi</h3>
-          <p data-ko="1:1 필라테스·골프 강사와 고객을 잇다"
-             data-en="1:1 pilates & golf instructors, matched with clients">1:1 필라테스·골프 강사와 고객을 잇다</p>
         </article>
 
         <article class="card">
-          <div class="top">
-            <span class="icon">🐶</span>
-            <span class="badge" data-ko="준비중" data-en="Coming soon">준비중</span>
-          </div>
+          <div class="logo-tile"><img src="./assets/pawlog.png" alt="멍냥로그 logo"></div>
           <h3 data-ko="멍냥로그" data-en="Pawlog">멍냥로그</h3>
-          <p data-ko="강아지·고양이의 하루를 기록하는 다이어리"
-             data-en="A daily diary for your dog & cat">강아지·고양이의 하루를 기록하는 다이어리</p>
+          <p class="desc" data-ko="강아지·고양이의 하루를 사진과 함께 남기는 반려동물 추억 다이어리. 성장·건강·소중한 순간을 타임라인으로 모아 가족과 함께 돌아봅니다."
+             data-en="A keepsake diary for dogs and cats. Capture daily moments, growth, and health in a beautiful timeline you can look back on with family.">강아지·고양이의 하루를 사진과 함께 남기는 반려동물 추억 다이어리. 성장·건강·소중한 순간을 타임라인으로 모아 가족과 함께 돌아봅니다.</p>
+          <div class="foot">
+            <span class="pill" data-ko="Google Play · App Store 출시 예정" data-en="Coming to Google Play & App Store">Google Play · App Store 출시 예정</span>
+          </div>
         </article>
 
         <article class="card">
-          <div class="top">
-            <span class="icon">🧩</span>
-            <span class="badge" data-ko="준비중" data-en="Coming soon">준비중</span>
-          </div>
-          <h3 data-ko="낱말채집" data-en="WordForage">낱말채집</h3>
-          <p data-ko="음절을 모아 한국어 단어를 만드는 퍼즐"
-             data-en="A Korean word puzzle — collect syllables, build words">음절을 모아 한국어 단어를 만드는 퍼즐</p>
-        </article>
-
-        <article class="card">
-          <div class="top">
-            <span class="icon">🥾</span>
-            <span class="badge" data-ko="준비중" data-en="Coming soon">준비중</span>
-          </div>
+          <div class="logo-tile icon"><img src="./assets/osolog.png" alt="오솔로그 logo"></div>
           <h3 data-ko="오솔로그" data-en="Osolog">오솔로그</h3>
-          <p data-ko="등산·러닝 코스를 발견하고 기록하다"
-             data-en="Discover and track hiking & running trails">등산·러닝 코스를 발견하고 기록하다</p>
+          <p class="desc" data-ko="한국형 등산·러닝 코스 발견과 GPS 기록 앱. 전국 등산로·둘레길·러닝 코스를 찾고, 들머리 내비게이션과 안전한 기록으로 더 멀리 걷습니다."
+             data-en="Discover and track Korea's trails and running routes. Find hiking, dulle-gil, and running courses with trailhead navigation and safe GPS recording.">한국형 등산·러닝 코스 발견과 GPS 기록 앱. 전국 등산로·둘레길·러닝 코스를 찾고, 들머리 내비게이션과 안전한 기록으로 더 멀리 걷습니다.</p>
+          <div class="foot">
+            <span class="pill" data-ko="Google Play · App Store 출시 예정" data-en="Coming to Google Play & App Store">Google Play · App Store 출시 예정</span>
+          </div>
         </article>
 
       </div>
-    </section>
-
-    <section class="about">
-      <h2 data-ko="소개" data-en="About">소개</h2>
-      <p data-ko="LeoWorks는 일상에 쓰이는 모바일 앱을 만드는 1인 개발 스튜디오입니다."
-         data-en="LeoWorks is a one-person studio crafting mobile apps for everyday life.">LeoWorks는 일상에 쓰이는 모바일 앱을 만드는 1인 개발 스튜디오입니다.</p>
-    </section>
-
-    <section class="contact">
-      <h2 data-ko="문의" data-en="Contact">문의</h2>
-      <a href="mailto:support@leoworks.kr">support@leoworks.kr</a>
-    </section>
-  </main>
-
-  <footer>
-    <div class="links">
-      <a href="./meongnyang-log/privacy/" data-ko="멍냥로그 — 개인정보처리방침" data-en="Pawlog — Privacy Policy">멍냥로그 — 개인정보처리방침</a>
-      <a href="./wordforage/privacy/" data-ko="낱말채집 — 개인정보처리방침" data-en="WordForage — Privacy Policy">낱말채집 — 개인정보처리방침</a>
     </div>
-    <div class="copy">© 2026 LeoWorks</div>
-  </footer>
+  </section>
 
-</div>
+  <section id="about" class="about">
+    <div class="wrap">
+      <span class="eyebrow" data-ko="소개" data-en="About">소개</span>
+      <p data-ko="LeoWorks는 일상에 자연스럽게 스며드는 모바일 앱을 만드는 1인 개발 스튜디오입니다. 운동, 반려, 야외 활동처럼 매일의 루틴을 더 즐겁고 편하게 만드는 제품을 직접 기획하고 개발합니다."
+         data-en="LeoWorks is a one-person studio building mobile apps that fit naturally into everyday life. From fitness to pets to the outdoors, we design and build products that make daily routines easier and more enjoyable.">LeoWorks는 일상에 자연스럽게 스며드는 모바일 앱을 만드는 1인 개발 스튜디오입니다. 운동, 반려, 야외 활동처럼 매일의 루틴을 더 즐겁고 편하게 만드는 제품을 직접 기획하고 개발합니다.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <span class="eyebrow" data-ko="문의" data-en="Contact">문의</span>
+      <h2 data-ko="함께 이야기해요" data-en="Let's talk" class="section-title" style="font-size:clamp(24px,4vw,32px);letter-spacing:-.02em;margin:10px 0 0;font-weight:800;">함께 이야기해요</h2>
+      <a class="mail" href="mailto:support@leoworks.kr">✉ support@leoworks.kr</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><span class="dot">L</span>LeoWorks</div>
+    <div class="foot-links">
+      <a href="./meongnyang-log/privacy/" data-ko="멍냥로그 개인정보처리방침" data-en="Pawlog Privacy Policy">멍냥로그 개인정보처리방침</a>
+      <a href="./wordforage/privacy/" data-ko="낱말채집 개인정보처리방침" data-en="WordForage Privacy Policy">낱말채집 개인정보처리방침</a>
+    </div>
+    <div class="copy">© 2026 LeoWorks. All rights reserved.</div>
+  </div>
+</footer>
 
 <script>
   (function () {
