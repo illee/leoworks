@@ -76,4 +76,10 @@
 - 패키지 컨벤션: `com.leoworks.*` · 앱 4종: Lessi / 멍냥로그(Pawlog) / 낱말채집(WordForage) / 오솔로그(Osolog) — 전부 스토어 출시 전
 - 내부 문서(비공개): `docs/superpowers/specs|plans/` + 이 핸드오프. SDD 진행 원장: `.superpowers/sdd/progress.md`
 
+## 7. 업데이트 — 랜딩 리디자인 (2026-06-24 당일 후속)
+- v1이 "너무 부실"이라는 피드백 → **현대적 리디자인 배포**(commit `ae3106d`). 스티키 nav·히어로·호버 카드·소개/문의 섹션, 따뜻한 팔레트, favicon(L 모노그램, 404 해소).
+- **제품 3종으로 축소(낱말채집 제외)**: Lessi(→ lessi.co.kr 링크) · 멍냥로그 · 오솔로그. 각 제품 **로고**(`assets/lessi.png`·`pawlog.png`·`osolog.png`) + 상세 설명(한/영). 멍냥로그·오솔로그는 "Google Play·App Store 출시 예정" 배지.
+- 푸터 privacy 링크(멍냥로그·낱말채집)는 **그대로 유지**(낱말채집은 제품 쇼케이스에서만 제외, 앱 법적 문서는 보존).
+- 배포 전 스크린샷 미리보기 승인 절차 거침. 라이브 검증: 로고/favicon/privacy 200, http→301→https 모두 OK.
+
 > 작성: Claude Code · 2026-06-24. 다음 세션은 이 파일 §4부터 보면 1분에 마무리됩니다.
