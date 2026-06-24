@@ -4,23 +4,169 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LeoWorks</title>
+<meta name="description" content="LeoWorks — 일상을 조금 더 낫게 만드는 모바일 앱을 만드는 스튜디오.">
 <style>
-  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
-    background:#FBF7F0; color:#3A322A;
-    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif; }
-  .card { text-align:center; padding:24px; }
-  h1 { font-size:22px; margin:0 0 16px; }
-  a { display:block; color:#B5824D; font-size:15px; margin:8px 0; text-decoration:none; }
-  a:hover { text-decoration:underline; }
-  .muted { color:#A39684; font-size:13px; margin-top:18px; }
+  :root{
+    --bg:#FBF7F0; --ink:#3A322A; --accent:#B5824D; --muted:#A39684;
+    --card:#FFFFFF; --line:#EDE4D6;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px;}
+  header.nav{display:flex; align-items:center; justify-content:space-between; padding:20px 0;}
+  .brand{font-size:18px; font-weight:700; letter-spacing:.2px;}
+  .lang-toggle{display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden;}
+  .lang-toggle button{
+    appearance:none; border:0; background:transparent; color:var(--muted);
+    font:inherit; font-size:13px; padding:6px 12px; cursor:pointer;
+  }
+  .lang-toggle button[aria-pressed="true"]{background:var(--accent); color:#fff;}
+  .hero{padding:56px 0 40px; text-align:center;}
+  .hero h1{font-size:40px; margin:0 0 12px; letter-spacing:.5px;}
+  .hero p{font-size:18px; color:var(--muted); margin:0;}
+  section{padding:32px 0;}
+  h2{font-size:14px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin:0 0 18px;}
+  .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:20px; display:flex; flex-direction:column; gap:8px;
+  }
+  .card .top{display:flex; align-items:center; justify-content:space-between;}
+  .card .icon{font-size:28px;}
+  .badge{
+    font-size:11px; color:var(--accent); border:1px solid var(--accent);
+    border-radius:999px; padding:2px 10px; white-space:nowrap;
+  }
+  .card h3{margin:4px 0 0; font-size:18px;}
+  .card p{margin:0; color:var(--muted); font-size:14px;}
+  .about p{font-size:16px; max-width:60ch;}
+  .contact a{font-size:18px; font-weight:600;}
+  footer{border-top:1px solid var(--line); margin-top:24px; padding:24px 0 40px; text-align:center;}
+  footer .links{display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin-bottom:10px;}
+  footer .copy{color:var(--muted); font-size:13px;}
+  @media (max-width:600px){
+    .grid{grid-template-columns:1fr;}
+    .hero h1{font-size:32px;}
+    .hero{padding:40px 0 28px;}
+  }
 </style>
 </head>
 <body>
-<div class="card">
-  <h1>LeoWorks</h1>
-  <a href="./meongnyang-log/privacy/">멍냥로그 — 개인정보처리방침</a>
-  <a href="./wordforage/privacy/">낱말채집 — 개인정보처리방침</a>
-  <p class="muted">© 2026 LeoWorks</p>
+<div class="wrap">
+
+  <header class="nav">
+    <div class="brand">LeoWorks</div>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang-btn="ko" aria-pressed="true">KO</button>
+      <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h1>LeoWorks</h1>
+      <p data-ko="일상을 조금 더 낫게 만드는 앱을 만듭니다"
+         data-en="We build apps that make everyday life a little better">일상을 조금 더 낫게 만드는 앱을 만듭니다</p>
+    </div>
+
+    <section class="products">
+      <h2 data-ko="제품" data-en="Products">제품</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="top">
+            <span class="icon">🧘</span>
+            <span class="badge" data-ko="준비중" data-en="Coming soon">준비중</span>
+          </div>
+          <h3 data-ko="Lessi" data-en="Lessi">Lessi</h3>
+          <p data-ko="1:1 필라테스·골프 강사와 고객을 잇다"
+             data-en="1:1 pilates & golf instructors, matched with clients">1:1 필라테스·골프 강사와 고객을 잇다</p>
+        </article>
+
+        <article class="card">
+          <div class="top">
+            <span class="icon">🐶</span>
+            <span class="badge" data-ko="준비중" data-en="Coming soon">준비중</span>
+          </div>
+          <h3 data-ko="멍냥로그" data-en="Pawlog">멍냥로그</h3>
+          <p data-ko="강아지·고양이의 하루를 기록하는 다이어리"
+             data-en="A daily diary for your dog & cat">강아지·고양이의 하루를 기록하는 다이어리</p>
+        </article>
+
+        <article class="card">
+          <div class="top">
+            <span class="icon">🧩</span>
+            <span class="badge" data-ko="준비중" data-en="Coming soon">준비중</span>
+          </div>
+          <h3 data-ko="낱말채집" data-en="WordForage">낱말채집</h3>
+          <p data-ko="음절을 모아 한국어 단어를 만드는 퍼즐"
+             data-en="A Korean word puzzle — collect syllables, build words">음절을 모아 한국어 단어를 만드는 퍼즐</p>
+        </article>
+
+        <article class="card">
+          <div class="top">
+            <span class="icon">🥾</span>
+            <span class="badge" data-ko="준비중" data-en="Coming soon">준비중</span>
+          </div>
+          <h3 data-ko="오솔로그" data-en="Osolog">오솔로그</h3>
+          <p data-ko="등산·러닝 코스를 발견하고 기록하다"
+             data-en="Discover and track hiking & running trails">등산·러닝 코스를 발견하고 기록하다</p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="about">
+      <h2 data-ko="소개" data-en="About">소개</h2>
+      <p data-ko="LeoWorks는 일상에 쓰이는 모바일 앱을 만드는 1인 개발 스튜디오입니다."
+         data-en="LeoWorks is a one-person studio crafting mobile apps for everyday life.">LeoWorks는 일상에 쓰이는 모바일 앱을 만드는 1인 개발 스튜디오입니다.</p>
+    </section>
+
+    <section class="contact">
+      <h2 data-ko="문의" data-en="Contact">문의</h2>
+      <a href="mailto:support@leoworks.kr">support@leoworks.kr</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="links">
+      <a href="./meongnyang-log/privacy/" data-ko="멍냥로그 — 개인정보처리방침" data-en="Pawlog — Privacy Policy">멍냥로그 — 개인정보처리방침</a>
+      <a href="./wordforage/privacy/" data-ko="낱말채집 — 개인정보처리방침" data-en="WordForage — Privacy Policy">낱말채집 — 개인정보처리방침</a>
+    </div>
+    <div class="copy">© 2026 LeoWorks</div>
+  </footer>
+
 </div>
+
+<script>
+  (function () {
+    var KEY = 'lang';
+    var params = new URLSearchParams(location.search);
+    var lang = params.get('lang') || localStorage.getItem(KEY) || 'ko';
+    if (lang !== 'en') lang = 'ko';
+    function apply(l) {
+      document.documentElement.lang = l;
+      document.querySelectorAll('[data-ko]').forEach(function (el) {
+        var t = (l === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-ko');
+        if (t !== null) el.textContent = t;
+      });
+      document.querySelectorAll('[data-lang-btn]').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-btn') === l));
+      });
+      try { localStorage.setItem(KEY, l); } catch (e) {}
+    }
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-lang-btn]');
+      if (btn) apply(btn.getAttribute('data-lang-btn'));
+    });
+    apply(lang);
+  })();
+</script>
 </body>
 </html>
