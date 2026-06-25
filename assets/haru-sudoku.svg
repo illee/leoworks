@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="하루 스도쿠">
+  <rect x="0.5" y="0.5" width="95" height="95" rx="21" fill="#E3F1EA" stroke="#D2E8DD"/>
+  <rect x="12" y="12" width="20" height="20" rx="5" fill="#FFFFFF"/>
+  <rect x="38" y="12" width="20" height="20" rx="5" fill="#FFFFFF"/>
+  <rect x="64" y="12" width="20" height="20" rx="5" fill="#FFFFFF"/>
+  <rect x="12" y="38" width="20" height="20" rx="5" fill="#FFFFFF"/>
+  <rect x="38" y="38" width="20" height="20" rx="5" fill="#F2785C"/>
+  <rect x="64" y="38" width="20" height="20" rx="5" fill="#FFFFFF"/>
+  <rect x="12" y="64" width="20" height="20" rx="5" fill="#FFFFFF"/>
+  <rect x="38" y="64" width="20" height="20" rx="5" fill="#FFFFFF"/>
+  <rect x="64" y="64" width="20" height="20" rx="5" fill="#FFFFFF"/>
+  <text x="48" y="49" text-anchor="middle" dominant-baseline="central" font-family="'Baloo 2','Jua',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="700" font-size="15" fill="#FFFFFF">5</text>
+</svg>

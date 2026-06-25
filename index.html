@@ -105,8 +105,16 @@
   .foot-links a:hover{color:var(--accent-deep);}
   .copy{color:var(--muted); font-size:13px;}
 
+  /* casual games subsection */
+  .subsection{margin-top:54px; padding-top:42px; border-top:1px solid var(--line);}
+  .subsection .section-head{margin-bottom:26px;}
+  .subsection .section-head h3{font-size:clamp(20px,3vw,26px); letter-spacing:-.02em; margin:8px 0 0; font-weight:800;}
+  .subsection .section-head p{color:var(--ink-2); margin:8px auto 0; max-width:46ch;}
+  .grid.two{grid-template-columns:repeat(2,1fr); max-width:720px; margin:0 auto;}
+
   @media (max-width:860px){
     .grid{grid-template-columns:1fr; max-width:440px; margin:0 auto;}
+    .grid.two{grid-template-columns:1fr; max-width:440px;}
     .nav-links{display:none;}
     section{padding:52px 0;}
     .hero{padding:80px 0 56px;}
@@ -189,6 +197,37 @@
           </div>
         </article>
 
+      </div>
+
+      <div class="subsection">
+        <div class="section-head">
+          <span class="eyebrow" data-ko="캐주얼 게임" data-en="Games">캐주얼 게임</span>
+          <h3 data-ko="가볍게 즐기는 두뇌 퍼즐" data-en="Casual brain games">가볍게 즐기는 두뇌 퍼즐</h3>
+          <p data-ko="짬짬이 가볍게 즐기는 퍼즐 게임. 매일 새 퍼즐로 머리도 풀고 시간도 보내요." data-en="Bite-sized puzzle games — a fresh challenge every day to keep your mind sharp.">짬짬이 가볍게 즐기는 퍼즐 게임. 매일 새 퍼즐로 머리도 풀고 시간도 보내요.</p>
+        </div>
+        <div class="grid two">
+
+          <article class="card">
+            <div class="logo-tile icon"><img src="./assets/wordforage.png" alt="낱말채집 아이콘"></div>
+            <h3 data-ko="낱말채집" data-en="WordForage">낱말채집</h3>
+            <p class="desc" data-ko="음절 타일을 모아 한국어 단어를 만드는 한글 단어 퍼즐. 매일 새 퍼즐과 단어 도감으로 어휘력까지 키우는 캐주얼 게임."
+               data-en="A Korean word puzzle — connect syllable tiles to build words, with daily puzzles and a word almanac that grows your vocabulary.">음절 타일을 모아 한국어 단어를 만드는 한글 단어 퍼즐. 매일 새 퍼즐과 단어 도감으로 어휘력까지 키우는 캐주얼 게임.</p>
+            <div class="foot">
+              <span class="pill" data-ko="Google Play 출시 예정" data-en="Coming to Google Play">Google Play 출시 예정</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="logo-tile icon"><img src="./assets/haru-sudoku.svg" alt="하루 스도쿠 아이콘"></div>
+            <h3 data-ko="하루 스도쿠" data-en="Haru Sudoku">하루 스도쿠</h3>
+            <p class="desc" data-ko="초보도 부담 없는, 광고가 방해하지 않는 깔끔한 스도쿠. 입문부터 전문가까지 난이도를 골라 매일 한 판으로 두뇌를 깨웁니다."
+               data-en="A clean, beginner-friendly sudoku that keeps ads out of your way. Pick your level from beginner to expert and solve a fresh puzzle every day.">초보도 부담 없는, 광고가 방해하지 않는 깔끔한 스도쿠. 입문부터 전문가까지 난이도를 골라 매일 한 판으로 두뇌를 깨웁니다.</p>
+            <div class="foot">
+              <span class="pill" data-ko="Google Play 출시 예정" data-en="Coming to Google Play">Google Play 출시 예정</span>
+            </div>
+          </article>
+
+        </div>
       </div>
     </div>
   </section>
