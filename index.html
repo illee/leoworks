@@ -86,6 +86,8 @@
   .pill::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--accent);}
   .link-cta{display:inline-flex; align-items:center; gap:6px; font-size:14.5px; font-weight:700; color:var(--accent-deep);}
   .link-cta:hover{gap:9px;}
+  .foot-privacy{display:block; margin-top:10px; font-size:13px; color:var(--muted); transition:color .15s;}
+  .foot-privacy:hover{color:var(--accent-deep);}
 
   /* about */
   .about{background:var(--bg-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
@@ -100,9 +102,9 @@
   /* footer */
   footer{border-top:1px solid var(--line); padding:34px 0 48px;}
   footer .wrap{display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center;}
-  .foot-links{display:flex; gap:10px 22px; flex-wrap:wrap; justify-content:center;}
-  .foot-links a{font-size:13.5px; color:var(--ink-2);}
-  .foot-links a:hover{color:var(--accent-deep);}
+  .biz{color:var(--ink-2); font-size:13.5px;}
+  .biz a{color:var(--accent-deep); font-weight:600;}
+  .biz a:hover{color:var(--accent);}
   .copy{color:var(--muted); font-size:13px;}
 
   /* casual games subsection */
@@ -184,6 +186,7 @@
              data-en="A keepsake diary for dogs and cats. Capture daily moments, growth, and health in a beautiful timeline you can look back on with family.">강아지·고양이의 하루를 사진과 함께 남기는 반려동물 추억 다이어리. 성장·건강·소중한 순간을 타임라인으로 모아 가족과 함께 돌아봅니다.</p>
           <div class="foot">
             <span class="pill" data-ko="Google Play · App Store 출시 예정" data-en="Coming to Google Play & App Store">Google Play · App Store 출시 예정</span>
+            <a class="foot-privacy" href="./meongnyang-log/privacy/" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a>
           </div>
         </article>
 
@@ -194,6 +197,7 @@
              data-en="Discover and track Korea's trails and running routes. Find hiking, dulle-gil, and running courses with trailhead navigation and safe GPS recording.">한국형 등산·러닝 코스 발견과 GPS 기록 앱. 전국 등산로·둘레길·러닝 코스를 찾고, 들머리 내비게이션과 안전한 기록으로 더 멀리 걷습니다.</p>
           <div class="foot">
             <span class="pill" data-ko="Google Play · App Store 출시 예정" data-en="Coming to Google Play & App Store">Google Play · App Store 출시 예정</span>
+            <a class="foot-privacy" href="./osolog/privacy/" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a>
           </div>
         </article>
 
@@ -205,7 +209,7 @@
           <h3 data-ko="가볍게 즐기는 두뇌 퍼즐" data-en="Casual brain games">가볍게 즐기는 두뇌 퍼즐</h3>
           <p data-ko="짬짬이 가볍게 즐기는 퍼즐 게임. 매일 새 퍼즐로 머리도 풀고 시간도 보내요." data-en="Bite-sized puzzle games — a fresh challenge every day to keep your mind sharp.">짬짬이 가볍게 즐기는 퍼즐 게임. 매일 새 퍼즐로 머리도 풀고 시간도 보내요.</p>
         </div>
-        <div class="grid">
+        <div class="grid two">
 
           <article class="card">
             <div class="logo-tile icon"><img src="./assets/wordforage.png" alt="낱말채집 아이콘"></div>
@@ -214,6 +218,7 @@
                data-en="A Korean word puzzle — connect syllable tiles to build words, with daily puzzles and a word almanac that grows your vocabulary.">음절 타일을 모아 한국어 단어를 만드는 한글 단어 퍼즐. 매일 새 퍼즐과 단어 도감으로 어휘력까지 키우는 캐주얼 게임.</p>
             <div class="foot">
               <a class="link-cta" href="https://play.google.com/store/apps/details?id=com.leoworks.wordforage" target="_blank" rel="noopener" data-ko="Google Play에서 받기 ↗" data-en="Get it on Google Play ↗">Google Play에서 받기 ↗</a>
+              <a class="foot-privacy" href="./wordforage/privacy/" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a>
             </div>
           </article>
 
@@ -224,16 +229,7 @@
                data-en="A clean, beginner-friendly sudoku that keeps ads out of your way. Pick your level from beginner to expert and solve a fresh puzzle every day.">초보도 부담 없는, 광고가 방해하지 않는 깔끔한 스도쿠. 입문부터 전문가까지 난이도를 골라 매일 한 판으로 두뇌를 깨웁니다.</p>
             <div class="foot">
               <a class="link-cta" href="https://play.google.com/store/apps/details?id=com.leoworks.sudoku" target="_blank" rel="noopener" data-ko="Google Play에서 받기 ↗" data-en="Get it on Google Play ↗">Google Play에서 받기 ↗</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="logo-tile icon"><img src="./assets/haru-picross.png" alt="하루 네모로직 아이콘"></div>
-            <h3 data-ko="하루 네모로직" data-en="Haru Picross">하루 네모로직</h3>
-            <p class="desc" data-ko="숫자 단서로 칸을 채워 그림을 완성하는 네모로직(픽처크로스) 퍼즐. 초보도 익히기 쉽고, 광고가 방해하지 않는 깔끔한 그림 논리 퍼즐을 매일 새 퍼즐로 즐깁니다."
-               data-en="A nonogram (picture cross) puzzle — fill cells from number clues to reveal a picture. Beginner-friendly and ad-respectful, with a fresh logic puzzle every day.">숫자 단서로 칸을 채워 그림을 완성하는 네모로직(픽처크로스) 퍼즐. 초보도 익히기 쉽고, 광고가 방해하지 않는 깔끔한 그림 논리 퍼즐을 매일 새 퍼즐로 즐깁니다.</p>
-            <div class="foot">
-              <span class="pill" data-ko="Google Play 출시 예정" data-en="Coming to Google Play">Google Play 출시 예정</span>
+              <a class="foot-privacy" href="./haru-sudoku/privacy/" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a>
             </div>
           </article>
 
@@ -263,12 +259,8 @@
 <footer>
   <div class="wrap">
     <div class="brand"><span class="dot">L</span>LeoWorks</div>
-    <div class="foot-links">
-      <a href="./meongnyang-log/privacy/" data-ko="멍냥로그 개인정보처리방침" data-en="Pawlog Privacy Policy">멍냥로그 개인정보처리방침</a>
-      <a href="./wordforage/privacy/" data-ko="낱말채집 개인정보처리방침" data-en="WordForage Privacy Policy">낱말채집 개인정보처리방침</a>
-      <a href="./haru-sudoku/privacy/" data-ko="하루 스도쿠 개인정보처리방침" data-en="Haru Sudoku Privacy Policy">하루 스도쿠 개인정보처리방침</a>
-      <a href="./haru-picross/privacy/" data-ko="하루 네모로직 개인정보처리방침" data-en="Haru Picross Privacy Policy">하루 네모로직 개인정보처리방침</a>
-      <a href="./osolog/privacy/" data-ko="오솔로그 개인정보처리방침" data-en="Osolog Privacy Policy">오솔로그 개인정보처리방침</a>
+    <div class="biz">
+      <span data-ko="레오웍스(LeoWorks) · 대표: 이은후 · 사업자등록번호: 640-53-01064 · 문의: " data-en="LeoWorks · CEO: 이은후 · Business Reg. No. 640-53-01064 · Contact: ">레오웍스(LeoWorks) · 대표: 이은후 · 사업자등록번호: 640-53-01064 · 문의: </span><a href="mailto:support@leoworks.kr">support@leoworks.kr</a>
     </div>
     <div class="copy">© 2026 LeoWorks. All rights reserved.</div>
   </div>
