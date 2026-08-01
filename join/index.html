@@ -43,7 +43,9 @@
   <div class="nocode" id="nocode" hidden>초대 코드가 링크에 없어요. 초대한 분께 코드를 다시 받아 주세요.</div>
 </div>
 
-<a class="btn" id="install" href="https://play.google.com/store/apps/details?id=com.leoworks.meongnyanglog">앱 설치하고 합류하기</a>
+<!-- referrer 파라미터는 설치 귀속(install_referrer 코호트)용 — 앱의 storeLink('family_invite')와 동일해야 한다.
+     이 링크가 referrer를 잃으면 초대 경유 설치가 계측에서 사라진다. -->
+<a class="btn" id="install" href="https://play.google.com/store/apps/details?id=com.leoworks.meongnyanglog&referrer=utm_source%3Dfamily_invite%26utm_medium%3Dreferral">앱 설치하고 합류하기</a>
 <a class="btn sub" id="open" href="#" hidden>앱에서 열기</a>
 
 <div class="card" style="text-align:left;">
