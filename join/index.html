@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow">
+<title>멍냥로그 가족 초대</title>
+<style>
+  :root { --ink:#3A322A; --soft:#6E6354; --muted:#A39684; --line:#E7DFD0; --bg:#FBF7F0; --accent:#B5824D; --tan:#C99A6A; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,Roboto,sans-serif;
+    line-height:1.7; -webkit-text-size-adjust:100%; }
+  .wrap { max-width:480px; margin:0 auto; padding:40px 20px 64px; text-align:center; }
+  h1 { font-size:22px; margin:14px 0 6px; }
+  p { font-size:14.5px; color:var(--soft); margin:6px 0; }
+  .paw { font-size:44px; line-height:1; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:16px; padding:20px 18px; margin:22px 0; }
+  .label { font-size:12.5px; color:var(--muted); letter-spacing:.04em; }
+  .code { font-size:34px; font-weight:700; letter-spacing:.22em; color:var(--accent);
+    margin:6px 0 0; font-variant-numeric:tabular-nums; word-break:break-all; }
+  .nocode { font-size:15px; color:var(--soft); margin:6px 0 0; }
+  .btn { display:block; background:var(--accent); color:#fff; text-decoration:none;
+    padding:14px 18px; border-radius:24px; font-size:15.5px; font-weight:700; margin:12px 0 0; }
+  .btn.sub { background:#fff; color:var(--accent); border:1.5px solid var(--line); font-weight:600; }
+  ol { text-align:left; padding-left:22px; margin:10px 0 0; }
+  li { font-size:14px; color:var(--ink); margin:6px 0; }
+  .note { font-size:12.5px; color:var(--muted); margin-top:18px; }
+  footer { margin-top:34px; color:var(--muted); font-size:12.5px; }
+  a.plain { color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="paw">🐾</div>
+<h1>멍냥로그 가족 초대</h1>
+<p>가족이 반려동물의 하루를 함께 볼 수 있게 초대했어요.</p>
+
+<div class="card">
+  <div class="label">초대 코드</div>
+  <div class="code" id="code">— — — — — —</div>
+  <div class="nocode" id="nocode" hidden>초대 코드가 링크에 없어요. 초대한 분께 코드를 다시 받아 주세요.</div>
+</div>
+
+<a class="btn" id="install" href="https://play.google.com/store/apps/details?id=com.leoworks.meongnyanglog">앱 설치하고 합류하기</a>
+<a class="btn sub" id="open" href="#" hidden>앱에서 열기</a>
+
+<div class="card" style="text-align:left;">
+  <div class="label">합류 방법</div>
+  <ol>
+    <li>위 버튼으로 <strong>멍냥로그</strong>를 설치합니다.</li>
+    <li>앱을 열고 <strong>초대코드로 시작하기</strong>를 누릅니다.<br>
+        <span class="note">이미 쓰고 있다면 <strong>설정 → 초대코드로 가족 합류</strong></span></li>
+    <li>위 <strong>초대 코드</strong>를 입력하면 합류가 끝나요.</li>
+  </ol>
+</div>
+
+<p class="note">초대 코드는 발급 후 24시간 동안 쓸 수 있어요.<br>
+한 가족은 최대 4명까지 함께할 수 있어요.</p>
+
+<footer>© 2026 LeoWorks · <a class="plain" href="/meongnyang-log/privacy/">개인정보처리방침</a></footer>
+</div>
+
+<script>
+  // 초대 코드는 링크의 ?code= 로만 전달된다. 서버로 보내지 않고 화면 표시에만 쓴다.
+  (function () {
+    var raw = new URLSearchParams(location.search).get('code') || '';
+    // 코드 규약: 영숫자 6자(familyApi normalizeInviteCode와 동일 계열). 그 외 입력은 표시하지 않는다
+    // — 임의 문자열이 그대로 렌더되지 않게 하는 최소 방어.
+    var code = raw.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
+    if (code.length === 6) {
+      document.getElementById('code').textContent = code;
+      // 앱이 이미 설치된 사용자를 위한 보조 경로(App Link 검증 전이거나 브라우저가 가로챈 경우).
+      var open = document.getElementById('open');
+      open.href = 'meongnyanglog://join?code=' + encodeURIComponent(code);
+      open.hidden = false;
+    } else {
+      document.getElementById('code').hidden = true;
+      document.getElementById('nocode').hidden = false;
+    }
+  })();
+</script>
+</body>
+</html>
