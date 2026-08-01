@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.leoworks.meongnyanglog",
+      "sha256_cert_fingerprints":
+        ["AB:81:8B:07:D5:9F:3A:76:09:60:05:FD:52:4B:39:7B:7D:A9:80:9C:F7:F8:82:B3:CA:2B:3F:D3:75:D6:A0:07"]
+    }
+  }
+]
