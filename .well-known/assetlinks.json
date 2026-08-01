@@ -4,8 +4,10 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.leoworks.meongnyanglog",
-      "sha256_cert_fingerprints":
-        ["AB:81:8B:07:D5:9F:3A:76:09:60:05:FD:52:4B:39:7B:7D:A9:80:9C:F7:F8:82:B3:CA:2B:3F:D3:75:D6:A0:07"]
+      "sha256_cert_fingerprints": [
+        "AB:81:8B:07:D5:9F:3A:76:09:60:05:FD:52:4B:39:7B:7D:A9:80:9C:F7:F8:82:B3:CA:2B:3F:D3:75:D6:A0:07",
+        "7B:CA:A2:6B:19:2E:54:92:0F:35:7B:B3:8F:ED:03:F9:29:B4:36:F1:86:9F:42:15:59:49:A4:14:28:4F:89:64"
+      ]
     }
   }
 ]
