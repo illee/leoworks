@@ -245,7 +245,8 @@
   // 결과는 pano_status(OK/ERROR)로 온다.
   function loadNaver() {
     var guard = arm('naver');
-    script('https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' + NAVER_KEY_ID + '&submodules=panorama', guard, function () {
+
+    var start = function () {
       guard.wrap(function () {
         var pano = new naver.maps.Panorama(elView, {
           position: new naver.maps.LatLng(lat, lng),
@@ -263,8 +264,28 @@
           }
         });
       });
-    });
+    };
+
+    // ⚠️ 베이스 maps.js 의 onload 시점에는 파노라마 서브모듈이 아직 안 붙어 있다.
+    //    (maps.js 자체엔 Panorama 코드가 0바이트도 없고, 로드 후 maps-panorama.js 를
+    //     비동기로 따로 받는다.) 그래서 onload 에서 바로 new naver.maps.Panorama 를 하면
+    //    TypeError 가 난다 — SDK가 제공하는 callback 파라미터로 준비 완료를 기다린다.
+    if (window.naver && naver.maps && naver.maps.Panorama) return start();
+
+    window.__osologNaverReady = function () { start(); };
+    script(
+      'https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' + NAVER_KEY_ID +
+        '&submodules=panorama&callback=__osologNaverReady',
+      guard,
+      function () { /* 준비 완료는 위 콜백이 알린다 */ }
+    );
   }
+
+  // 인증 실패는 SDK가 이 전역으로 알려 준다. 원인을 화면에 드러내야 다음에 헤매지 않는다.
+  window.navermap_authFailure = function () {
+    show('네이버 지도 인증에 실패했어요',
+         '이 도메인이 NCP Application 의 Web 서비스 URL 에 등록돼 있는지 확인해 주세요.', null);
+  };
 
   tabs.kakao.onclick = function () { if (KAKAO_OK) load('kakao'); };
   tabs.naver.onclick = function () { load('naver'); };
