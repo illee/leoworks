@@ -248,11 +248,18 @@
 
     var start = function () {
       guard.wrap(function () {
+        // 크기를 명시하지 않으면 컨테이너 측정 시점에 따라 0x0으로 잡혀 검은 화면이 된다.
         var pano = new naver.maps.Panorama(elView, {
           position: new naver.maps.LatLng(lat, lng),
+          size: new naver.maps.Size(elView.clientWidth || window.innerWidth,
+                                    elView.clientHeight || window.innerHeight),
           pov: { pan: 0, tilt: 0, fov: 100 },
           flightSpot: false,
           logoControl: true
+        });
+        // 회전·주소창 접힘 등으로 뷰포트가 바뀌면 다시 맞춘다.
+        window.addEventListener('resize', function () {
+          try { pano.setSize(new naver.maps.Size(elView.clientWidth, elView.clientHeight)); } catch (e) {}
         });
         naver.maps.Event.addListener(pano, 'pano_status', function (status) {
           if (!guard.settle()) return;
