@@ -47,8 +47,11 @@
   main { flex: 1 1 auto; position: relative; min-height: 0; }
   #view { position: absolute; inset: 0; }
 
+  /* 배경을 불투명하게 — 파노라마 실패 시 네이버 SDK가 밝은 회색 placeholder 를 남기는데,
+     투명하면 그 위에 흰 글씨가 얹혀 거의 안 보인다(실측). */
   #msg { position: absolute; inset: 0; display: none; flex-direction: column;
-    align-items: center; justify-content: center; gap: 14px; padding: 28px; text-align: center; }
+    align-items: center; justify-content: center; gap: 14px; padding: 28px; text-align: center;
+    background: var(--bg); }
   #msg.on { display: flex; }
   #msg .big { font-size: 34px; }
   #msg .t { font-weight: 700; }
