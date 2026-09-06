@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>들머리 미리 보기 · 오솔로그</title>
+<!--
+  오솔로그 「입구 미리 보기」 — 들머리 로드뷰/거리뷰.
+
+  왜 앱이 아니라 이 페이지인가:
+    카카오는 모바일 브라우저용 로드뷰 딥링크를 제공하지 않는다(2026-09-06 실측).
+    kakaomap://roadView 는 앱이 있을 때만 동작하고, 문서의 MobileWeb URL과
+    map.kakao.com/link/roadview 는 둘 다 좌표를 버리고 지도 홈으로 보낸다.
+    → 지도 앱 설치 여부와 무관하게 입구를 보여주려면 JS SDK로 직접 렌더해야 한다.
+
+  왜 leoworks.kr에 올리나:
+    카카오·네이버 JS SDK는 referrer 도메인으로 인증한다. 앱 안의 로컬 HTML은
+    origin이 없어 인증에 실패한다. 등록된 도메인에서 서빙하면 통과한다.
+    덤으로, 앱을 새로 내지 않고 이 파일만 고쳐도 동작이 바뀐다.
+
+  파라미터: ?lat=&lng=&name=&p=kakao|naver
+  등록 필요: 카카오 JS키 플랫폼(Web) · 네이버 NCP Maps 웹 서비스 URL — 둘 다 leoworks.kr
+-->
+<style>
+  :root {
+    --bg: #101312; --fg: #f4f6f5; --dim: #9aa4a0;
+    --brand: #2E7D5B; --line: rgba(255,255,255,.14);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  /* .btn 의 display:inline-block 가 기본 [hidden] 을 덮으므로 명시적으로 이긴다 */
+  [hidden] { display: none !important; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; }
+  body { display: flex; flex-direction: column; overflow: hidden; }
+
+  header { flex: none; padding: max(10px, env(safe-area-inset-top)) 14px 10px;
+    display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--line); }
+  #name { font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; flex: 1 1 auto; min-width: 0; }
+  .tabs { flex: none; display: flex; gap: 6px; }
+  .tab { padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line);
+    background: transparent; color: var(--dim); font-size: 13px; font-weight: 600; cursor: pointer; }
+  .tab[aria-selected="true"] { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .tab[disabled] { opacity: .4; }
+
+  main { flex: 1 1 auto; position: relative; min-height: 0; }
+  #view { position: absolute; inset: 0; }
+
+  #msg { position: absolute; inset: 0; display: none; flex-direction: column;
+    align-items: center; justify-content: center; gap: 14px; padding: 28px; text-align: center; }
+  #msg.on { display: flex; }
+  #msg .big { font-size: 34px; }
+  #msg .t { font-weight: 700; }
+  #msg .s { color: var(--dim); font-size: 13.5px; max-width: 30ch; }
+  .btn { display: inline-block; padding: 11px 18px; border-radius: 10px; border: 1px solid var(--brand);
+    background: var(--brand); color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; }
+  .btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+
+  footer { flex: none; padding: 10px 14px max(10px, env(safe-area-inset-bottom));
+    border-top: 1px solid var(--line); display: flex; gap: 8px; align-items: center; }
+  footer .note { color: var(--dim); font-size: 12px; flex: 1 1 auto; min-width: 0; }
+  footer a { flex: none; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div id="name">들머리</div>
+  <div class="tabs">
+    <button class="tab" id="tab-kakao" role="tab" aria-selected="false">카카오</button>
+    <button class="tab" id="tab-naver" role="tab" aria-selected="false">네이버</button>
+  </div>
+</header>
+
+<main>
+  <div id="view"></div>
+  <div id="msg">
+    <div class="big">🏞️</div>
+    <div class="t" id="msg-t">불러오는 중…</div>
+    <div class="s" id="msg-s"></div>
+    <button class="btn" id="msg-btn" hidden></button>
+  </div>
+</main>
+
+<footer>
+  <div class="note" id="note"></div>
+  <a class="btn ghost" id="applink" href="#">지도 앱으로</a>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // 지도 SDK 키는 referrer 도메인으로 제한되므로 공개 페이지에 두는 것이 정상이다(비밀값 아님).
+  var KAKAO_JS_KEY = '';                 // TODO: Kakao Developers > 앱 > 앱 키 > JavaScript 키
+  var NAVER_KEY_ID = 'owz92t23ix';       // NCP Maps client id (앱과 동일)
+
+  var q = new URLSearchParams(location.search);
+  var lat = parseFloat(q.get('lat'));
+  var lng = parseFloat(q.get('lng'));
+  var name = q.get('name') || '들머리';
+  var provider = (q.get('p') === 'naver' || !KAKAO_JS_KEY) ? 'naver' : 'kakao';
+
+  var elName = document.getElementById('name');
+  var elView = document.getElementById('view');
+  var elMsg = document.getElementById('msg');
+  var elMsgT = document.getElementById('msg-t');
+  var elMsgS = document.getElementById('msg-s');
+  var elMsgBtn = document.getElementById('msg-btn');
+  var elNote = document.getElementById('note');
+  var elApp = document.getElementById('applink');
+  var tabs = { kakao: document.getElementById('tab-kakao'), naver: document.getElementById('tab-naver') };
+
+  elName.textContent = name;
+  if (!KAKAO_JS_KEY) tabs.kakao.disabled = true;
+
+  if (!isFinite(lat) || !isFinite(lng)) {
+    return show('좌표가 없어요', '앱에서 다시 열어 주세요.', null);
+  }
+
+  function show(title, sub, btn) {
+    elMsgT.textContent = title;
+    elMsgS.textContent = sub || '';
+    if (btn) { elMsgBtn.textContent = btn.label; elMsgBtn.hidden = false; elMsgBtn.onclick = btn.onClick; }
+    else { elMsgBtn.hidden = true; elMsgBtn.onclick = null; }
+    elMsg.classList.add('on');
+  }
+  function hide() { elMsg.classList.remove('on'); }
+
+  function other(p) { return p === 'kakao' ? 'naver' : 'kakao'; }
+  var LABEL = { kakao: '카카오 로드뷰', naver: '네이버 거리뷰' };
+
+  // 로드뷰가 없을 때: 반대편 공급자를 권한다. 커버리지가 서로 다르다 —
+  // 특히 임도·시골길은 한쪽에만 있는 경우가 흔하다.
+  function noImagery(p) {
+    var o = other(p);
+    var canSwitch = (o === 'naver') || !!KAKAO_JS_KEY;
+    show(
+      '이 들머리엔 ' + LABEL[p] + '가 없어요',
+      canSwitch ? '산속 진입로는 촬영이 안 된 곳이 많아요. ' + LABEL[o] + '로 찾아볼까요?'
+                : '산속 진입로는 촬영이 안 된 곳이 많아요.',
+      canSwitch ? { label: LABEL[o] + '로 보기', onClick: function () { load(o); } } : null
+    );
+  }
+
+  // 지도 SDK가 실패하는 방식이 다양하다: 스크립트 로드 실패, 도메인 미등록으로 생성자가
+  // 예외를 던짐, 콜백이 영영 안 옴. 어느 쪽이든 "불러오는 중…"에 갇히면 안 되므로
+  // ① 타이머를 먼저 걸고 ② 모든 SDK 호출을 try/catch로 감싼다.
+  var seq = 0;
+  function arm(p) {
+    var mine = ++seq;
+    var settled = false;
+    var timer = setTimeout(function () {
+      if (mine === seq && !settled) { settled = true; sdkFailed(p); }
+    }, 12000);
+    var g = {
+      provider: p,
+      settle: function () {
+        if (mine !== seq || settled) return false;   // 사용자가 그새 다른 탭으로 옮겼다
+        settled = true; clearTimeout(timer); return true;
+      },
+      wrap: function (fn) {
+        try { fn(); } catch (e) { if (g.settle()) sdkFailed(p); }
+      }
+    };
+    return g;
+  }
+
+  function sdkFailed(p) {
+    var o = other(p);
+    var canSwitch = (o === 'naver') || !!KAKAO_JS_KEY;
+    show(
+      LABEL[p] + '를 불러오지 못했어요',
+      canSwitch ? LABEL[o] + '로 보시겠어요?' : '잠시 후 다시 시도해 주세요.',
+      canSwitch ? { label: LABEL[o] + '로 보기', onClick: function () { load(o); } } : null
+    );
+  }
+
+  var loaded = {};
+  function script(src, guard, cb) {
+    if (loaded[src]) return cb();
+    var s = document.createElement('script');
+    s.src = src;
+    s.onload = function () { loaded[src] = true; cb(); };
+    // 로드 자체가 실패하면(네트워크·CDN 차단) 타이머를 기다릴 필요가 없다 — 즉시 알린다.
+    s.onerror = function () { if (guard.settle()) sdkFailed(guard.provider); };
+    document.head.appendChild(s);
+  }
+
+  function setTabs(p) {
+    for (var k in tabs) tabs[k].setAttribute('aria-selected', String(k === p));
+    elApp.href = p === 'kakao'
+      ? 'kakaomap://roadView?p=' + lat + ',' + lng
+      : 'nmap://place?lat=' + lat + '&lng=' + lng + '&name=' + encodeURIComponent(name) + '&appname=com.leoworks.osolog';
+  }
+
+  function load(p) {
+    provider = p;
+    setTabs(p);
+    elView.innerHTML = '';
+    elNote.textContent = '';
+    show('불러오는 중…', '', null);
+    (p === 'kakao' ? loadKakao : loadNaver)();
+  }
+
+  // --- 카카오 로드뷰 -------------------------------------------------------
+  // 들머리 바로 위에 파노라마가 없는 경우가 많아 반경을 넓혀 가며 찾고,
+  // 얼마나 떨어진 지점인지 사용자에게 알려 준다(엉뚱한 곳을 보여주지 않기 위해).
+  function loadKakao() {
+    var guard = arm('kakao');
+    script('https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=' + KAKAO_JS_KEY, guard, function () {
+      guard.wrap(function () {
+      kakao.maps.load(function () { guard.wrap(function () {
+        var pos = new kakao.maps.LatLng(lat, lng);
+        var client = new kakao.maps.RoadviewClient();
+        var radii = [50, 200, 500];
+        (function tryNext(i) {
+          if (i >= radii.length) { if (guard.settle()) noImagery('kakao'); return; }
+          client.getNearestPanoId(pos, radii[i], function (panoId) {
+            if (!panoId) return tryNext(i + 1);
+            var rv = new kakao.maps.Roadview(elView);
+            kakao.maps.event.addListener(rv, 'init', function () {
+              if (!guard.settle()) return;
+              hide();
+              elNote.textContent = radii[i] <= 50 ? '들머리 지점' : '들머리에서 ' + radii[i] + 'm 이내 가장 가까운 지점';
+            });
+            rv.setPanoId(panoId, pos);
+          });
+        })(0);
+      }); });
+      });
+    });
+  }
+
+  // --- 네이버 거리뷰 -------------------------------------------------------
+  // setPosition 이 반경 300m 내 최근접 파노라마를 자동으로 찾는다.
+  // 결과는 pano_status(OK/ERROR)로 온다.
+  function loadNaver() {
+    var guard = arm('naver');
+    script('https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' + NAVER_KEY_ID + '&submodules=panorama', guard, function () {
+      guard.wrap(function () {
+        var pano = new naver.maps.Panorama(elView, {
+          position: new naver.maps.LatLng(lat, lng),
+          pov: { pan: 0, tilt: 0, fov: 100 },
+          flightSpot: false,
+          logoControl: true
+        });
+        naver.maps.Event.addListener(pano, 'pano_status', function (status) {
+          if (!guard.settle()) return;
+          if (status === 'OK') {
+            hide();
+            elNote.textContent = '들머리 300m 이내 가장 가까운 지점';
+          } else {
+            noImagery('naver');
+          }
+        });
+      });
+    });
+  }
+
+  tabs.kakao.onclick = function () { if (!tabs.kakao.disabled) load('kakao'); };
+  tabs.naver.onclick = function () { load('naver'); };
+  load(provider);
+})();
+</script>
+</body>
+</html>
