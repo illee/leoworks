@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naver, AliExpress &amp; K-beauty data tools — LeoWorks</title>
+<meta name="description" content="Apify actors for Naver Shopping rank, Naver Blog and AI Briefing monitoring, Korean review analysis, K-beauty rankings and AliExpress reviews and search.">
+<link rel="canonical" href="https://leoworks.kr/tools/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Naver, AliExpress & K-beauty data tools — LeoWorks">
+<meta property="og:description" content="Seven Apify actors for Korean and cross-border e-commerce data: Naver Shopping, Naver Blog, Naver AI Briefing, Korean reviews, K-beauty rankings, AliExpress.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://leoworks.kr/tools/">
+<style>
+  :root{
+    --bg:#FBF7F0; --bg-2:#F4EDE1; --card:#FFFFFF;
+    --ink:#3A322A; --ink-2:#6F6354; --muted:#9C8F7D;
+    --accent:#B5824D; --accent-deep:#9A6A35; --line:#ECE2D2;
+    --naver:#03C75A; --ali:#E8452C; --beauty:#C8577A;
+    --shadow:0 1px 2px rgba(58,50,42,.04), 0 8px 24px rgba(58,50,42,.06);
+    --shadow-lg:0 2px 6px rgba(58,50,42,.06), 0 18px 40px rgba(58,50,42,.12);
+    --r:20px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  .eyebrow{font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
+
+  header.nav{position:sticky; top:0; z-index:50;
+    backdrop-filter:saturate(160%) blur(12px); -webkit-backdrop-filter:saturate(160%) blur(12px);
+    background:rgba(251,247,240,.78); border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1080px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:9px; font-size:18px; font-weight:800; letter-spacing:-.01em;}
+  .brand .dot{width:22px; height:22px; border-radius:7px; background:var(--accent); display:inline-grid; place-items:center; color:#fff; font-size:13px; font-weight:800;}
+  .nav-links{display:flex; gap:22px;}
+  .nav-links a{font-size:14px; color:var(--ink-2); transition:color .15s;}
+  .nav-links a:hover{color:var(--ink);}
+
+  .hero{position:relative; text-align:center; padding:96px 0 56px; overflow:hidden;}
+  .hero::before{content:""; position:absolute; inset:-20% 0 auto 0; height:520px; z-index:0;
+    background:radial-gradient(60% 80% at 50% 0%, rgba(181,130,77,.16), rgba(181,130,77,0) 70%);}
+  .hero > *{position:relative; z-index:1;}
+  .hero h1{font-size:clamp(36px,6vw,58px); line-height:1.08; letter-spacing:-.03em; margin:18px auto 0; font-weight:800; max-width:18ch;}
+  .hero .ko{font-size:15px; color:var(--muted); margin:14px auto 0;}
+  .hero .lead{font-size:clamp(16px,2.2vw,19px); color:var(--ink-2); max-width:52ch; margin:18px auto 0;}
+  .chips{margin-top:26px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+  .chip{font-size:13px; font-weight:600; padding:7px 14px; border-radius:999px; background:#fff; border:1px solid var(--line); color:var(--ink-2); transition:.15s;}
+  .chip:hover{border-color:var(--accent); color:var(--accent-deep);}
+
+  section{padding:48px 0;}
+  .group-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .group-head h2{font-size:clamp(22px,3.4vw,28px); letter-spacing:-.02em; margin:0; font-weight:800;}
+  .group-head p{margin:0; color:var(--muted); font-size:14.5px;}
+  .group-head .bar{width:6px; height:24px; border-radius:3px; align-self:center;}
+
+  .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:24px;
+    box-shadow:var(--shadow); display:flex; flex-direction:column; transition:transform .2s, box-shadow .2s;}
+  .card:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg);}
+  .card-top{display:flex; gap:16px; align-items:center;}
+  .tile{flex:0 0 64px; width:64px; height:64px; border-radius:16px; overflow:hidden; box-shadow:0 6px 18px rgba(58,50,42,.16);
+    display:grid; place-items:center; color:#fff; font-weight:800; font-size:20px; letter-spacing:-.02em;}
+  .tile img{width:100%; height:100%; object-fit:cover; display:block;}
+  .tile.ali{background:linear-gradient(135deg,#F0623D,#D4351F);}
+  .card h3{font-size:19px; font-weight:800; letter-spacing:-.01em; margin:0; line-height:1.3;}
+  .card .desc{color:var(--ink-2); font-size:15px; margin:14px 0 0;}
+  .price{margin-top:14px; font-size:13.5px; color:var(--ink); background:var(--bg-2); border-radius:12px; padding:9px 12px;}
+  .price b{font-weight:700; color:var(--accent-deep);}
+  .card .foot{margin-top:auto; padding-top:18px;}
+  .link-cta{display:inline-flex; align-items:center; gap:6px; font-size:14.5px; font-weight:700; color:var(--accent-deep); transition:gap .15s;}
+  .link-cta:hover{gap:9px;}
+
+  .panel{background:var(--bg-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .two-col{display:grid; grid-template-columns:1.1fr 1fr; gap:40px; align-items:start;}
+  .panel h2{font-size:clamp(22px,3.4vw,28px); letter-spacing:-.02em; margin:10px 0 0; font-weight:800;}
+  .panel p{color:var(--ink-2); margin:12px 0 0;}
+  pre{margin:16px 0 0; background:#2F2923; color:#F4EDE1; border-radius:14px; padding:16px 18px; font-size:13px; line-height:1.6;
+    white-space:pre-wrap; word-break:break-all; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.92em; background:rgba(181,130,77,.12); padding:1px 6px; border-radius:6px;}
+  ol.steps{list-style:none; padding:0; margin:16px 0 0; counter-reset:s;}
+  ol.steps li{counter-increment:s; position:relative; padding:0 0 14px 44px; color:var(--ink);}
+  ol.steps li::before{content:counter(s); position:absolute; left:0; top:0; width:30px; height:30px; border-radius:50%;
+    background:var(--accent); color:#fff; font-weight:800; font-size:14px; display:grid; place-items:center;}
+
+  footer{border-top:1px solid var(--line); padding:34px 0 48px;}
+  footer .wrap{display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center;}
+  .biz{color:var(--ink-2); font-size:13.5px;}
+  .biz a{color:var(--accent-deep); font-weight:600;}
+  .copy{color:var(--muted); font-size:13px;}
+
+  @media (max-width:860px){
+    .grid{grid-template-columns:1fr;}
+    .two-col{grid-template-columns:1fr; gap:28px;}
+    .nav-links{display:none;}
+    .hero{padding:72px 0 40px;}
+    section{padding:40px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../"><span class="dot">L</span>LeoWorks</a>
+    <nav class="nav-links">
+      <a href="#naver">Naver</a>
+      <a href="#kbeauty">K-beauty</a>
+      <a href="#aliexpress">AliExpress</a>
+      <a href="#agents">AI agents</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Data tools</span>
+      <h1>Naver, AliExpress &amp; <span style="white-space:nowrap">K-beauty</span> data, ready to use</h1>
+      <p class="ko" lang="ko">네이버·알리익스프레스·K-뷰티 데이터를 가져오는 Apify 액터 7종</p>
+      <p class="lead">LeoWorks builds data tools for Korean and cross-border e-commerce. Each one runs on Apify, so you can start it from the browser, schedule it, or call it by API — and you pay per 1,000 results.</p>
+      <div class="chips">
+        <a class="chip" href="#naver">Naver &amp; Korean reviews · 4 tools</a>
+        <a class="chip" href="#kbeauty">K-beauty · 1 tool</a>
+        <a class="chip" href="#aliexpress">AliExpress · 2 tools</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="naver">
+    <div class="wrap">
+      <div class="group-head">
+        <span class="bar" style="background:var(--naver)"></span>
+        <h2>Naver &amp; Korean reviews</h2>
+        <p>Korea's largest search and shopping platform, plus review analysis</p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+          <div class="card-top">
+            <div class="tile"><img src="../assets/tools/naver-shopping-rank-tracker.png" alt="" width="64" height="64"></div>
+            <h3>Naver Shopping Rank Tracker</h3>
+          </div>
+          <p class="desc">Where a product, URL or store ranks in Naver Shopping for Korean keywords, daily, no login.</p>
+          <div class="price"><b>$3</b> / 1,000 keyword checks (+$0.50 / 1,000 competitor rows)</div>
+          <div class="foot"><a class="link-cta" href="https://apify.com/leoworks/naver-shopping-rank-tracker?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=tools-hub" target="_blank" rel="noopener">View on Apify ↗</a></div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="tile"><img src="../assets/tools/naver-blog-brand-monitor.png" alt="" width="64" height="64"></div>
+            <h3>Naver Blog Brand Monitor</h3>
+          </div>
+          <p class="desc">Naver Blog posts about a brand, each labelled sponsored (<span lang="ko">체험단/협찬</span>) vs self-paid with evidence, sentiment, brand mentions.</p>
+          <div class="price"><b>$4</b> / 1,000 posts + $1 / 1,000 judgments</div>
+          <div class="foot"><a class="link-cta" href="https://apify.com/leoworks/naver-blog-brand-monitor?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=tools-hub" target="_blank" rel="noopener">View on Apify ↗</a></div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="tile"><img src="../assets/tools/naver-ai-briefing-monitor.png" alt="" width="64" height="64"></div>
+            <h3>Naver AI Briefing Monitor</h3>
+          </div>
+          <p class="desc">What Naver's AI briefing answers for a keyword, which sources it cites, and whether your brand and rivals are mentioned or recommended.</p>
+          <div class="price"><b>$3</b> / 1,000 queries + $12 / 1,000 briefings captured</div>
+          <div class="foot"><a class="link-cta" href="https://apify.com/leoworks/naver-ai-briefing-monitor?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=tools-hub" target="_blank" rel="noopener">View on Apify ↗</a></div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="tile"><img src="../assets/tools/korean-review-classifier.png" alt="" width="64" height="64"></div>
+            <h3>Korean Review Classifier</h3>
+          </div>
+          <p class="desc">Complaint type, sentiment and purchase motive for any Korean review dataset (Coupang, Olive Young, Naver) — no scraping, no prompts.</p>
+          <div class="price"><b>$0.50</b> / 1,000 reviews</div>
+          <div class="foot"><a class="link-cta" href="https://apify.com/leoworks/korean-review-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=tools-hub" target="_blank" rel="noopener">View on Apify ↗</a></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="kbeauty">
+    <div class="wrap">
+      <div class="group-head">
+        <span class="bar" style="background:var(--beauty)"></span>
+        <h2>K-beauty</h2>
+        <p>Bestseller rankings and reviews from Korean beauty retailers</p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+          <div class="card-top">
+            <div class="tile"><img src="../assets/tools/kbeauty-ranking-review-monitor.png" alt="" width="64" height="64"></div>
+            <h3>OliveYoung Global &amp; Amore Mall Rankings + Reviews</h3>
+          </div>
+          <p class="desc">K-beauty bestseller rankings (Olive Young Global, Amore Mall) with rank changes, plus reviews with complaint labels.</p>
+          <div class="price"><b>$2</b> / 1,000 ranking rows · $1 / 1,000 reviews · $0.50 / 1,000 classifications</div>
+          <div class="foot"><a class="link-cta" href="https://apify.com/leoworks/kbeauty-ranking-review-monitor?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=tools-hub" target="_blank" rel="noopener">View on Apify ↗</a></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="aliexpress">
+    <div class="wrap">
+      <div class="group-head">
+        <span class="bar" style="background:var(--ali)"></span>
+        <h2>AliExpress</h2>
+        <p>Reviews and search results for sourcing and dropshipping</p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+          <div class="card-top">
+            <div class="tile ali" aria-hidden="true">AE</div>
+            <h3>AliExpress Reviews Scraper</h3>
+          </div>
+          <p class="desc">AliExpress product reviews with English translation, stars, country, SKU, photos, and optional complaint/sentiment labels.</p>
+          <div class="price"><b>$1.50</b> / 1,000 reviews + $0.50 / 1,000 classifications</div>
+          <div class="foot"><a class="link-cta" href="https://apify.com/leoworks/aliexpress-reviews-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=tools-hub" target="_blank" rel="noopener">View on Apify ↗</a></div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="tile ali" aria-hidden="true">AE</div>
+            <h3>AliExpress Search Scraper</h3>
+          </div>
+          <p class="desc">AliExpress search results per keyword (rank, price, sold count, rating, ads flagged) and your products' keyword rank over time.</p>
+          <div class="price"><b>$2</b> / 1,000 results · $3 / 1,000 rank checks</div>
+          <div class="foot"><a class="link-cta" href="https://apify.com/leoworks/aliexpress-search-scraper?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=tools-hub" target="_blank" rel="noopener">View on Apify ↗</a></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="agents" class="panel">
+    <div class="wrap two-col">
+      <div>
+        <span class="eyebrow">AI agents</span>
+        <h2>Use them from your AI agent</h2>
+        <p>All seven actors are available as tools through the Apify MCP server. Add the tools you need to the server URL and connect it with your Apify token.</p>
+        <pre>https://mcp.apify.com?tools=leoworks/naver-shopping-rank-tracker,leoworks/aliexpress-reviews-classifier</pre>
+        <p>Tool names follow the pattern <code>leoworks--&lt;actor&gt;</code>. Each actor's Apify page has the full setup.</p>
+      </div>
+      <div>
+        <span class="eyebrow">How it works</span>
+        <h2>Three steps</h2>
+        <ol class="steps">
+          <li>Open a tool on Apify and enter keywords, product URLs or a brand name.</li>
+          <li>Run it once, or schedule it daily or weekly.</li>
+          <li>Download the results as a table, or pull them by API.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="../"><span class="dot">L</span>LeoWorks</a>
+    <div class="biz">LeoWorks · Business Reg. No. 640-53-01064 · Contact: <a href="mailto:support@leoworks.kr">support@leoworks.kr</a></div>
+    <div class="copy">© 2026 LeoWorks. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
