@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How can I find an AliExpress product&#x27;s real complaints before I order or dropship it? — LeoWorks</title>
+<meta name="description" content="read the reviews — but read them by complaint type, not by star rating. A 5-star review can still mention a charging base that runs down fast. AliExpress…">
+<link rel="canonical" href="https://leoworks.kr/tools/aliexpress-review-analysis/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="How can I find an AliExpress product&#x27;s real complaints before I order or dropship it?">
+<meta property="og:description" content="read the reviews — but read them by complaint type, not by star rating. A 5-star review can still mention a charging base that runs down fast. AliExpress…">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://leoworks.kr/tools/aliexpress-review-analysis/">
+<style>
+  :root{--bg:#FBF7F0; --bg-2:#F4EDE1; --ink:#3A322A; --ink-2:#6F6354; --muted:#9C8F7D;
+    --accent:#B5824D; --accent-deep:#9A6A35; --line:#ECE2D2;}
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-deep); text-underline-offset:3px;}
+  header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    background:rgba(251,247,240,.85); border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1080px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:9px; font-size:18px; font-weight:800; color:var(--ink); text-decoration:none;}
+  .brand .dot{width:22px; height:22px; border-radius:7px; background:var(--accent); display:inline-grid; place-items:center; color:#fff; font-size:13px; font-weight:800;}
+  .back{font-size:14px; color:var(--ink-2); text-decoration:none;}
+  article{max-width:760px; margin:0 auto; padding:56px 24px 72px;}
+  .eyebrow{font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
+  h1{font-size:clamp(28px,4.6vw,40px); line-height:1.2; letter-spacing:-.02em; margin:14px 0 24px; font-weight:800;}
+  h2{font-size:clamp(20px,3vw,24px); letter-spacing:-.01em; margin:44px 0 12px; font-weight:800;}
+  p, li{font-size:17px;}
+  table{width:100%; border-collapse:collapse; margin:18px 0; font-size:14.5px; display:block; overflow-x:auto;}
+  th, td{border-bottom:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top;}
+  th{background:var(--bg-2); font-weight:700;}
+  pre{background:#2F2923; color:#F4EDE1; border-radius:14px; padding:16px 18px; overflow-x:auto; font-size:13.5px; line-height:1.6;}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em;}
+  :not(pre) > code{background:rgba(181,130,77,.12); padding:1px 6px; border-radius:6px;}
+  .cta{margin:40px 0 0; padding:22px 24px; background:#fff; border:1px solid var(--line); border-radius:18px;}
+  .cta a{font-weight:700;}
+  footer{border-top:1px solid var(--line); padding:30px 24px 44px; text-align:center; color:var(--ink-2); font-size:13.5px;}
+  footer a{font-weight:600;}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-inner">
+  <a class="brand" href="../../"><span class="dot">L</span>LeoWorks</a>
+  <a class="back" href="../">← All data tools</a>
+</div></header>
+<article>
+  <span class="eyebrow">Guide</span>
+<h1>How can I find an AliExpress product's real complaints before I order or dropship it?</h1>
+<p><strong>Short answer:</strong> read the reviews — but read them by complaint type, not by star rating. A 5-star review can still mention a charging base that runs down fast. <a target="_blank" rel="noopener" href="https://apify.com/leoworks/aliexpress-reviews-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g2-aliexpress-reviews">AliExpress Reviews Scraper</a> pulls a product's reviews with AliExpress' English translation, then labels each one with complaint types, sentiment and purchase motive, so you can count <em>why</em> buyers are unhappy instead of scrolling. It costs $1.50 per 1,000 reviews, plus $0.50 per 1,000 if you turn on the labels.</p>
+<h2>Why star ratings aren't enough</h2>
+<p>Two things hide the problems you care about as a sourcer:</p>
+<ul>
+<li><strong>Mixed reviews get high stars.</strong> Buyers often give 5 stars and then mention a defect in passing.</li>
+<li><strong>Reviews are in many languages.</strong> A listing shipped worldwide collects reviews in Spanish, Ukrainian and many other languages. AliExpress translates them, but you still have to read them one by one.</li>
+</ul>
+<h2>What you get</h2>
+<p>Real rows from a run on 2026-10-05 (1,000 reviews of one earbuds listing, labels on). Text is shortened here:</p>
+<table>
+<thead>
+<tr>
+<th>stars</th>
+<th>country</th>
+<th>AliExpress English translation</th>
+<th>complaint type (probability)</th>
+<th>sentiment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>US</td>
+<td>&quot;It arrived completely scratched and as if it had already been used.&quot;</td>
+<td>quality/defect (0.98)</td>
+<td>negative</td>
+</tr>
+<tr>
+<td>5</td>
+<td>MX</td>
+<td>&quot;…not made of the best quality material, but for their price they are quite good. … their charging base discharges very quickly.&quot;</td>
+<td>quality/defect (0.86), other (0.56)</td>
+<td>positive</td>
+</tr>
+<tr>
+<td>5</td>
+<td>US</td>
+<td>&quot;Everything has arrived. The gift was won on Aliexpress.&quot;</td>
+<td>none (0.98)</td>
+<td>positive</td>
+</tr>
+</tbody>
+</table>
+<p>The second row is the point: 5 stars, positive overall, and still a quality complaint you'd want to know about before ordering 500 units.</p>
+<p>Each row also keeps the original text, date, the option bought (color/size), photos, AliExpress' aspect ratings (e.g. &quot;Quality of sound: Poor&quot;) and helpful votes. Complaint types are: quality/defect, size/fit, delivery, packaging, price/value, customer service, no effect, skin/body reaction, other.</p>
+<p>Each run also saves a <strong>per-product summary</strong> at no extra charge: the product's total review count, average rating and star distribution, plus — for the reviews you collected — the complaint rate and mix, sentiment shares, purchase motives and the 3 strongest complaint reviews.</p>
+<h2>How to do it (5 minutes)</h2>
+<ol>
+<li><strong>Open the tool</strong> on Apify: <a target="_blank" rel="noopener" href="https://apify.com/leoworks/aliexpress-reviews-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g2-aliexpress-reviews">AliExpress Reviews Scraper</a>.</li>
+<li><strong>Paste product URLs or IDs</strong> — any AliExpress site works (aliexpress.com, aliexpress.us, ko.aliexpress.com…):<pre><code class="language-json">{
+  &quot;productUrls&quot;: [&quot;https://www.aliexpress.com/item/1005008549911526.html&quot;],
+  &quot;reviewsPerProduct&quot;: 20
+}
+</code></pre>
+That first run is about $0.04 and 10 seconds, with labels on by default.</li>
+<li><strong>Go bigger for a sourcing decision</strong> — 200 reviews from each of a few competing listings. 10 products × 200 labelled reviews is about $4.</li>
+<li><strong>Open the per-product summary</strong> (Output tab → <em>Summary by product</em>) and compare complaint rates across listings. Read the 3 strongest complaints for each.</li>
+<li><strong>Optional: schedule it weekly</strong> on your own listings to catch new complaints early.</li>
+</ol>
+<p>Don't have product URLs yet? <a target="_blank" rel="noopener" href="https://apify.com/leoworks/aliexpress-search-scraper?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g2-aliexpress-reviews">AliExpress Search Scraper</a> returns search results per keyword with rank, price, sold count and rating; pass its <code>productUrl</code> values to the review tool.</p>
+<h2>How accurate are the labels?</h2>
+<p>On 30 hand-labelled AliExpress reviews the tool hadn't seen before (earbuds, phone cases, dresses, kitchen tools, LED strips, car holders; about half with 1–3 stars), complaint type matched <strong>93%</strong> and sentiment <strong>87%</strong>. That's a small test and automated labels can be wrong — check a sample of rows before a big order.</p>
+<h2>Other ways, and their limits</h2>
+<ul>
+<li><strong>Read reviews on the product page.</strong> Works for one listing. AliExpress doesn't let you sort reviews by date or stars, so finding the bad ones in 1,000 reviews takes a while.</li>
+<li><strong>Export reviews and paste them into a chatbot.</strong> Possible for a few dozen; long lists get cut off, and the answer can change each time you ask.</li>
+<li><strong>Filter by 1–2 stars only.</strong> Faster, but you miss complaints inside 4–5 star reviews — like the charging base above.</li>
+</ul>
+<p><em>Independent tool — not affiliated with AliExpress or Alibaba Group. More Naver, AliExpress and K-beauty data tools: <a href="https://leoworks.kr/tools/">leoworks.kr/tools</a>.</em></p>
+
+  <div class="cta">Try it: <a href="https://apify.com/leoworks/aliexpress-reviews-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g2-aliexpress-reviews" target="_blank" rel="noopener">AliExpress Reviews Scraper on Apify ↗</a> · More tools: <a href="../">leoworks.kr/tools</a></div>
+</article>
+<footer>LeoWorks · Business Reg. No. 640-53-01064 · Contact: <a href="mailto:support@leoworks.kr">support@leoworks.kr</a><br>© 2026 LeoWorks. All rights reserved.</footer>
+</body>
+</html>

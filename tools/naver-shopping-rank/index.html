@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How do I track where my product ranks on Naver Shopping (without a Naver login)? — LeoWorks</title>
+<meta name="description" content="search your keyword on Naver from a phone and count — or let a scheduled scraper do it every day. Naver Shopping Rank Tracker checks the shopping section…">
+<link rel="canonical" href="https://leoworks.kr/tools/naver-shopping-rank/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="How do I track where my product ranks on Naver Shopping (without a Naver login)?">
+<meta property="og:description" content="search your keyword on Naver from a phone and count — or let a scheduled scraper do it every day. Naver Shopping Rank Tracker checks the shopping section…">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://leoworks.kr/tools/naver-shopping-rank/">
+<style>
+  :root{--bg:#FBF7F0; --bg-2:#F4EDE1; --ink:#3A322A; --ink-2:#6F6354; --muted:#9C8F7D;
+    --accent:#B5824D; --accent-deep:#9A6A35; --line:#ECE2D2;}
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-deep); text-underline-offset:3px;}
+  header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    background:rgba(251,247,240,.85); border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1080px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:9px; font-size:18px; font-weight:800; color:var(--ink); text-decoration:none;}
+  .brand .dot{width:22px; height:22px; border-radius:7px; background:var(--accent); display:inline-grid; place-items:center; color:#fff; font-size:13px; font-weight:800;}
+  .back{font-size:14px; color:var(--ink-2); text-decoration:none;}
+  article{max-width:760px; margin:0 auto; padding:56px 24px 72px;}
+  .eyebrow{font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
+  h1{font-size:clamp(28px,4.6vw,40px); line-height:1.2; letter-spacing:-.02em; margin:14px 0 24px; font-weight:800;}
+  h2{font-size:clamp(20px,3vw,24px); letter-spacing:-.01em; margin:44px 0 12px; font-weight:800;}
+  p, li{font-size:17px;}
+  table{width:100%; border-collapse:collapse; margin:18px 0; font-size:14.5px; display:block; overflow-x:auto;}
+  th, td{border-bottom:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top;}
+  th{background:var(--bg-2); font-weight:700;}
+  pre{background:#2F2923; color:#F4EDE1; border-radius:14px; padding:16px 18px; overflow-x:auto; font-size:13.5px; line-height:1.6;}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em;}
+  :not(pre) > code{background:rgba(181,130,77,.12); padding:1px 6px; border-radius:6px;}
+  .cta{margin:40px 0 0; padding:22px 24px; background:#fff; border:1px solid var(--line); border-radius:18px;}
+  .cta a{font-weight:700;}
+  footer{border-top:1px solid var(--line); padding:30px 24px 44px; text-align:center; color:var(--ink-2); font-size:13.5px;}
+  footer a{font-weight:600;}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-inner">
+  <a class="brand" href="../../"><span class="dot">L</span>LeoWorks</a>
+  <a class="back" href="../">← All data tools</a>
+</div></header>
+<article>
+  <span class="eyebrow">Guide</span>
+<h1>How do I track where my product ranks on Naver Shopping (without a Naver login)?</h1>
+<p><strong>Short answer:</strong> search your keyword on Naver from a phone and count — or let a scheduled scraper do it every day. <a target="_blank" rel="noopener" href="https://apify.com/leoworks/naver-shopping-rank-tracker?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g1-naver-rank">Naver Shopping Rank Tracker</a> checks the shopping section of Naver's mobile search for each keyword and returns your product's organic rank, its ad slot if it has one, and the change since the last check. It needs no Naver login and costs $3 per 1,000 keyword checks.</p>
+<p>For brands, agencies and Smartstore sellers in Korea, the shopping section of Naver search (네이버 쇼핑) is the product list shoppers see first when they search on Naver from a phone — so that is the shelf to watch.</p>
+<h2>What &quot;rank&quot; means here</h2>
+<p>When someone searches a product keyword in the Naver app or mobile site, the integrated search page shows a shopping section: a list of products, with sponsored slots mixed in. That is the list this tool reads.</p>
+<ul>
+<li><strong>Organic rank</strong> — position among non-ad products, 1 = top. Naver shows about 35 organic products per keyword, so ranks 1 to roughly 35 are available.</li>
+<li><strong>Ad rank</strong> — position among sponsored slots, if your product is advertised.</li>
+<li><strong>Visual position</strong> — where the card sits among all cards (ads included), as a shopper scrolls.</li>
+</ul>
+<p>It is <strong>not</strong> the ranking on the separate price-comparison site (<code>search.shopping.naver.com</code>).</p>
+<h2>What you get</h2>
+<p>Real rows from a run on 2026-10-04 (English in parentheses added for readers — the tool returns the keyword as you typed it):</p>
+<table>
+<thead>
+<tr>
+<th>keyword</th>
+<th>match</th>
+<th>found</th>
+<th>organicRank</th>
+<th>rankChange</th>
+<th>price (KRW)</th>
+<th>reviewCount</th>
+<th>rating</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>무선이어폰 (wireless earbuds)</td>
+<td>브리츠 공식몰 (a store name)</td>
+<td>true</td>
+<td>10</td>
+<td>+1</td>
+<td>39,900</td>
+<td>5,526</td>
+<td>4.68</td>
+</tr>
+<tr>
+<td>무선이어폰</td>
+<td>a catalog URL</td>
+<td>true</td>
+<td>2</td>
+<td>— (first run)</td>
+<td>130,830</td>
+<td>8,263</td>
+<td>4.9</td>
+</tr>
+<tr>
+<td>블루투스 이어폰 (bluetooth earphones)</td>
+<td>브리츠 공식몰</td>
+<td>true</td>
+<td>6</td>
+<td>— (first run)</td>
+<td>39,900</td>
+<td>5,526</td>
+<td>4.68</td>
+</tr>
+<tr>
+<td>텀블러 (tumbler)</td>
+<td>스탠리 (a store name)</td>
+<td>false</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>When a product isn't found, the row says how deep Naver's list went (<code>notFoundWithin: 36</code>), so &quot;not ranked&quot; never looks like an error. Each row also has the product title and URL, purchase count, page number and check time in UTC and Korea time.</p>
+<h2>How to set it up (5 minutes)</h2>
+<ol>
+<li><strong>Open the tool</strong> on Apify: <a target="_blank" rel="noopener" href="https://apify.com/leoworks/naver-shopping-rank-tracker?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g1-naver-rank">Naver Shopping Rank Tracker</a>.</li>
+<li><strong>Add targets</strong> — one keyword plus what to look for. The match can be a Smartstore or brand-store product URL, a catalog URL, a numeric product ID, or a store name:<pre><code class="language-json">{
+  &quot;targets&quot;: [
+    { &quot;keyword&quot;: &quot;무선이어폰&quot;, &quot;match&quot;: &quot;브리츠 공식몰&quot; }
+  ]
+}
+</code></pre>
+That one check costs $0.003.</li>
+<li><strong>Optional: competitors</strong> — add <code>&quot;topCompetitors&quot;: 10</code> to also get the top 10 organic products for each keyword, with price, reviews and rating ($0.50 per 1,000 competitor rows).</li>
+<li><strong>Schedule it daily.</strong> From the second run on, every row shows <code>rankChange</code> and <code>previousOrganicRank</code>, so the dataset becomes a rank history.</li>
+<li><strong>Read the results</strong> as a table in Apify, download them, or pull them by API.</li>
+</ol>
+<p>For scale: 50 keywords checked daily for 30 days is $4.50, and the free $5 monthly Apify credit covers about 1,666 checks. Keywords that fail after retries are reported with an <code>error</code> field and not charged.</p>
+<p>You can also call it from Claude, Cursor or Claude Code through the Apify MCP server — ask <em>&quot;Where does 브리츠 공식몰 rank for 무선이어폰 on Naver Shopping?&quot;</em> and the agent runs the tool. Setup is on the <a target="_blank" rel="noopener" href="https://apify.com/leoworks/naver-shopping-rank-tracker?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g1-naver-rank">tool page</a>.</p>
+<h2>Other ways, and their limits</h2>
+<ul>
+<li><strong>Search it yourself.</strong> Fine for a few keywords once. It doesn't scale to daily checks, and a logged-in phone may show you a personalized list.</li>
+<li><strong>Naver's official Shopping Search API</strong> was shut down on 31 July 2026, so there is no official endpoint for this anymore.</li>
+<li><strong>The price-comparison site</strong> (<code>search.shopping.naver.com</code>) goes deeper, but it blocks automated access — and it's a different list from the one most phone shoppers see first.</li>
+</ul>
+<p>Rankings move a little between checks, so look at the trend over days, not a single number.</p>
+<p><em>Independent tool — not affiliated with NAVER Corp. More Naver, AliExpress and K-beauty data tools: <a href="https://leoworks.kr/tools/">leoworks.kr/tools</a>.</em></p>
+
+  <div class="cta">Try it: <a href="https://apify.com/leoworks/naver-shopping-rank-tracker?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g1-naver-rank" target="_blank" rel="noopener">Naver Shopping Rank Tracker on Apify ↗</a> · More tools: <a href="../">leoworks.kr/tools</a></div>
+</article>
+<footer>LeoWorks · Business Reg. No. 640-53-01064 · Contact: <a href="mailto:support@leoworks.kr">support@leoworks.kr</a><br>© 2026 LeoWorks. All rights reserved.</footer>
+</body>
+</html>
