@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How do I find the buying-intent comments on my Instagram and TikTok posts? — LeoWorks</title>
+<meta name="description" content="export the comments with a comment scraper, then label each one by what it is — purchase intent, question, complaint, request, praise or spam — and…">
+<link rel="canonical" href="https://leoworks.kr/tools/social-comment-buying-intent/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="How do I find the buying-intent comments on my Instagram and TikTok posts?">
+<meta property="og:description" content="export the comments with a comment scraper, then label each one by what it is — purchase intent, question, complaint, request, praise or spam — and…">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://leoworks.kr/tools/social-comment-buying-intent/">
+<style>
+  :root{--bg:#FBF7F0; --bg-2:#F4EDE1; --ink:#3A322A; --ink-2:#6F6354; --muted:#9C8F7D;
+    --accent:#B5824D; --accent-deep:#9A6A35; --line:#ECE2D2;}
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-deep); text-underline-offset:3px;}
+  header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    background:rgba(251,247,240,.85); border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1080px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:9px; font-size:18px; font-weight:800; color:var(--ink); text-decoration:none;}
+  .brand .dot{width:22px; height:22px; border-radius:7px; background:var(--accent); display:inline-grid; place-items:center; color:#fff; font-size:13px; font-weight:800;}
+  .back{font-size:14px; color:var(--ink-2); text-decoration:none;}
+  article{max-width:760px; margin:0 auto; padding:56px 24px 72px;}
+  .eyebrow{font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
+  h1{font-size:clamp(28px,4.6vw,40px); line-height:1.2; letter-spacing:-.02em; margin:14px 0 24px; font-weight:800;}
+  h2{font-size:clamp(20px,3vw,24px); letter-spacing:-.01em; margin:44px 0 12px; font-weight:800;}
+  p, li{font-size:17px;}
+  table{width:100%; border-collapse:collapse; margin:18px 0; font-size:14.5px; display:block; overflow-x:auto;}
+  th, td{border-bottom:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top;}
+  th{background:var(--bg-2); font-weight:700;}
+  pre{background:#2F2923; color:#F4EDE1; border-radius:14px; padding:16px 18px; overflow-x:auto; font-size:13.5px; line-height:1.6;}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em;}
+  :not(pre) > code{background:rgba(181,130,77,.12); padding:1px 6px; border-radius:6px;}
+  .cta{margin:40px 0 0; padding:22px 24px; background:#fff; border:1px solid var(--line); border-radius:18px;}
+  .cta a{font-weight:700;}
+  footer{border-top:1px solid var(--line); padding:30px 24px 44px; text-align:center; color:var(--ink-2); font-size:13.5px;}
+  footer a{font-weight:600;}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-inner">
+  <a class="brand" href="../../"><span class="dot">L</span>LeoWorks</a>
+  <a class="back" href="../">← All data tools</a>
+</div></header>
+<article>
+  <span class="eyebrow">Guide</span>
+<h1>How do I find the buying-intent comments on my Instagram and TikTok posts?</h1>
+<p><strong>Short answer:</strong> export the comments with a comment scraper, then label each one by what it is — purchase intent, question, complaint, request, praise or spam — and filter. <a target="_blank" rel="noopener" href="https://apify.com/leoworks/social-comment-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g5-social-comment-intent">Social Comment Classifier</a> does the labelling step: it takes the dataset from an Instagram, TikTok, Facebook or YouTube comment scraper and returns a type, a sentiment and a &quot;needs reply&quot; flag for every comment. It costs $0.50 per 1,000 comments, with no prompt writing and no LLM key.</p>
+<p>&quot;Price?&quot;, &quot;link?&quot; and &quot;when is the restock?&quot; are easy to miss under a few hundred emoji and &quot;love this&quot;. Those are the comments closest to a sale, and the ones a brand most wants to answer first.</p>
+<h2>What you get</h2>
+<p>Real rows from a run on 2026-10-09 — public comments from the four comment scrapers listed below, with one custom label (&quot;mentions shipping or delivery&quot;):</p>
+<table>
+<thead>
+<tr>
+<th>comment</th>
+<th>source</th>
+<th>type (probability)</th>
+<th>sentiment</th>
+<th>needs reply</th>
+<th>custom: shipping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>When will you restock Generation G Fuzz?</td>
+<td>Instagram</td>
+<td><strong>purchase_intent</strong> (1.00)</td>
+<td>neutral</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Link</td>
+<td>Facebook (live shopping)</td>
+<td><strong>purchase_intent</strong> (0.56)</td>
+<td>neutral</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>How much do they hold?</td>
+<td>Instagram</td>
+<td><strong>question</strong> (1.00)</td>
+<td>neutral</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>…still am waiting for my package…</td>
+<td>TikTok</td>
+<td><strong>complaint</strong> (1.00)</td>
+<td>negative</td>
+<td>yes</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr>
+<td>can y'all make the resurfacing retinol serum in a bigger bottle ?</td>
+<td>TikTok</td>
+<td><strong>request</strong> (1.00)</td>
+<td>neutral</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>obsessed with every single one of these!</td>
+<td>Instagram</td>
+<td><strong>praise</strong> (1.00)</td>
+<td>positive</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>For me personally… I do buy quality fakes/knockoffs at (shop name)</td>
+<td>YouTube</td>
+<td><strong>spam</strong> (0.72)</td>
+<td>neutral</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>Each comment gets one main type, a probability for every type (<code>typeScores</code>), positive / neutral / negative sentiment, and whether the brand or creator should answer. Rows keep the comment ID and post fields from the scraper (<code>id</code>, <code>cid</code>, <code>postUrl</code>, <code>videoWebUrl</code>, …), so you can jump back to the comment.</p>
+<p>When a comment fits several types, one wins in a fixed order — spam, then purchase intent, complaint, question, request, praise. &quot;Love it! Where can I buy it in the UK?&quot; is <code>purchase_intent</code>, not <code>praise</code>.</p>
+<p>Each run also saves a free <strong>summary by post</strong>: the comment-type mix, sentiment shares, the share of comments that need a reply, and up to 3 example comments for purchase intent, questions, complaints and requests.</p>
+<h2>How to set it up (5 minutes)</h2>
+<ol>
+<li><strong>Export the comments.</strong> Run one of the common comment scrapers on Apify Store. Field detection was checked against real output of each: <a target="_blank" rel="noopener" href="https://apify.com/apify/instagram-comment-scraper">Instagram Comments Scraper</a>, <a target="_blank" rel="noopener" href="https://apify.com/clockworks/tiktok-comments-scraper">TikTok Comments Scraper</a>, <a target="_blank" rel="noopener" href="https://apify.com/apify/facebook-comments-scraper">Facebook Comments Scraper</a>, <a target="_blank" rel="noopener" href="https://apify.com/streamers/youtube-comments-scraper">YouTube Comments Scraper</a>.</li>
+<li><strong>Open the classifier</strong> on Apify: <a target="_blank" rel="noopener" href="https://apify.com/leoworks/social-comment-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g5-social-comment-intent">Social Comment Classifier</a>.</li>
+<li><strong>Pass the scraper's dataset.</strong> The text, post title and ID fields are detected automatically. Add up to 10 yes/no labels of your own in plain language if you need them:<pre><code class="language-json">{
+  &quot;datasetId&quot;: &quot;YOUR_COMMENTS_DATASET_ID&quot;,
+  &quot;customLabels&quot;: [&quot;mentions shipping or delivery&quot;]
+}
+</code></pre>
+To try it without a dataset, the form default classifies two pasted comments for about $0.001.</li>
+<li><strong>Filter the results.</strong> <code>purchase_intent</code> is your sales list. Needs reply = yes is your answer queue. Complaints and requests can go to support and the product team.</li>
+<li><strong>Schedule it</strong> with Apify Schedules — for example, classify new comments every morning.</li>
+</ol>
+<p>For scale: 10,000 comments cost $5.00, and about 100 comments take 3–4 seconds. Apify's free $5 monthly credit covers about 10,000 comments. Comments without text are skipped and not charged.</p>
+<p>You can also ask Claude, Cursor or Claude Code through the Apify MCP server — <em>&quot;Classify dataset abc123 from my TikTok comments run and list the unanswered questions.&quot;</em> Setup is on the <a target="_blank" rel="noopener" href="https://apify.com/leoworks/social-comment-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g5-social-comment-intent">tool page</a>.</p>
+<h2>How accurate is it?</h2>
+<p>On 100 hand-labelled public English comments that were not used for tuning, the main type matched <strong>90%</strong> of the time and sentiment <strong>87%</strong>. Complaints were found 97% of the time and questions 100%. Purchase intent was found 71% of the time, but that set had only 7 purchase-intent comments, so treat it as a rough number. Very short comments without context (&quot;No&quot;, &quot;Vibes&quot;) are the hardest.</p>
+<p>English is measured. Other languages are accepted and usually work, but their accuracy has not been measured — treat them as beta. Automated labels can be wrong; check a sample before a big decision.</p>
+<h2>Other ways, and their limits</h2>
+<ul>
+<li><strong>Read the comments yourself.</strong> Fine for one post. It stops scaling once you have several posts a week, and the &quot;link?&quot; comments are buried in praise.</li>
+<li><strong>Search for keywords</strong> like &quot;price&quot;, &quot;link&quot; or &quot;buy&quot;. Quick, but it misses &quot;when is the restock?&quot; and &quot;do you ship to Canada?&quot;, and catches praise that happens to contain the word.</li>
+<li><strong>Prompt a general chatbot.</strong> It can label a pasted batch, but you write and maintain the prompt and parse free text back into a table. This tool returns fixed labels with probabilities instead.</li>
+</ul>
+<p><em>Independent tool — not affiliated with Meta (Instagram, Facebook), TikTok, Google (YouTube) or the authors of the scrapers listed above. The comments shown are public comments used as examples. More data tools for e-commerce and social listening: <a href="https://leoworks.kr/tools/">leoworks.kr/tools</a>.</em></p>
+
+  <div class="cta">Try it: <a href="https://apify.com/leoworks/social-comment-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g5-social-comment-intent" target="_blank" rel="noopener">Social Comment Classifier on Apify ↗</a> · More tools: <a href="../">leoworks.kr/tools</a></div>
+</article>
+<footer>LeoWorks · Business Reg. No. 640-53-01064 · Contact: <a href="mailto:support@leoworks.kr">support@leoworks.kr</a><br>© 2026 LeoWorks. All rights reserved.</footer>
+</body>
+</html>
