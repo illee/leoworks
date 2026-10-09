@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How do I check whether my brand shows up in Naver&#x27;s AI Briefing (Korea&#x27;s AI search answer)? — LeoWorks</title>
+<meta name="description" content="run your keywords through Naver search logged out and read the AI answer at the top — or let a scheduled tool do it every day. Naver AI Briefing Monitor…">
+<link rel="canonical" href="https://leoworks.kr/tools/naver-ai-briefing/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="How do I check whether my brand shows up in Naver&#x27;s AI Briefing (Korea&#x27;s AI search answer)?">
+<meta property="og:description" content="run your keywords through Naver search logged out and read the AI answer at the top — or let a scheduled tool do it every day. Naver AI Briefing Monitor…">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://leoworks.kr/tools/naver-ai-briefing/">
+<style>
+  :root{--bg:#FBF7F0; --bg-2:#F4EDE1; --ink:#3A322A; --ink-2:#6F6354; --muted:#9C8F7D;
+    --accent:#B5824D; --accent-deep:#9A6A35; --line:#ECE2D2;}
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-deep); text-underline-offset:3px;}
+  header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    background:rgba(251,247,240,.85); border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1080px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:9px; font-size:18px; font-weight:800; color:var(--ink); text-decoration:none;}
+  .brand .dot{width:22px; height:22px; border-radius:7px; background:var(--accent); display:inline-grid; place-items:center; color:#fff; font-size:13px; font-weight:800;}
+  .back{font-size:14px; color:var(--ink-2); text-decoration:none;}
+  article{max-width:760px; margin:0 auto; padding:56px 24px 72px;}
+  .eyebrow{font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
+  h1{font-size:clamp(28px,4.6vw,40px); line-height:1.2; letter-spacing:-.02em; margin:14px 0 24px; font-weight:800;}
+  h2{font-size:clamp(20px,3vw,24px); letter-spacing:-.01em; margin:44px 0 12px; font-weight:800;}
+  p, li{font-size:17px;}
+  table{width:100%; border-collapse:collapse; margin:18px 0; font-size:14.5px; display:block; overflow-x:auto;}
+  th, td{border-bottom:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top;}
+  th{background:var(--bg-2); font-weight:700;}
+  pre{background:#2F2923; color:#F4EDE1; border-radius:14px; padding:16px 18px; overflow-x:auto; font-size:13.5px; line-height:1.6;}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em;}
+  :not(pre) > code{background:rgba(181,130,77,.12); padding:1px 6px; border-radius:6px;}
+  .cta{margin:40px 0 0; padding:22px 24px; background:#fff; border:1px solid var(--line); border-radius:18px;}
+  .cta a{font-weight:700;}
+  footer{border-top:1px solid var(--line); padding:30px 24px 44px; text-align:center; color:var(--ink-2); font-size:13.5px;}
+  footer a{font-weight:600;}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-inner">
+  <a class="brand" href="../../"><span class="dot">L</span>LeoWorks</a>
+  <a class="back" href="../">← All data tools</a>
+</div></header>
+<article>
+  <span class="eyebrow">Guide</span>
+<h1>How do I check whether my brand shows up in Naver's AI Briefing (Korea's AI search answer)?</h1>
+<p><strong>Short answer:</strong> run your keywords through Naver search logged out and read the AI answer at the top — or let a scheduled tool do it every day. <a target="_blank" rel="noopener" href="https://apify.com/leoworks/naver-ai-briefing-monitor?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g3-naver-ai-briefing">Naver AI Briefing Monitor</a> checks each keyword, tells you whether Naver showed an AI briefing, and returns the answer, the sources it cites, any ads inside it, and whether your brand and your competitors are mentioned or recommended. It needs no Naver login and costs $3 per 1,000 queries checked, plus $12 per 1,000 briefings captured.</p>
+<p>Naver is Korea's #1 search engine, and its AI briefing (AI 브리핑) is the generated answer at the top of the results page — Naver's version of Google AI Overviews. If you sell in Korea, it is the first answer many shoppers read, so it is worth knowing what it says about your category.</p>
+<h2>What the tool reads</h2>
+<p>For each query you give it, the tool loads Naver search (PC by default, mobile optional) and records:</p>
+<ul>
+<li><strong>Whether a briefing appeared</strong> (<code>hasBriefing</code>). Not every query gets one. In a test of 20 queries on 2026-10-02, <strong>8 of 20</strong> showed a briefing — mostly informational, how-to, review and comparison queries, rarely bare &quot;OO 추천&quot; (OO recommendations) or brand-name-only queries.</li>
+<li><strong>The answer text</strong> and the short highlighted answer when there is one.</li>
+<li><strong>Cited sources</strong> — title, URL and platform (Naver Blog, Naver Clip, news sites, other websites).</li>
+<li><strong>Ads Naver put inside the briefing</strong>, if any.</li>
+<li><strong>Brand judgments</strong> — for each brand and competitor you list: mentioned or not, recommended or not, sentiment, and how many cited sources name it.</li>
+</ul>
+<h2>What you get</h2>
+<p>Real rows from a run on 2026-10-06 (brand 다이슨 / Dyson, competitors 삼성 / Samsung and LG), plus one row from a 2026-10-04 run. English in parentheses is added for readers — the tool returns the query and answer in Korean, as Naver shows them.</p>
+<table>
+<thead>
+<tr>
+<th>query</th>
+<th>hasBriefing</th>
+<th>다이슨 (Dyson) mentioned / recommended</th>
+<th>삼성 · LG mentioned / recommended</th>
+<th>citations</th>
+<th>ads in briefing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>무선청소기 추천 2026 (cordless vacuum recommendations 2026)</td>
+<td>true</td>
+<td>true / true (positive)</td>
+<td>true / true · true / true</td>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>콜라겐 효과 (collagen benefits)</td>
+<td>true</td>
+<td>false / false</td>
+<td>false · false</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>레티놀 부작용 (retinol side effects)</td>
+<td>false</td>
+<td>—</td>
+<td>—</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>In the vacuum query, 4 of the 5 cited sources were Naver Blog posts and one was danawa.com (a Korean price-comparison site), and each of the three brands was named in one cited source. The collagen answer cited hospitals and a medical news site, and none of the three brands appeared — which is what you'd expect, and the rows say so plainly instead of leaving a blank. A query without a briefing comes back with <code>hasBriefing: false</code> and is charged only the basic check.</p>
+<h2>How to set it up (5 minutes)</h2>
+<ol>
+<li><strong>Open the tool</strong> on Apify: <a target="_blank" rel="noopener" href="https://apify.com/leoworks/naver-ai-briefing-monitor?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g3-naver-ai-briefing">Naver AI Briefing Monitor</a>.</li>
+<li><strong>Add queries</strong> — the keywords your buyers search. Informational, how-to, review and comparison queries get briefings more often than bare &quot;recommendation&quot; or brand-name-only queries:<pre><code class="language-json">{
+  &quot;queries&quot;: [&quot;무선청소기 추천 2026&quot;, &quot;콜라겐 효과&quot;],
+  &quot;brandNames&quot;: [&quot;다이슨&quot;],
+  &quot;competitorNames&quot;: [&quot;삼성&quot;, &quot;LG&quot;]
+}
+</code></pre>
+Use <strong>brand names</strong> (<code>삼성</code>, <code>LG</code>) rather than product-line names — the AI answer usually names the brand. Up to 10 brands and competitors per run.</li>
+<li><strong>Run it once</strong> to see which of your queries get a briefing at all. The form default (two queries, no brands) costs about $0.03.</li>
+<li><strong>Schedule it daily.</strong> Answers and cited sources change over time; a daily run turns the dataset into a history of who Naver's AI mentions.</li>
+<li><strong>Read the results</strong> as a table in Apify, download them, or pull them by API.</li>
+</ol>
+<p>For scale: 20 queries checked daily for 30 days, with about 40% of them showing a briefing, is $4.68. Queries that fail to load are reported with an <code>error</code> field and not charged.</p>
+<p>If the briefing cites Naver Blog posts — as in the vacuum example — <a target="_blank" rel="noopener" href="https://apify.com/leoworks/naver-blog-brand-monitor?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g3-naver-ai-briefing">Naver Blog Brand Monitor</a> can tell you which of those posts are sponsored.</p>
+<p>You can also call the tool from Claude, Cursor or Claude Code through the Apify MCP server — ask <em>&quot;Check whether 다이슨 is mentioned in Naver's AI answer for 무선청소기 추천 2026 and list the cited sources&quot;</em> and the agent runs it. Setup is on the <a target="_blank" rel="noopener" href="https://apify.com/leoworks/naver-ai-briefing-monitor?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g3-naver-ai-briefing">tool page</a>.</p>
+<h2>How accurate is it?</h2>
+<p>Briefing presence, answer and cited sources matched what a browser showed for 20 test queries. The mention / recommendation judgments agreed with hand labels on <strong>97%</strong> of 38 judgments. That is a small test, and answers can differ between sessions — read the trend over days, not one check.</p>
+<h2>Other ways, and their limits</h2>
+<ul>
+<li><strong>Search it yourself.</strong> Fine for a handful of keywords. It doesn't scale to daily checks across a category, and a logged-in browser can show you a different page than a new visitor sees.</li>
+<li><strong>Screenshot and compare by hand.</strong> Works for a one-off report, but you lose the structure — which source was cited, which brand was recommended — that you need to compare week to week.</li>
+<li><strong>Track only your classic rankings.</strong> Useful, but the AI answer sits above them and cites its own sources — in the vacuum example above, four of five were blog posts.</li>
+</ul>
+<p><em>Independent tool — not affiliated with NAVER Corp. AI briefings are generated by Naver and may contain inaccuracies. More Naver, AliExpress and K-beauty data tools: <a href="https://leoworks.kr/tools/">leoworks.kr/tools</a>.</em></p>
+
+  <div class="cta">Try it: <a href="https://apify.com/leoworks/naver-ai-briefing-monitor?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g3-naver-ai-briefing" target="_blank" rel="noopener">Naver AI Briefing Monitor on Apify ↗</a> · More tools: <a href="../">leoworks.kr/tools</a></div>
+</article>
+<footer>LeoWorks · Business Reg. No. 640-53-01064 · Contact: <a href="mailto:support@leoworks.kr">support@leoworks.kr</a><br>© 2026 LeoWorks. All rights reserved.</footer>
+</body>
+</html>
