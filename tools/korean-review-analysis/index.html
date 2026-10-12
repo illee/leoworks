@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How do I analyze Coupang and Olive Young reviews in English (without reading Korean)? — LeoWorks</title>
+<meta name="description" content="export the reviews with a Coupang (쿠팡) or Olive Young (올리브영) review scraper, then label each one by complaint type, sentiment and purchase motive with…">
+<link rel="canonical" href="https://leoworks.kr/tools/korean-review-analysis/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="How do I analyze Coupang and Olive Young reviews in English (without reading Korean)?">
+<meta property="og:description" content="export the reviews with a Coupang (쿠팡) or Olive Young (올리브영) review scraper, then label each one by complaint type, sentiment and purchase motive with…">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://leoworks.kr/tools/korean-review-analysis/">
+<style>
+  :root{--bg:#FBF7F0; --bg-2:#F4EDE1; --ink:#3A322A; --ink-2:#6F6354; --muted:#9C8F7D;
+    --accent:#B5824D; --accent-deep:#9A6A35; --line:#ECE2D2;}
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-deep); text-underline-offset:3px;}
+  header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    background:rgba(251,247,240,.85); border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1080px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:9px; font-size:18px; font-weight:800; color:var(--ink); text-decoration:none;}
+  .brand .dot{width:22px; height:22px; border-radius:7px; background:var(--accent); display:inline-grid; place-items:center; color:#fff; font-size:13px; font-weight:800;}
+  .back{font-size:14px; color:var(--ink-2); text-decoration:none;}
+  article{max-width:760px; margin:0 auto; padding:56px 24px 72px;}
+  .eyebrow{font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
+  h1{font-size:clamp(28px,4.6vw,40px); line-height:1.2; letter-spacing:-.02em; margin:14px 0 24px; font-weight:800;}
+  h2{font-size:clamp(20px,3vw,24px); letter-spacing:-.01em; margin:44px 0 12px; font-weight:800;}
+  p, li{font-size:17px;}
+  table{width:100%; border-collapse:collapse; margin:18px 0; font-size:14.5px; display:block; overflow-x:auto;}
+  th, td{border-bottom:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top;}
+  th{background:var(--bg-2); font-weight:700;}
+  pre{background:#2F2923; color:#F4EDE1; border-radius:14px; padding:16px 18px; overflow-x:auto; font-size:13.5px; line-height:1.6;}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em;}
+  :not(pre) > code{background:rgba(181,130,77,.12); padding:1px 6px; border-radius:6px;}
+  .cta{margin:40px 0 0; padding:22px 24px; background:#fff; border:1px solid var(--line); border-radius:18px;}
+  .cta a{font-weight:700;}
+  footer{border-top:1px solid var(--line); padding:30px 24px 44px; text-align:center; color:var(--ink-2); font-size:13.5px;}
+  footer a{font-weight:600;}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-inner">
+  <a class="brand" href="../../"><span class="dot">L</span>LeoWorks</a>
+  <a class="back" href="../">← All data tools</a>
+</div></header>
+<article>
+  <span class="eyebrow">Guide</span>
+<h1>How do I analyze Coupang and Olive Young reviews in English (without reading Korean)?</h1>
+<p><strong>Short answer:</strong> export the reviews with a Coupang (쿠팡) or Olive Young (올리브영) review scraper, then label each one by complaint type, sentiment and purchase motive with English keys — and count the labels instead of translating every review. <a target="_blank" rel="noopener" href="https://apify.com/leoworks/korean-review-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g7-korean-review-analysis">Korean Review Classifier</a> does the labelling step for any review scraper's dataset. It costs $0.50 per 1,000 reviews, with no prompts and no LLM key. It does not scrape the stores itself.</p>
+<p>Korean reviews are long, full of slang, and often mix several complaints in one line. A team that does not read Korean usually ends up with a machine translation it still has to read row by row. Labels with probabilities can be filtered and charted instead.</p>
+<h2>What you get</h2>
+<p>Rows from the classifier's public example run (2026-10-04), with one custom label, &quot;mentions the smell&quot;. English in parentheses is added for readers — the tool returns the original Korean text.</p>
+<table>
+<thead>
+<tr>
+<th>text (English added)</th>
+<th>complaint (probability)</th>
+<th>sentiment</th>
+<th>motive</th>
+<th>mentions the smell</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>한 달도 안 돼서 충전이 안 됩니다. 교환 요청했는데 답이 없어요. (Stopped charging in under a month. Asked for an exchange, no reply.)</td>
+<td>quality_defect (0.95), customer_service (0.92)</td>
+<td>negative</td>
+<td>unknown</td>
+<td>false</td>
+</tr>
+<tr>
+<td>배송이 일주일이나 걸렸고 박스가 다 찢어져서 왔어요. (Delivery took a week and the box arrived torn.)</td>
+<td>packaging (0.97), delivery (0.96)</td>
+<td>negative</td>
+<td>unknown</td>
+<td>false</td>
+</tr>
+<tr>
+<td>향이 너무 강해서 두통이 와요. 가격 대비 별로입니다. (The scent is so strong it gives me a headache. Not worth the price.)</td>
+<td>other (0.76), price_value (0.74), skin_trouble (0.70)</td>
+<td>negative</td>
+<td>unknown</td>
+<td><strong>true</strong></td>
+</tr>
+<tr>
+<td>항상 쓰던 거라 이번에도 재구매했어요. 할인할 때 사니 좋네요! (My usual product, bought it again. Nice to get it on sale!)</td>
+<td>none (0.98)</td>
+<td>positive</td>
+<td>repurchase</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<p>Complaint types are delivery, quality/defect, size/fit, price/value, customer service, packaging, no effect, skin trouble and other — each with a probability, and each with a Korean name too (<code>quality_defect</code> / 품질·불량), so the same table works for a Korean team. Purchase motive covers price/discount, reviews and reputation, brand, gift and repurchase.</p>
+<h2>How to set it up (5 minutes)</h2>
+<ol>
+<li><strong>Export the reviews.</strong> Run a review scraper on Apify Store. Field detection was checked against real output of, for example, <a target="_blank" rel="noopener" href="https://apify.com/zen-studio/coupang-review-scraper">Coupang Review Scraper (zen-studio)</a>, <a target="_blank" rel="noopener" href="https://apify.com/cocomoon/oliveyoung-review-scraper">Olive Young Review Scraper (cocomoon)</a> for the Korean store, and <a target="_blank" rel="noopener" href="https://apify.com/solidcode/oliveyoung-review-scraper">Olive Young Review Scraper (solidcode)</a> for Olive Young Global.</li>
+<li><strong>Open the classifier</strong> on Apify: <a target="_blank" rel="noopener" href="https://apify.com/leoworks/korean-review-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g7-korean-review-analysis">Korean Review Classifier</a>.</li>
+<li><strong>Pass the scraper's dataset.</strong> The text, rating and ID fields are detected automatically. Add up to 10 yes/no labels of your own, in English or Korean:<pre><code class="language-json">{
+  &quot;datasetId&quot;: &quot;YOUR_REVIEW_DATASET_ID&quot;,
+  &quot;extraTextFields&quot;: [&quot;title&quot;],
+  &quot;customLabels&quot;: [&quot;mentions the smell&quot;, &quot;says they will buy again&quot;]
+}
+</code></pre>
+To try it without a dataset, the form default classifies two pasted reviews for about $0.001.</li>
+<li><strong>Filter and count.</strong> Sort by complaint type to see why buyers leave 1-star reviews, or compare the complaint mix of your product against a competitor's.</li>
+<li><strong>Schedule it</strong> with Apify Schedules to classify a scraper's new reviews every day.</li>
+</ol>
+<p>For scale: 1,000 reviews cost $0.50 and 10,000 cost $5.00; Apify's free $5 monthly credit covers about 10,000 reviews. About 100 reviews take 5 seconds. Rows without review text, such as the summary rows some scrapers add, are skipped and not charged.</p>
+<p>You can also ask Claude, Cursor or Claude Code through the Apify MCP server — <em>&quot;Classify dataset abc123 from my Coupang scraper run and summarize the complaints.&quot;</em> Setup is on the <a target="_blank" rel="noopener" href="https://apify.com/leoworks/korean-review-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g7-korean-review-analysis">tool page</a>.</p>
+<h2>How accurate is it?</h2>
+<p>On 100 hand-labelled Korean reviews from Coupang, Naver Shopping and Naver Place (47 of them with 1–4 stars), complaint type matched 88% of the time and sentiment 96%. It is built and tested for Korean; English reviews also work. Automated labels can be wrong — check a sample before a big decision.</p>
+<h2>Other ways, and their limits</h2>
+<ul>
+<li><strong>Machine-translate and read.</strong> Works for a few dozen reviews. Past that, you are still reading every row, and translation flattens the slang that carries the complaint.</li>
+<li><strong>Count star ratings.</strong> Fast, but a 4-star review can still mention skin trouble, and stars do not say whether the problem was delivery or the product.</li>
+<li><strong>Prompt a general chatbot.</strong> It can summarize a pasted batch, but you maintain the prompt and turn free text back into a table. This tool returns the same labels with probabilities every run.</li>
+</ul>
+<p><em>Independent tool — not affiliated with Coupang, CJ Olive Young, NAVER Corp. or the authors of the scrapers above. More Naver, AliExpress and K-beauty data tools: <a href="https://leoworks.kr/tools/">leoworks.kr/tools</a>.</em></p>
+
+  <div class="cta">Try it: <a href="https://apify.com/leoworks/korean-review-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g7-korean-review-analysis" target="_blank" rel="noopener">Korean Review Classifier on Apify ↗</a> · More tools: <a href="../">leoworks.kr/tools</a></div>
+</article>
+<footer>LeoWorks · Business Reg. No. 640-53-01064 · Contact: <a href="mailto:support@leoworks.kr">support@leoworks.kr</a><br>© 2026 LeoWorks. All rights reserved.</footer>
+</body>
+</html>

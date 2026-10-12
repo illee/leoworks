@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How do I find what customers complain about in Google Maps reviews (without reading them all)? — LeoWorks</title>
+<meta name="description" content="scrape the reviews, then label each one by complaint type, praise, seriousness and whether it still needs an owner reply — and read the totals instead of…">
+<link rel="canonical" href="https://leoworks.kr/tools/google-maps-review-analysis/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="How do I find what customers complain about in Google Maps reviews (without reading them all)?">
+<meta property="og:description" content="scrape the reviews, then label each one by complaint type, praise, seriousness and whether it still needs an owner reply — and read the totals instead of…">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://leoworks.kr/tools/google-maps-review-analysis/">
+<style>
+  :root{--bg:#FBF7F0; --bg-2:#F4EDE1; --ink:#3A322A; --ink-2:#6F6354; --muted:#9C8F7D;
+    --accent:#B5824D; --accent-deep:#9A6A35; --line:#ECE2D2;}
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-deep); text-underline-offset:3px;}
+  header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    background:rgba(251,247,240,.85); border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1080px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:9px; font-size:18px; font-weight:800; color:var(--ink); text-decoration:none;}
+  .brand .dot{width:22px; height:22px; border-radius:7px; background:var(--accent); display:inline-grid; place-items:center; color:#fff; font-size:13px; font-weight:800;}
+  .back{font-size:14px; color:var(--ink-2); text-decoration:none;}
+  article{max-width:760px; margin:0 auto; padding:56px 24px 72px;}
+  .eyebrow{font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
+  h1{font-size:clamp(28px,4.6vw,40px); line-height:1.2; letter-spacing:-.02em; margin:14px 0 24px; font-weight:800;}
+  h2{font-size:clamp(20px,3vw,24px); letter-spacing:-.01em; margin:44px 0 12px; font-weight:800;}
+  p, li{font-size:17px;}
+  table{width:100%; border-collapse:collapse; margin:18px 0; font-size:14.5px; display:block; overflow-x:auto;}
+  th, td{border-bottom:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top;}
+  th{background:var(--bg-2); font-weight:700;}
+  pre{background:#2F2923; color:#F4EDE1; border-radius:14px; padding:16px 18px; overflow-x:auto; font-size:13.5px; line-height:1.6;}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em;}
+  :not(pre) > code{background:rgba(181,130,77,.12); padding:1px 6px; border-radius:6px;}
+  .cta{margin:40px 0 0; padding:22px 24px; background:#fff; border:1px solid var(--line); border-radius:18px;}
+  .cta a{font-weight:700;}
+  footer{border-top:1px solid var(--line); padding:30px 24px 44px; text-align:center; color:var(--ink-2); font-size:13.5px;}
+  footer a{font-weight:600;}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-inner">
+  <a class="brand" href="../../"><span class="dot">L</span>LeoWorks</a>
+  <a class="back" href="../">← All data tools</a>
+</div></header>
+<article>
+  <span class="eyebrow">Guide</span>
+<h1>How do I find what customers complain about in Google Maps reviews (without reading them all)?</h1>
+<p><strong>Short answer:</strong> scrape the reviews, then label each one by complaint type, praise, seriousness and whether it still needs an owner reply — and read the totals instead of the stars. <a target="_blank" rel="noopener" href="https://apify.com/leoworks/google-maps-review-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g6-google-maps-review-analysis">Google Maps Review Classifier</a> does the labelling step for any Google Maps reviews scraper's dataset, and adds a reply queue and a per-place summary. It costs $0.50 per 1,000 reviews, with no prompts and no LLM key.</p>
+<p>We tried it on 10 dentists in Chicago, using the newest 50 reviews of each (500 reviews; 377 had text). The average rating was 4.45 stars. Under that average, 15.9% of the reviews with text contained a complaint, and 19 were flagged as serious.</p>
+<h2>What the stars hid</h2>
+<p>Complaint types across the 377 reviews (a review can have more than one):</p>
+<table>
+<thead>
+<tr>
+<th>Complaint type</th>
+<th>Reviews</th>
+<th>Share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Staff</td>
+<td>30</td>
+<td>8.0%</td>
+</tr>
+<tr>
+<td>Booking</td>
+<td>27</td>
+<td>7.2%</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>22</td>
+<td>5.8%</td>
+</tr>
+<tr>
+<td>Trust (claims of overtreatment or upselling)</td>
+<td>20</td>
+<td>5.3%</td>
+</tr>
+<tr>
+<td>Wait</td>
+<td>19</td>
+<td>5.0%</td>
+</tr>
+<tr>
+<td>Quality of care</td>
+<td>16</td>
+<td>4.2%</td>
+</tr>
+</tbody>
+</table>
+<p>Praise ran the other way: staff were praised in 313 reviews (83%), quality of care in 206 (55%) and booking in 93 (25%). Sentiment was negative in 13.3% of reviews.</p>
+<p>The 19 serious-issue alerts were all patients' claims — of misdiagnosis, overtreatment, upselling or a mistake during an extraction. One said they &quot;insisted I needed a deep cleaning for $3k.&quot; These are claims in reviews, not established facts, but they are the ones an owner would want to see the same day.</p>
+<h2>Unanswered reviews matter more than the average</h2>
+<p>57 reviews needed an owner reply, and 34 of them were still unanswered. Overall, owners replied to 57.3% of reviews. The practices are anonymized below (A–E are five of the ten):</p>
+<table>
+<thead>
+<tr>
+<th>Practice</th>
+<th>Reviews</th>
+<th>Avg. stars</th>
+<th>With a complaint</th>
+<th>Serious alerts</th>
+<th>Unanswered (needs reply)</th>
+<th>Owner reply rate</th>
+<th>Most common complaints</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>42</td>
+<td>3.71</td>
+<td>31%</td>
+<td>2</td>
+<td>13</td>
+<td>0%</td>
+<td>wait, staff</td>
+</tr>
+<tr>
+<td>B</td>
+<td>41</td>
+<td>4.10</td>
+<td>24%</td>
+<td>7</td>
+<td>1</td>
+<td>95%</td>
+<td>trust, price</td>
+</tr>
+<tr>
+<td>C</td>
+<td>39</td>
+<td>4.18</td>
+<td>26%</td>
+<td>1</td>
+<td>9</td>
+<td>8%</td>
+<td>booking, staff</td>
+</tr>
+<tr>
+<td>D</td>
+<td>29</td>
+<td>4.45</td>
+<td>24%</td>
+<td>2</td>
+<td>0</td>
+<td>97%</td>
+<td>wait, booking</td>
+</tr>
+<tr>
+<td>E</td>
+<td>26</td>
+<td>5.00</td>
+<td>0%</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Practice A never replied and had the lowest average. B had the most serious alerts but answered nearly everything. The last 90 days looked like the period before (complaints 15.5% vs 16.2%), so this was not a recent dip.</p>
+<h2>How to do it for your own places (5 minutes)</h2>
+<ol>
+<li><strong>Scrape the reviews.</strong> Run a Google Maps reviews scraper for the places you care about — for example <a target="_blank" rel="noopener" href="https://apify.com/compass/google-maps-reviews-scraper">Google Maps Reviews Scraper</a> with <strong>Sort by: newest</strong>. We kept reviewer personal data off.</li>
+<li><strong>Open the classifier</strong> on Apify: <a target="_blank" rel="noopener" href="https://apify.com/leoworks/google-maps-review-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g6-google-maps-review-analysis">Google Maps Review Classifier</a>, and pick that run's dataset.</li>
+<li><strong>Optional filters and labels.</strong> Only reviews newer than 90 days, or only 1–3 stars; add up to 10 yes/no labels of your own, like &quot;mentions parking&quot;. Skipped reviews are not charged.</li>
+<li><strong>Read the results.</strong> Open <strong>Needs a reply</strong> or download <code>REPLY_QUEUE.csv</code> (unanswered reviews, lowest stars first) and <code>REPORT_PLACES.csv</code> (complaint and praise mix, reply rate and trend per place).</li>
+<li><strong>Schedule it</strong> with Apify Schedules — for example, new reviews every week.</li>
+</ol>
+<p>For scale: our 500 reviews cost about $0.29 for the scraper run and $0.19 to classify the 377 with text — about $0.48 in total. Star-only ratings are skipped and not charged.</p>
+<p>You can also ask Claude, Cursor or Claude Code through the Apify MCP server — <em>&quot;Which of these reviews still need a reply, and what are they about?&quot;</em> Setup is on the <a target="_blank" rel="noopener" href="https://apify.com/leoworks/google-maps-review-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g6-google-maps-review-analysis">tool page</a>.</p>
+<h2>How accurate is it?</h2>
+<p>On 100 hand-labelled English Google Maps reviews of Chicago businesses that were not used for tuning, complaint types matched 89% of the time, sentiment 98% and praise 95%. Serious-issue alerts found 10 of 10, with 1 false alarm in 93. Other languages are accepted but not yet measured, so treat them as beta. Automated labels can be wrong; check a sample before you act on one review.</p>
+<h2>Other ways, and their limits</h2>
+<ul>
+<li><strong>Read the reviews yourself.</strong> Works for one place and a few dozen reviews. It does not scale to ten places every week, and the average star rating hides the one-in-six reviews with a complaint.</li>
+<li><strong>Use the platform's own review inbox.</strong> Good for replying, but it does not group complaints by type or compare places.</li>
+<li><strong>Paste reviews into a chatbot.</strong> Fine for a quick read, but you maintain the prompt and turn free text back into a table yourself. This tool returns the same labels with probabilities every run.</li>
+</ul>
+<p><em>Independent tool — not affiliated with Google or the authors of the scraper above. Practices are anonymized; review quotes are patients' claims, shown as short examples. More data tools: <a href="https://leoworks.kr/tools/">leoworks.kr/tools</a>.</em></p>
+
+  <div class="cta">Try it: <a href="https://apify.com/leoworks/google-maps-review-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=g6-google-maps-review-analysis" target="_blank" rel="noopener">Google Maps Review Classifier on Apify ↗</a> · More tools: <a href="../">leoworks.kr/tools</a></div>
+</article>
+<footer>LeoWorks · Business Reg. No. 640-53-01064 · Contact: <a href="mailto:support@leoworks.kr">support@leoworks.kr</a><br>© 2026 LeoWorks. All rights reserved.</footer>
+</body>
+</html>
