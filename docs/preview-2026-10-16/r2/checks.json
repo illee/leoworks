@@ -1,0 +1,105 @@
+[
+ {
+  "tag": "tools-en-390",
+  "url": "/tools/",
+  "innerWidth": 390,
+  "dpr": 1,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "lang": "en",
+  "imgs": 17,
+  "ok": 17,
+  "bad": []
+ },
+ {
+  "tag": "tools-en-1440",
+  "url": "/tools/",
+  "innerWidth": 1440,
+  "dpr": 1,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "lang": "en",
+  "imgs": 17,
+  "ok": 17,
+  "bad": []
+ },
+ {
+  "tag": "home-en-320",
+  "url": "/?lang=en",
+  "innerWidth": 320,
+  "dpr": 1,
+  "scrollWidth": 320,
+  "clientWidth": 320,
+  "lang": "en",
+  "imgs": 13,
+  "ok": 13,
+  "bad": []
+ },
+ {
+  "tag": "home-ko-320",
+  "url": "/?lang=ko",
+  "innerWidth": 320,
+  "dpr": 1,
+  "scrollWidth": 320,
+  "clientWidth": 320,
+  "lang": "ko",
+  "imgs": 13,
+  "ok": 13,
+  "bad": []
+ },
+ {
+  "tag": "tools-en-320",
+  "url": "/tools/",
+  "innerWidth": 320,
+  "dpr": 1,
+  "scrollWidth": 320,
+  "clientWidth": 320,
+  "lang": "en",
+  "imgs": 17,
+  "ok": 17,
+  "bad": []
+ },
+ {
+  "tag": "zoom200-home-en",
+  "url": "/?lang=en",
+  "innerWidth": 640,
+  "dpr": 2,
+  "scrollWidth": 640,
+  "clientWidth": 640,
+  "lang": "en",
+  "imgs": 13,
+  "ok": 13,
+  "bad": []
+ },
+ {
+  "tag": "zoom200-home-ko",
+  "url": "/?lang=ko",
+  "innerWidth": 640,
+  "dpr": 2,
+  "scrollWidth": 640,
+  "clientWidth": 640,
+  "lang": "ko",
+  "imgs": 13,
+  "ok": 13,
+  "bad": []
+ },
+ {
+  "tag": "zoom200-tools-en",
+  "url": "/tools/",
+  "innerWidth": 640,
+  "dpr": 2,
+  "scrollWidth": 640,
+  "clientWidth": 640,
+  "lang": "en",
+  "imgs": 17,
+  "ok": 17,
+  "bad": []
+ },
+ {
+  "tag": "fontsize32-home-en-1280",
+  "htmlFont": "32px",
+  "bodyFont": "16px",
+  "h1": "56px",
+  "sw": 1280
+ }
+]
