@@ -26,4 +26,5 @@
 - 액터 번호·상태 SSOT = `~/apps/apify-actors-2610/docs/actor-numbering.md`. 가격·문구는 각 액터 README/actor.json과 대조한 실값만 쓴다.
 - **쓰지 않는 것**: Etsy 언급, 가격 변경 예고, 지어낸 수치, 업체명(가이드 사례는 익명).
 - 스타일: 공통 = `assets/site.css`(+ `assets/tokens.css` = bizdsg 생성물 사본, 손대지 않음). 사자 로고·favicon·OG = `assets/brand/`.
+- 서체 = Pretendard 서브셋(`assets/fonts/`, OFL). **홈·허브 문안에 새 한글 글자를 넣으면 `docs/subset-fonts.sh`로 다시 만든다**(없는 글자는 시스템 폰트로 대체돼 섞여 보인다).
 - 사업자 정보(레오웍스 · 640-53-01064 · support@leoworks.kr)는 바꾸지 않는다.
