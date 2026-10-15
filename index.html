@@ -1,282 +1,282 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LeoWorks — 일상을 더 낫게 만드는 앱</title>
-<meta name="description" content="LeoWorks는 일상에 자연스럽게 스며드는 모바일 앱을 만드는 1인 개발 스튜디오입니다. Lessi · 멍냥로그 · 오솔로그.">
+<title>LeoWorks — Review &amp; lead data tools for Google Maps, Naver, AliExpress</title>
+<meta name="description" content="LeoWorks builds review, ranking and lead data tools for Google Maps, Naver, AliExpress, Amazon and Korean shopping sites. 15 tools on Apify, usable from AI agents via MCP. We also make Shopify and mobile apps.">
 <link rel="canonical" href="https://leoworks.kr/">
-<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="LeoWorks">
-<meta property="og:description" content="일상을 조금 더 낫게 만드는 앱을 만듭니다.">
+<link rel="icon" href="/assets/brand/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/assets/brand/favicon-16.png" type="image/png" sizes="16x16">
+<link rel="icon" href="/assets/brand/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="LeoWorks">
 <meta property="og:url" content="https://leoworks.kr/">
-<style>
-  :root{
-    --bg:#FBF7F0; --bg-2:#F4EDE1; --card:#FFFFFF;
-    --ink:#3A322A; --ink-2:#6F6354; --muted:#9C8F7D;
-    --accent:#B5824D; --accent-deep:#9A6A35; --line:#ECE2D2;
-    --shadow:0 1px 2px rgba(58,50,42,.04), 0 8px 24px rgba(58,50,42,.06);
-    --shadow-lg:0 2px 6px rgba(58,50,42,.06), 0 18px 40px rgba(58,50,42,.12);
-    --r:20px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
-    line-height:1.65; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-  }
-  a{color:inherit; text-decoration:none;}
-  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
-  .eyebrow{font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);}
-
-  /* nav */
-  header.nav{position:sticky; top:0; z-index:50;
-    backdrop-filter:saturate(160%) blur(12px); -webkit-backdrop-filter:saturate(160%) blur(12px);
-    background:rgba(251,247,240,.78); border-bottom:1px solid var(--line);}
-  .nav-inner{max-width:1080px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between;}
-  .brand{display:flex; align-items:center; gap:9px; font-size:18px; font-weight:800; letter-spacing:-.01em;}
-  .brand .dot{width:22px; height:22px; border-radius:7px; background:var(--accent); display:inline-grid; place-items:center; color:#fff; font-size:13px; font-weight:800;}
-  .nav-right{display:flex; align-items:center; gap:22px;}
-  .nav-links{display:flex; gap:22px;}
-  .nav-links a{font-size:14px; color:var(--ink-2); transition:color .15s;}
-  .nav-links a:hover{color:var(--ink);}
-  .lang{display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; background:#fff;}
-  .lang button{appearance:none; border:0; background:transparent; color:var(--muted); font:inherit; font-size:12.5px; font-weight:600; padding:5px 11px; cursor:pointer; transition:.15s;}
-  .lang button[aria-pressed="true"]{background:var(--accent); color:#fff;}
-
-  /* hero */
-  .hero{position:relative; text-align:center; padding:104px 0 72px; overflow:hidden;}
-  .hero::before{content:""; position:absolute; inset:-20% 0 auto 0; height:520px; z-index:0;
-    background:radial-gradient(60% 80% at 50% 0%, rgba(181,130,77,.16), rgba(181,130,77,0) 70%);}
-  .hero > *{position:relative; z-index:1;}
-  .hero h1{font-size:clamp(42px,7vw,68px); line-height:1.05; letter-spacing:-.03em; margin:18px 0 0; font-weight:800;}
-  .hero .lead{font-size:clamp(17px,2.4vw,21px); color:var(--ink-2); max-width:30ch; margin:18px auto 0;}
-  .hero .sub{font-size:15px; color:var(--muted); max-width:46ch; margin:14px auto 0;}
-  .hero-cta{margin-top:30px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
-
-  .btn{display:inline-flex; align-items:center; gap:7px; font-size:14.5px; font-weight:600; padding:11px 20px; border-radius:999px; transition:.18s; cursor:pointer; border:1px solid transparent;}
-  .btn-primary{background:var(--accent); color:#fff;}
-  .btn-primary:hover{background:var(--accent-deep); transform:translateY(-1px);}
-  .btn-ghost{background:#fff; color:var(--ink); border-color:var(--line);}
-  .btn-ghost:hover{border-color:var(--accent); color:var(--accent-deep);}
-
-  /* sections */
-  section{padding:64px 0;}
-  .section-head{text-align:center; margin-bottom:40px;}
-  .section-head h2{font-size:clamp(26px,4vw,34px); letter-spacing:-.02em; margin:10px 0 0; font-weight:800;}
-  .section-head p{color:var(--ink-2); margin:10px auto 0; max-width:48ch;}
-
-  /* product cards */
-  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
-  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:26px;
-    box-shadow:var(--shadow); display:flex; flex-direction:column; transition:transform .2s, box-shadow .2s;}
-  .card:hover{transform:translateY(-5px); box-shadow:var(--shadow-lg);}
-  .logo-tile{width:88px; height:88px; border-radius:22px; background:#fff; border:1px solid var(--line);
-    display:grid; place-items:center; overflow:hidden; box-shadow:0 4px 14px rgba(58,50,42,.08);}
-  .logo-tile img{max-width:74%; max-height:74%; object-fit:contain;}
-  .logo-tile.icon{border:0; box-shadow:0 6px 18px rgba(58,50,42,.18);}
-  .logo-tile.icon img{max-width:100%; max-height:100%; width:100%; height:100%; object-fit:cover;}
-  .card h3{font-size:21px; font-weight:800; letter-spacing:-.01em; margin:18px 0 0;}
-  .card .desc{color:var(--ink-2); font-size:15px; margin:10px 0 0;}
-  .card .foot{margin-top:auto; padding-top:20px;}
-  .pill{display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:600; color:var(--accent-deep);
-    background:rgba(181,130,77,.1); border:1px solid rgba(181,130,77,.22); border-radius:999px; padding:6px 13px;}
-  .pill::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--accent);}
-  .link-cta{display:inline-flex; align-items:center; gap:6px; font-size:14.5px; font-weight:700; color:var(--accent-deep);}
-  .link-cta:hover{gap:9px;}
-  .foot-privacy{display:block; margin-top:10px; font-size:13px; color:var(--muted); transition:color .15s;}
-  .foot-privacy:hover{color:var(--accent-deep);}
-
-  /* about */
-  .about{background:var(--bg-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .about .wrap{max-width:720px; text-align:center;}
-  .about p{font-size:clamp(17px,2.3vw,20px); color:var(--ink); margin:14px 0 0; line-height:1.7;}
-
-  /* contact */
-  .contact{text-align:center;}
-  .contact .mail{display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-size:clamp(15px,2vw,18px); font-weight:700; color:var(--accent-deep); letter-spacing:-.01em;}
-  .contact .mail:hover{color:var(--accent);}
-
-  /* footer */
-  footer{border-top:1px solid var(--line); padding:34px 0 48px;}
-  footer .wrap{display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center;}
-  .biz{color:var(--ink-2); font-size:13.5px;}
-  .biz a{color:var(--accent-deep); font-weight:600;}
-  .biz a:hover{color:var(--accent);}
-  .copy{color:var(--muted); font-size:13px;}
-
-  /* casual games subsection */
-  .subsection{margin-top:54px; padding-top:42px; border-top:1px solid var(--line);}
-  .subsection .section-head{margin-bottom:26px;}
-  .subsection .section-head h3{font-size:clamp(20px,3vw,26px); letter-spacing:-.02em; margin:8px 0 0; font-weight:800;}
-  .subsection .section-head p{color:var(--ink-2); margin:8px auto 0; max-width:46ch;}
-  .grid.two{grid-template-columns:repeat(2,1fr); max-width:720px; margin:0 auto;}
-  .tools-link{margin-top:44px; text-align:center;}
-
-  @media (max-width:860px){
-    .grid{grid-template-columns:1fr; max-width:440px; margin:0 auto;}
-    .grid.two{grid-template-columns:1fr; max-width:440px;}
-    .nav-links{display:none;}
-    section{padding:52px 0;}
-    .hero{padding:80px 0 56px;}
-  }
-</style>
+<meta property="og:title" content="LeoWorks — Review & lead data tools">
+<meta property="og:description" content="Collect reviews, rankings and leads from Google Maps, Naver, AliExpress and more, and label them by complaint, sentiment and fit. Run on Apify or from your AI agent.">
+<meta property="og:image" content="https://leoworks.kr/assets/brand/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="LeoWorks lion logo with the line: Review & lead data tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LeoWorks — Review & lead data tools">
+<meta name="twitter:description" content="Collect reviews, rankings and leads from Google Maps, Naver, AliExpress and more, and label them by complaint, sentiment and fit.">
+<meta name="twitter:image" content="https://leoworks.kr/assets/brand/og-home.png">
+<link rel="preload" href="/assets/fonts/pretendard-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"LeoWorks","alternateName":"레오웍스","url":"https://leoworks.kr/","logo":"https://leoworks.kr/assets/brand/lion-512.png","email":"support@leoworks.kr","sameAs":["https://apify.com/leoworks"]}
+</script>
 </head>
 <body>
+<a class="skip" href="#main" data-en="Skip to content" data-ko="본문으로 건너뛰기">Skip to content</a>
 
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="#top"><span class="dot">L</span>LeoWorks</a>
+    <a class="brand" href="/" aria-label="LeoWorks home"><img src="/assets/brand/lion-80.png" alt="" width="40" height="40">LeoWorks</a>
     <div class="nav-right">
-      <nav class="nav-links">
-        <a href="#products" data-ko="제품" data-en="Products">제품</a>
-        <a href="#about" data-ko="소개" data-en="About">소개</a>
-        <a href="#contact" data-ko="문의" data-en="Contact">문의</a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#data-tools" data-en="Data tools" data-ko="데이터 도구">Data tools</a>
+        <a href="#shopify" data-en="Shopify apps" data-ko="Shopify 앱">Shopify apps</a>
+        <a href="#mobile" data-en="Mobile apps" data-ko="모바일 앱">Mobile apps</a>
+        <a href="#about" data-en="About" data-ko="소개">About</a>
+        <a href="#contact" data-en="Contact" data-ko="문의">Contact</a>
       </nav>
       <div class="lang" role="group" aria-label="Language">
-        <button type="button" data-lang-btn="ko" aria-pressed="true">KO</button>
-        <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="ko" aria-pressed="false" lang="ko">KO</button>
       </div>
     </div>
   </div>
 </header>
 
-<main id="top">
+<main id="main">
 
   <section class="hero">
     <div class="wrap">
-      <span class="eyebrow" data-ko="1인 개발 스튜디오" data-en="Indie app studio">1인 개발 스튜디오</span>
-      <h1>LeoWorks</h1>
-      <p class="lead" data-ko="일상을 조금 더 낫게 만드는 앱을 만듭니다."
-         data-en="We build apps that make everyday life a little better.">일상을 조금 더 낫게 만드는 앱을 만듭니다.</p>
-      <p class="sub" data-ko="운동, 반려, 야외 활동 — 매일의 루틴에 자연스럽게 스며드는 모바일 제품을 직접 기획하고 만듭니다."
-         data-en="Fitness, pets, the outdoors — we design and build mobile products that fit naturally into your daily routine.">운동, 반려, 야외 활동 — 매일의 루틴에 자연스럽게 스며드는 모바일 제품을 직접 기획하고 만듭니다.</p>
+      <span class="eyebrow" data-en="Data tools by LeoWorks" data-ko="LeoWorks 데이터 도구">Data tools by LeoWorks</span>
+      <h1 data-en="Review &amp; lead data tools, ready to run" data-ko="리뷰·리드 데이터 도구, 바로 실행">Review &amp; lead data tools, ready to run</h1>
+      <p class="lead" data-en="Google Maps, Naver, AliExpress, Amazon and more. Collect reviews, rankings and leads, then label them by complaint, sentiment and fit. Run them on Apify, or call them from your AI agent."
+         data-ko="Google 지도·네이버·알리익스프레스·아마존 등에서 리뷰·순위·리드를 모으고, 불만 유형·감성·적합도로 판정합니다. Apify에서 실행하거나 AI 에이전트에서 바로 부를 수 있습니다.">Google Maps, Naver, AliExpress, Amazon and more. Collect reviews, rankings and leads, then label them by complaint, sentiment and fit. Run them on Apify, or call them from your AI agent.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#products" data-ko="제품 둘러보기" data-en="Explore products">제품 둘러보기</a>
-        <a class="btn btn-ghost" href="#contact" data-ko="문의하기" data-en="Get in touch">문의하기</a>
+        <a class="btn btn-primary" href="/tools/" data-en="Browse all 15 tools" data-ko="도구 15종 보기">Browse all 15 tools</a>
+        <a class="btn btn-ghost" href="#contact" data-en="Contact us" data-ko="문의하기">Contact us</a>
       </div>
+      <ul class="stats">
+        <li><b>15</b><span data-en="public data tools on Apify" data-ko="Apify 공개 데이터 도구">public data tools on Apify</span></li>
+        <li><b>7</b><span data-en="step-by-step guides with real output" data-ko="실제 결과로 쓴 가이드">step-by-step guides with real output</span></li>
+        <li><b>$0.50</b><span data-en="per 1,000 reviews classified" data-ko="리뷰 1,000건 분류당">per 1,000 reviews classified</span></li>
+      </ul>
     </div>
   </section>
 
-  <section id="products">
+  <section id="data-tools">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow" data-ko="제품" data-en="Products">제품</span>
-        <h2 data-ko="우리가 만든 제품" data-en="What we build">우리가 만든 제품</h2>
-        <p data-ko="작지만 단단한 제품으로, 매일 쓰는 순간을 더 좋게 만듭니다." data-en="Small, well-crafted products that make everyday moments better.">작지만 단단한 제품으로, 매일 쓰는 순간을 더 좋게 만듭니다.</p>
+        <span class="eyebrow" data-en="Data tools" data-ko="데이터 도구">Data tools</span>
+        <h2 data-en="Start with these three" data-ko="먼저 이 세 가지부터">Start with these three</h2>
+        <p data-en="Each tool runs on Apify: start it in the browser, schedule it, or pull results by API. No prompts to write and no LLM key. You pay per result."
+           data-ko="모든 도구는 Apify에서 돌아갑니다. 브라우저에서 실행하거나, 예약하거나, API로 결과를 받으세요. 프롬프트도 LLM 키도 필요 없고, 결과 건수만큼 냅니다.">Each tool runs on Apify: start it in the browser, schedule it, or pull results by API. No prompts to write and no LLM key. You pay per result.</p>
       </div>
-
-      <div class="grid">
+      <div class="grid g3">
 
         <article class="card">
-          <div class="logo-tile"><img src="./assets/lessi-icon.png" alt="Lessi logo"></div>
-          <h3>Lessi</h3>
-          <p class="desc" data-ko="필라테스·골프 등 1:1 레슨 강사와 회원을 잇는 올인원 플랫폼. 강사는 나만의 공개 페이지로 회원을 모으고, 예약·수업권·정산까지 한 곳에서 관리합니다."
-             data-en="An all-in-one platform connecting 1:1 lesson instructors — pilates, golf and more — with their clients. Instructors grow with a public page and manage booking, class passes, and payouts in one place.">필라테스·골프 등 1:1 레슨 강사와 회원을 잇는 올인원 플랫폼. 강사는 나만의 공개 페이지로 회원을 모으고, 예약·수업권·정산까지 한 곳에서 관리합니다.</p>
-          <div class="foot">
-            <a class="link-cta" href="https://lessi.co.kr" target="_blank" rel="noopener" data-ko="서비스 바로가기 ↗" data-en="Visit lessi.co.kr ↗">서비스 바로가기 ↗</a>
+          <div class="card-top">
+            <span class="icon"><img src="/assets/tools/google-maps-review-classifier.png" alt="" width="64" height="64"></span>
+            <h3>Google Maps Review Classifier</h3>
           </div>
+          <p class="desc" data-en="Paste a Google Maps URL, or a business name and city. Every review gets a complaint type, sentiment and serious-issue alert, plus a queue of unanswered reviews that need an owner reply."
+             data-ko="Google 지도 주소나 업체명·도시만 넣으세요. 리뷰마다 불만 유형·감성·심각 이슈 경보를 달고, 사장님 답글이 필요한 미답변 리뷰를 목록으로 뽑습니다.">Paste a Google Maps URL, or a business name and city. Every review gets a complaint type, sentiment and serious-issue alert, plus a queue of unanswered reviews that need an owner reply.</p>
+          <div class="meta"><b>$0.50</b> <span data-en="/ 1,000 reviews classified" data-ko="/ 리뷰 1,000건 분류">/ 1,000 reviews classified</span>
+            <small data-en="About $1.10 / 1,000 all-in when it collects the reviews for you (compass' Google Maps Scraper, billed separately)." data-ko="리뷰 수집까지 맡기면 1,000건당 약 $1.10(수집은 compass의 Google Maps Scraper가 하며 별도 청구).">About $1.10 / 1,000 all-in when it collects the reviews for you (compass' Google Maps Scraper, billed separately).</small></div>
+          <div class="foot"><a class="link-cta" href="https://apify.com/leoworks/google-maps-review-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=home" target="_blank" rel="noopener" data-en="View on Apify ↗" data-ko="Apify에서 보기 ↗">View on Apify ↗</a></div>
         </article>
 
         <article class="card">
-          <div class="logo-tile icon"><img src="./assets/pawlog-icon.png" alt="멍냥로그 아이콘"></div>
-          <h3 data-ko="멍냥로그" data-en="Pawlog">멍냥로그</h3>
-          <p class="desc" data-ko="강아지·고양이의 하루를 사진과 함께 남기는 반려동물 추억 다이어리. 성장·건강·소중한 순간을 타임라인으로 모아 가족과 함께 돌아봅니다."
-             data-en="A keepsake diary for dogs and cats. Capture daily moments, growth, and health in a beautiful timeline you can look back on with family.">강아지·고양이의 하루를 사진과 함께 남기는 반려동물 추억 다이어리. 성장·건강·소중한 순간을 타임라인으로 모아 가족과 함께 돌아봅니다.</p>
-          <div class="foot">
-            <a class="link-cta" href="https://play.google.com/store/apps/details?id=com.leoworks.meongnyanglog" target="_blank" rel="noopener" data-ko="Google Play에서 받기 ↗" data-en="Get it on Google Play ↗">Google Play에서 받기 ↗</a>
-            <a class="foot-privacy" href="./meongnyang-log/privacy/" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a>
+          <div class="card-top">
+            <span class="icon"><img src="/assets/tools/korean-review-classifier.png" alt="" width="64" height="64"></span>
+            <h3>Korean Review Classifier</h3>
           </div>
+          <p class="desc" data-en="Coupang, Olive Young and Naver reviews labelled with complaint type, sentiment and purchase motive, with English keys. Count what Korean customers say without translating it."
+             data-ko="쿠팡·올리브영·네이버 리뷰에 불만 유형·감성·구매 동기를 영어 키로 붙입니다. 번역하지 않고도 한국 고객의 말을 셀 수 있습니다.">Coupang, Olive Young and Naver reviews labelled with complaint type, sentiment and purchase motive, with English keys. Count what Korean customers say without translating it.</p>
+          <div class="meta"><b>$0.50</b> <span data-en="/ 1,000 reviews" data-ko="/ 리뷰 1,000건">/ 1,000 reviews</span>
+            <small data-en="On 100 hand-checked Coupang and Naver reviews: complaint type matched 88%, sentiment 96%." data-ko="쿠팡·네이버 리뷰 100건 수작업 대조: 불만 유형 88%·감성 96% 일치.">On 100 hand-checked Coupang and Naver reviews: complaint type matched 88%, sentiment 96%.</small></div>
+          <div class="foot"><a class="link-cta" href="https://apify.com/leoworks/korean-review-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=home" target="_blank" rel="noopener" data-en="View on Apify ↗" data-ko="Apify에서 보기 ↗">View on Apify ↗</a></div>
         </article>
 
         <article class="card">
-          <div class="logo-tile icon"><img src="./assets/osolog.png" alt="오솔로그 logo"></div>
-          <h3 data-ko="오솔로그" data-en="Osolog">오솔로그</h3>
-          <p class="desc" data-ko="한국형 등산·러닝 코스 발견과 GPS 기록 앱. 전국 등산로·둘레길·러닝 코스를 찾고, 들머리 내비게이션과 안전한 기록으로 더 멀리 걷습니다."
-             data-en="Discover and track Korea's trails and running routes. Find hiking, dulle-gil, and running courses with trailhead navigation and safe GPS recording.">한국형 등산·러닝 코스 발견과 GPS 기록 앱. 전국 등산로·둘레길·러닝 코스를 찾고, 들머리 내비게이션과 안전한 기록으로 더 멀리 걷습니다.</p>
-          <div class="foot">
-            <span class="pill" data-ko="Google Play · App Store 출시 예정" data-en="Coming to Google Play & App Store">Google Play · App Store 출시 예정</span>
-            <a class="foot-privacy" href="./osolog/privacy/" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a>
+          <div class="card-top">
+            <span class="icon"><img src="/assets/tools/aliexpress-reviews-classifier.png" alt="" width="64" height="64"></span>
+            <h3>AliExpress Reviews Scraper</h3>
           </div>
+          <p class="desc" data-en="Reviews from any AliExpress product URL, with English translation, stars, buyer country and the option bought, plus optional complaint and sentiment labels. No login."
+             data-ko="알리익스프레스 상품 주소만 넣으면 리뷰를 영어 번역·별점·구매 국가·구매 옵션과 함께 가져오고, 원하면 불만·감성 라벨까지 붙입니다. 로그인 불필요.">Reviews from any AliExpress product URL, with English translation, stars, buyer country and the option bought, plus optional complaint and sentiment labels. No login.</p>
+          <div class="meta"><b>$1.50</b> <span data-en="/ 1,000 reviews" data-ko="/ 리뷰 1,000건">/ 1,000 reviews</span>
+            <small data-en="+ $0.50 / 1,000 if you turn on classification." data-ko="분류를 켜면 1,000건당 $0.50 추가.">+ $0.50 / 1,000 if you turn on classification.</small></div>
+          <div class="foot"><a class="link-cta" href="https://apify.com/leoworks/aliexpress-reviews-classifier?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=home" target="_blank" rel="noopener" data-en="View on Apify ↗" data-ko="Apify에서 보기 ↗">View on Apify ↗</a></div>
         </article>
 
       </div>
-
-      <div class="subsection">
-        <div class="section-head">
-          <span class="eyebrow" data-ko="캐주얼 게임" data-en="Games">캐주얼 게임</span>
-          <h3 data-ko="가볍게 즐기는 두뇌 퍼즐" data-en="Casual brain games">가볍게 즐기는 두뇌 퍼즐</h3>
-          <p data-ko="짬짬이 가볍게 즐기는 퍼즐 게임. 매일 새 퍼즐로 머리도 풀고 시간도 보내요." data-en="Bite-sized puzzle games — a fresh challenge every day to keep your mind sharp.">짬짬이 가볍게 즐기는 퍼즐 게임. 매일 새 퍼즐로 머리도 풀고 시간도 보내요.</p>
-        </div>
-        <div class="grid">
-
-          <article class="card">
-            <div class="logo-tile icon"><img src="./assets/wordforage.png" alt="낱말채집 아이콘"></div>
-            <h3 data-ko="낱말채집" data-en="WordForage">낱말채집</h3>
-            <p class="desc" data-ko="음절 타일을 모아 한국어 단어를 만드는 한글 단어 퍼즐. 매일 새 퍼즐과 단어 도감으로 어휘력까지 키우는 캐주얼 게임."
-               data-en="A Korean word puzzle — connect syllable tiles to build words, with daily puzzles and a word almanac that grows your vocabulary.">음절 타일을 모아 한국어 단어를 만드는 한글 단어 퍼즐. 매일 새 퍼즐과 단어 도감으로 어휘력까지 키우는 캐주얼 게임.</p>
-            <div class="foot">
-              <a class="link-cta" href="https://play.google.com/store/apps/details?id=com.leoworks.wordforage" target="_blank" rel="noopener" data-ko="Google Play에서 받기 ↗" data-en="Get it on Google Play ↗">Google Play에서 받기 ↗</a>
-              <a class="foot-privacy" href="./wordforage/privacy/" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="logo-tile icon"><img src="./assets/haru-sudoku.svg" alt="하루 스도쿠 아이콘"></div>
-            <h3 data-ko="하루 스도쿠" data-en="Haru Sudoku">하루 스도쿠</h3>
-            <p class="desc" data-ko="초보도 부담 없는, 광고가 방해하지 않는 깔끔한 스도쿠. 입문부터 전문가까지 난이도를 골라 매일 한 판으로 두뇌를 깨웁니다."
-               data-en="A clean, beginner-friendly sudoku that keeps ads out of your way. Pick your level from beginner to expert and solve a fresh puzzle every day.">초보도 부담 없는, 광고가 방해하지 않는 깔끔한 스도쿠. 입문부터 전문가까지 난이도를 골라 매일 한 판으로 두뇌를 깨웁니다.</p>
-            <div class="foot">
-              <a class="link-cta" href="https://play.google.com/store/apps/details?id=com.leoworks.sudoku" target="_blank" rel="noopener" data-ko="Google Play에서 받기 ↗" data-en="Get it on Google Play ↗">Google Play에서 받기 ↗</a>
-              <a class="foot-privacy" href="./haru-sudoku/privacy/" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="logo-tile icon"><img src="./assets/haru-picross.png" alt="하루 네모로직 아이콘"></div>
-            <h3 data-ko="하루 네모로직" data-en="Haru Picross">하루 네모로직</h3>
-            <p class="desc" data-ko="숫자 단서로 칸을 채워 그림을 완성하는 네모로직(픽처크로스) 퍼즐. 초보도 익히기 쉽고, 광고가 방해하지 않는 깔끔한 그림 논리 퍼즐을 매일 새 퍼즐로 즐깁니다."
-               data-en="A nonogram (picture cross) puzzle — fill cells from number clues to reveal a picture. Beginner-friendly and ad-respectful, with a fresh logic puzzle every day.">숫자 단서로 칸을 채워 그림을 완성하는 네모로직(픽처크로스) 퍼즐. 초보도 익히기 쉽고, 광고가 방해하지 않는 깔끔한 그림 논리 퍼즐을 매일 새 퍼즐로 즐깁니다.</p>
-            <div class="foot">
-              <a class="link-cta" href="https://play.google.com/store/apps/details?id=com.leoworks.picross" target="_blank" rel="noopener" data-ko="Google Play에서 받기 ↗" data-en="Get it on Google Play ↗">Google Play에서 받기 ↗</a>
-              <a class="foot-privacy" href="./haru-picross/privacy/" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-
-      <div class="tools-link">
-        <a class="btn btn-ghost" href="./tools/" data-ko="데이터 도구 — 네이버·알리익스프레스·K-뷰티 →" data-en="Data tools — Naver, AliExpress &amp; K-beauty →">데이터 도구 — 네이버·알리익스프레스·K-뷰티 →</a>
+      <div class="section-more">
+        <a class="btn btn-ghost" href="/tools/" data-en="See all 15 tools: Naver, K-beauty, Amazon, leads, jobs and more →" data-ko="도구 15종 전체 보기: 네이버·K-뷰티·아마존·리드·채용 공고 등 →">See all 15 tools: Naver, K-beauty, Amazon, leads, jobs and more →</a>
       </div>
     </div>
   </section>
 
-  <section id="about" class="about">
+  <section id="shopify">
     <div class="wrap">
-      <span class="eyebrow" data-ko="소개" data-en="About">소개</span>
-      <p data-ko="LeoWorks는 일상에 자연스럽게 스며드는 모바일 앱을 만드는 1인 개발 스튜디오입니다. 운동, 반려, 야외 활동처럼 매일의 루틴을 더 즐겁고 편하게 만드는 제품을 직접 기획하고 개발합니다."
-         data-en="LeoWorks is a one-person studio building mobile apps that fit naturally into everyday life. From fitness to pets to the outdoors, we design and build products that make daily routines easier and more enjoyable.">LeoWorks는 일상에 자연스럽게 스며드는 모바일 앱을 만드는 1인 개발 스튜디오입니다. 운동, 반려, 야외 활동처럼 매일의 루틴을 더 즐겁고 편하게 만드는 제품을 직접 기획하고 개발합니다.</p>
+      <div class="section-head">
+        <span class="eyebrow" data-en="Shopify apps" data-ko="Shopify 앱">Shopify apps</span>
+        <h2 data-en="For Shopify stores" data-ko="Shopify 스토어를 위한 앱">For Shopify stores</h2>
+      </div>
+      <div class="grid g2">
+
+        <article class="card">
+          <div class="card-top">
+            <span class="icon"><img src="/assets/upshot-icon.png" alt="" width="64" height="64"></span>
+            <h3>Upshot</h3>
+          </div>
+          <p class="desc" data-en="See which Rollouts experiment variant made more money, not just more conversions. Store changes are logged automatically and marked on your charts."
+             data-ko="Rollouts 실험에서 어느 안이 전환이 아니라 매출·이익을 더 냈는지 보여 줍니다. 스토어 변경은 자동으로 기록해 차트에 표시합니다.">See which Rollouts experiment variant made more money, not just more conversions. Store changes are logged automatically and marked on your charts.</p>
+          <div class="foot">
+            <span class="badge" data-en="In review on Shopify App Store" data-ko="Shopify App Store 심사 중">In review on Shopify App Store</span>
+            <a class="link-cta" href="https://upshot.leoworks.kr/" target="_blank" rel="noopener" data-en="About Upshot ↗" data-ko="Upshot 소개 ↗">About Upshot ↗</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <span class="icon"><img src="/assets/gratis-icon.png" alt="" width="64" height="64"></span>
+            <h3>Gratis</h3>
+          </div>
+          <p class="desc" data-en="Set a cart subtotal and pick a gift. Gratis adds it to the cart for free when the threshold is reached, removes it when it isn't, and shows a progress bar."
+             data-ko="장바구니 금액 기준과 사은품을 정하면, 기준을 넘을 때 사은품을 무료로 담고 못 미치면 빼며 진행 막대를 보여 줍니다.">Set a cart subtotal and pick a gift. Gratis adds it to the cart for free when the threshold is reached, removes it when it isn't, and shows a progress bar.</p>
+          <div class="foot">
+            <span class="badge" data-en="In review on Shopify App Store" data-ko="Shopify App Store 심사 중">In review on Shopify App Store</span>
+            <a class="link-cta" href="https://gratis.leoworks.kr/" target="_blank" rel="noopener" data-en="About Gratis ↗" data-ko="Gratis 소개 ↗">About Gratis ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="mobile">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-en="Mobile apps" data-ko="모바일 앱">Mobile apps</span>
+        <h2 data-en="Apps for everyday life in Korea" data-ko="일상을 위한 앱">Apps for everyday life in Korea</h2>
+        <p data-en="Korean-language apps for lessons, pets, trails and daily puzzles." data-ko="레슨·반려동물·산길·매일 퍼즐을 위한 앱입니다.">Korean-language apps for lessons, pets, trails and daily puzzles.</p>
+      </div>
+      <div class="grid small">
+
+        <article class="card sm">
+          <div class="card-top">
+            <span class="icon"><img src="/assets/lessi-icon.png" alt="" width="48" height="48"></span>
+            <h3>Lessi</h3>
+          </div>
+          <p class="desc" data-en="Booking, class passes and payouts for 1:1 lesson instructors such as pilates and golf." data-ko="필라테스·골프 등 1:1 레슨 강사를 위한 예약·수업권·정산 플랫폼.">Booking, class passes and payouts for 1:1 lesson instructors such as pilates and golf.</p>
+          <div class="foot"><a class="link-cta" href="https://lessi.co.kr" target="_blank" rel="noopener" data-en="Visit lessi.co.kr ↗" data-ko="lessi.co.kr 바로가기 ↗">Visit lessi.co.kr ↗</a></div>
+        </article>
+
+        <article class="card sm">
+          <div class="card-top">
+            <span class="icon"><img src="/assets/pawlog-icon.png" alt="" width="48" height="48"></span>
+            <h3 data-en="Pawlog (멍냥로그)" data-ko="멍냥로그">Pawlog (멍냥로그)</h3>
+          </div>
+          <p class="desc" data-en="A photo diary for dogs and cats: daily moments, growth and health, shared with family." data-ko="강아지·고양이의 하루·성장·건강을 사진과 함께 남기고 가족과 함께 보는 다이어리.">A photo diary for dogs and cats: daily moments, growth and health, shared with family.</p>
+          <div class="foot">
+            <a class="link-cta" href="https://play.google.com/store/apps/details?id=com.leoworks.meongnyanglog" target="_blank" rel="noopener" data-en="Google Play ↗" data-ko="Google Play ↗">Google Play ↗</a>
+            <a class="link-sub" href="/meongnyang-log/privacy/" data-en="Privacy" data-ko="개인정보처리방침">Privacy</a>
+          </div>
+        </article>
+
+        <article class="card sm">
+          <div class="card-top">
+            <span class="icon"><img src="/assets/osolog.png" alt="" width="48" height="48"></span>
+            <h3 data-en="Osolog (오솔로그)" data-ko="오솔로그">Osolog (오솔로그)</h3>
+          </div>
+          <p class="desc" data-en="Find hiking, dulle-gil and running courses across Korea, with trailhead navigation and GPS recording." data-ko="전국 등산로·둘레길·러닝 코스를 찾고 들머리 내비게이션과 GPS 기록으로 걷는 앱.">Find hiking, dulle-gil and running courses across Korea, with trailhead navigation and GPS recording.</p>
+          <div class="foot">
+            <a class="link-cta" href="https://play.google.com/store/apps/details?id=com.leoworks.osolog" target="_blank" rel="noopener" data-en="Google Play ↗" data-ko="Google Play ↗">Google Play ↗</a>
+            <a class="link-sub" href="/osolog/privacy/" data-en="Privacy" data-ko="개인정보처리방침">Privacy</a>
+          </div>
+        </article>
+
+        <article class="card sm">
+          <div class="card-top">
+            <span class="icon"><img src="/assets/wordforage.png" alt="" width="48" height="48"></span>
+            <h3 data-en="WordForage (낱말채집)" data-ko="낱말채집">WordForage (낱말채집)</h3>
+          </div>
+          <p class="desc" data-en="A Korean word puzzle: connect syllable tiles to build words, with a new puzzle every day." data-ko="음절 타일을 이어 한국어 단어를 만드는 퍼즐. 매일 새 퍼즐.">A Korean word puzzle: connect syllable tiles to build words, with a new puzzle every day.</p>
+          <div class="foot">
+            <a class="link-cta" href="https://play.google.com/store/apps/details?id=com.leoworks.wordforage" target="_blank" rel="noopener" data-en="Google Play ↗" data-ko="Google Play ↗">Google Play ↗</a>
+            <a class="link-sub" href="/wordforage/privacy/" data-en="Privacy" data-ko="개인정보처리방침">Privacy</a>
+          </div>
+        </article>
+
+        <article class="card sm">
+          <div class="card-top">
+            <span class="icon"><img src="/assets/haru-sudoku.svg" alt="" width="48" height="48"></span>
+            <h3 data-en="Haru Sudoku (하루 스도쿠)" data-ko="하루 스도쿠">Haru Sudoku (하루 스도쿠)</h3>
+          </div>
+          <p class="desc" data-en="A clean sudoku from beginner to expert, with a fresh puzzle every day." data-ko="입문부터 전문가까지 고르는 깔끔한 스도쿠. 매일 새 퍼즐.">A clean sudoku from beginner to expert, with a fresh puzzle every day.</p>
+          <div class="foot">
+            <a class="link-cta" href="https://play.google.com/store/apps/details?id=com.leoworks.sudoku" target="_blank" rel="noopener" data-en="Google Play ↗" data-ko="Google Play ↗">Google Play ↗</a>
+            <a class="link-sub" href="/haru-sudoku/privacy/" data-en="Privacy" data-ko="개인정보처리방침">Privacy</a>
+          </div>
+        </article>
+
+        <article class="card sm">
+          <div class="card-top">
+            <span class="icon"><img src="/assets/haru-picross.png" alt="" width="48" height="48"></span>
+            <h3 data-en="Haru Picross (하루 네모로직)" data-ko="하루 네모로직">Haru Picross (하루 네모로직)</h3>
+          </div>
+          <p class="desc" data-en="Nonogram puzzles: fill cells from number clues to reveal a picture. Easy to learn." data-ko="숫자 단서로 칸을 채워 그림을 완성하는 네모로직. 초보도 쉽게.">Nonogram puzzles: fill cells from number clues to reveal a picture. Easy to learn.</p>
+          <div class="foot">
+            <a class="link-cta" href="https://play.google.com/store/apps/details?id=com.leoworks.picross" target="_blank" rel="noopener" data-en="Google Play ↗" data-ko="Google Play ↗">Google Play ↗</a>
+            <a class="link-sub" href="/haru-picross/privacy/" data-en="Privacy" data-ko="개인정보처리방침">Privacy</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="panel">
+    <div class="wrap prose">
+      <span class="eyebrow" data-en="About" data-ko="소개">About</span>
+      <p class="big" data-en="LeoWorks is a one-person studio in Korea. We build tools that turn reviews, rankings and leads from Korean and global platforms (Google Maps, Naver, AliExpress, Amazon, Olive Young) into labels you can act on: what customers complain about, which reviews need a reply, which leads fit your customer profile."
+         data-ko="LeoWorks는 한국의 1인 개발 스튜디오입니다. Google 지도·네이버·알리익스프레스·아마존·올리브영 같은 한국·글로벌 플랫폼의 리뷰·순위·리드를 바로 쓸 수 있는 판정으로 바꾸는 도구를 만듭니다. 고객이 무엇에 불만인지, 어떤 리뷰에 답글이 필요한지, 어떤 리드가 우리 고객에 맞는지를 알려 줍니다.">LeoWorks is a one-person studio in Korea. We build tools that turn reviews, rankings and leads from Korean and global platforms (Google Maps, Naver, AliExpress, Amazon, Olive Young) into labels you can act on: what customers complain about, which reviews need a reply, which leads fit your customer profile.</p>
+      <p data-en="The tools run on Apify, connect to AI agents through MCP, and are also available as an API. We make Shopify apps and Korean mobile apps too."
+         data-ko="도구는 Apify에서 실행되고, MCP로 AI 에이전트에 연결되며, API로도 제공합니다. Shopify 앱과 모바일 앱도 만듭니다.">The tools run on Apify, connect to AI agents through MCP, and are also available as an API. We make Shopify apps and Korean mobile apps too.</p>
     </div>
   </section>
 
   <section id="contact" class="contact">
     <div class="wrap">
-      <span class="eyebrow" data-ko="문의" data-en="Contact">문의</span>
-      <h2 data-ko="함께 이야기해요" data-en="Let's talk" class="section-title" style="font-size:clamp(19px,2.6vw,24px);letter-spacing:-.02em;margin:10px 0 0;font-weight:800;">함께 이야기해요</h2>
-      <a class="mail" href="mailto:support@leoworks.kr">✉ support@leoworks.kr</a>
+      <span class="eyebrow" data-en="Contact" data-ko="문의">Contact</span>
+      <div class="section-head">
+        <h2 data-en="Questions about a tool or an app?" data-ko="도구나 앱에 궁금한 점이 있나요?">Questions about a tool or an app?</h2>
+        <p data-en="Write to us at the address below, in English or Korean." data-ko="아래 주소로 영어나 한국어로 메일 주세요.">Write to us at the address below, in English or Korean.</p>
+      </div>
+      <a class="mail" href="mailto:support@leoworks.kr">support@leoworks.kr</a>
     </div>
   </section>
 
 </main>
 
 <footer>
-  <div class="wrap">
-    <div class="brand"><span class="dot">L</span>LeoWorks</div>
+  <div class="wrap foot-inner">
+    <a class="brand" href="/" aria-label="LeoWorks home"><img src="/assets/brand/lion-64.png" alt="" width="32" height="32">LeoWorks</a>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="/tools/" data-en="Data tools" data-ko="데이터 도구">Data tools</a>
+      <a href="https://apify.com/leoworks?utm_source=leoworks&amp;utm_medium=owned&amp;utm_campaign=apify-v1&amp;utm_content=home-footer" target="_blank" rel="noopener" data-en="LeoWorks on Apify ↗" data-ko="Apify의 LeoWorks ↗">LeoWorks on Apify ↗</a>
+    </nav>
     <div class="biz">
-      <span data-ko="레오웍스(LeoWorks) · 사업자등록번호: 640-53-01064 · 문의: " data-en="LeoWorks · Business Reg. No. 640-53-01064 · Contact: ">레오웍스(LeoWorks) · 사업자등록번호: 640-53-01064 · 문의: </span><a href="mailto:support@leoworks.kr">support@leoworks.kr</a>
+      <span data-en="LeoWorks · Business Reg. No. 640-53-01064 · Contact: " data-ko="레오웍스(LeoWorks) · 사업자등록번호: 640-53-01064 · 문의: ">LeoWorks · Business Reg. No. 640-53-01064 · Contact: </span><a href="mailto:support@leoworks.kr">support@leoworks.kr</a>
     </div>
     <div class="copy">© 2026 LeoWorks. All rights reserved.</div>
   </div>
@@ -286,12 +286,14 @@
   (function () {
     var KEY = 'lang';
     var params = new URLSearchParams(location.search);
-    var lang = params.get('lang') || localStorage.getItem(KEY) || 'ko';
-    if (lang !== 'en') lang = 'ko';
+    var stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) {}
+    var lang = params.get('lang') || stored || 'en';
+    if (lang !== 'ko') lang = 'en';
     function apply(l) {
       document.documentElement.lang = l;
-      document.querySelectorAll('[data-ko]').forEach(function (el) {
-        var t = (l === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-ko');
+      document.querySelectorAll('[data-en]').forEach(function (el) {
+        var t = el.getAttribute('data-' + l);
         if (t !== null) el.textContent = t;
       });
       document.querySelectorAll('[data-lang-btn]').forEach(function (b) {
@@ -303,7 +305,7 @@
       var btn = e.target.closest('[data-lang-btn]');
       if (btn) apply(btn.getAttribute('data-lang-btn'));
     });
-    apply(lang);
+    if (lang !== 'en') apply(lang);
   })();
 </script>
 </body>
