@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -286,8 +286,8 @@
   (function () {
     var KEY = 'lang';
     var params = new URLSearchParams(location.search);
-    var lang = params.get('lang') || localStorage.getItem(KEY) || 'ko';
-    if (lang !== 'en') lang = 'ko';
+    var lang = params.get('lang') || localStorage.getItem(KEY) || 'en';
+    if (lang !== 'ko') lang = 'en';
     function apply(l) {
       document.documentElement.lang = l;
       document.querySelectorAll('[data-ko]').forEach(function (el) {
