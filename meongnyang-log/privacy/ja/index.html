@@ -53,12 +53,12 @@
 <li><strong>活動・健康の記録</strong>: 記録の種類（散歩・食事・おやつ・入浴・遊び・投薬・通院・ワクチン・駆虫・体重・異常など）、写真、メモ、気分、体重、投薬・ワクチンの予定と通知設定</li>
 <li><strong>家族のコメント</strong>: 家族メンバーが記録に残したコメント本文（最大300文字）。そのペットに紐づく家族メンバーにのみ公開され、記録またはアカウントを削除すると一緒に削除されます。</li>
 <li><strong>位置情報</strong>: 記録に添付した位置の緯度・経度および場所名（利用者が「位置を追加」を実行した場合のみ）。場所名は、大韓民国で韓国語で利用する場合は番地・施設名まで、それ以外の場合は市・区レベルの地域名までのみ保存します。</li>
-<li><strong>決済情報</strong>: アプリ内購入時の商品識別子および購入検証トークン（レシート）。クレジットカード番号などの決済手段の情報はGoogle PlayまたはApple App Storeが処理し、当社は保管しません。</li>
+<li><strong>決済情報</strong>: アプリ内購入時の商品識別子および購入検証トークン（レシート、Android）または取引識別子（iOS）。クレジットカード番号などの決済手段の情報はGoogle PlayまたはApple App Storeが処理し、当社は保管しません。</li>
 </ul>
 <h3>ウ. アカウント連携時に収集される情報（任意）</h3>
 <ul>
 <li><strong>Googleアカウントのメールアドレス</strong>: 利用者がデータのバックアップのためにGoogleアカウント連携を選択した場合に限り、連携の識別のために収集します。</li>
-<li><strong>Appleアカウントの識別子・メールアドレス（iOS）</strong>: iOSで「Appleでサインイン」を選択した場合に限り、連携の識別のためにAppleユーザー識別子とメールアドレス（「メールを非公開」を選択した場合はAppleが発行する中継アドレス）を収集します。</li>
+<li><strong>Appleアカウントの識別子・メールアドレス（iOS）</strong>: iOSで「Appleでサインイン」を選択した場合に限り、連携の識別のためにAppleユーザー識別子とメールアドレス（「メールを非公開」を選択した場合はAppleが発行する中継アドレス）、およびAppleから提供された場合は氏名を収集します。Apple認証トークンは当社のサーバーに保存しません。</li>
 </ul>
 <h3>エ. 端末のアクセス権限（任意 — 拒否できます）</h3>
 <table>
@@ -89,9 +89,9 @@
 <tr><td>Supabase Inc.</td><td>データベース・ファイルストレージ・認証・サーバー（Edge Function）のホスティング</td><td>第1項の入力情報・自動収集情報の全般</td></tr>
 <tr><td>Google LLC</td><td>（任意）AIキャラクター画像の生成</td><td>該当ペットの写真、種類、性格タグ</td></tr>
 <tr><td>Google LLC</td><td>アプリ内購入の決済検証（Android、Google Play）</td><td>購入検証トークン、商品識別子</td></tr>
-<tr><td>Apple Inc.</td><td>アプリ内購入の決済検証（iOS、App Store）</td><td>レシート検証トークン、商品識別子</td></tr>
+<tr><td>Apple Inc.</td><td>アプリ内購入の決済検証（iOS、App Store）</td><td>取引識別子、商品識別子</td></tr>
 <tr><td>Google LLC</td><td>（任意）Googleアカウント連携</td><td>Google認証トークン、メールアドレス</td></tr>
-<tr><td>Apple Inc.</td><td>（任意）Appleアカウント連携（iOS、Appleでサインイン）</td><td>Apple認証トークン、ユーザー識別子、メールアドレス</td></tr>
+<tr><td>Apple Inc.</td><td>（任意）Appleアカウント連携（iOS、Appleでサインイン）</td><td>Apple認証トークン、ユーザー識別子、メールアドレス、氏名</td></tr>
 <tr><td>Google LLC / Apple Inc. / Expo (650 Industries, Inc.)</td><td>（任意）プッシュ通知の配信（Firebase Cloud Messaging・Apple Push Notification service・Expo Push Service）</td><td>プッシュトークン、アプリ表示言語、通知のタイトル・本文</td></tr>
 <tr><td>Google LLC</td><td>サービス利用統計の分析（Firebase Analytics）</td><td>匿名利用者識別子、アプリ利用イベント・セッション情報、端末・OSの種類、アプリのバージョン、広告ID・アプリインスタンスID</td></tr>
 <tr><td>Google LLC</td><td>広告配信（Google AdMob）</td><td>広告ID、端末・OS・アプリ情報、IPに基づくおおよその地域、広告の操作</td></tr>
@@ -128,7 +128,7 @@
 <h2>7. 利用者および法定代理人の権利と行使方法</h2>
 <ul>
 <li>個人情報の<strong>閲覧・訂正</strong>: アプリ内で直接確認・修正</li>
-<li>個人情報の<strong>削除</strong>: アプリ内でペット／記録を削除、または<strong>設定 → アカウント削除</strong>でアカウントとすべてのデータを自分で削除（<a href="../../delete/">削除案内・韓国語</a>）。アプリを利用できない場合は下記の連絡先へ</li>
+<li>個人情報の<strong>削除</strong>: アプリ内でペット／記録を削除、または<strong>設定 → アカウント削除</strong>でアカウントとすべてのデータを自分で削除（<a href="../../delete/">削除案内・韓国語</a>）。アプリを利用できない場合は下記の連絡先へ。Appleでサインインを連携したアカウントは、アカウント削除時にApple連携（認証トークン）も併せて解除されます</li>
 <li>個人情報の<strong>処理停止</strong>および同意の撤回: 権限の解除（端末設定）または連絡先へ依頼</li>
 </ul>
 <p class="note">権利の行使は下記の個人情報保護責任者へメールで依頼でき、当社は遅滞なく対応します。居住国の法令により追加の権利がある場合も、同じ連絡先から行使できます。</p>
@@ -146,7 +146,7 @@
 <ul>
 <li>当社はサービス利用統計の分析のために<strong>Google LLCのFirebase Analytics（Googleアナリティクス）SDK</strong>を使用します。アプリ利用イベント・セッション情報・端末情報とともに<strong>広告ID</strong>を収集し、収集した情報は個人を直接識別しない形で利用統計・再訪率の分析に使用します。利用統計はこれとは別に、当社サーバーに保存される匿名イベントログとしても収集します。</li>
 <li>当社はサービスを無料で提供するために、ホーム画面と思い出画面に<strong>Google AdMob（Google LLC）</strong>の広告を表示します。Googleは広告IDを広告配信・表示頻度の制限・不正クリックの防止・広告効果の測定に使用し、端末の設定に応じて<strong>パーソナライズ広告</strong>の提供に使用することがあります。詳細は<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener">Googleの広告技術ポリシー</a>と<a href="https://policies.google.com/privacy?hl=ja" target="_blank" rel="noopener">Googleプライバシーポリシー</a>をご覧ください。</li>
-<li>iOSでは、アプリが初めて広告を表示する前に<strong>アプリのトラッキング透明性（ATT）の確認画面</strong>が表示されます。「許可」を選択しない限り広告識別子（IDFA）は収集されず、パーソナライズされていない一般広告のみ表示されます。選択はiOSの設定 &gt; プライバシーとセキュリティ &gt; トラッキングでいつでも変更できます。</li>
+<li>iOSでは、アプリが初めて広告を表示する前に、広告識別子の利用に関する案内（Google UMP）に続いて<strong>アプリのトラッキング透明性（ATT）の確認画面</strong>が表示されます。「許可」を選択しない限り広告識別子（IDFA）は収集されず、パーソナライズされていない一般広告のみ表示されます。選択はiOSの設定 &gt; プライバシーとセキュリティ &gt; トラッキングでいつでも変更できます。</li>
 <li>利用者は端末の設定（Android: 設定 &gt; Google &gt; 広告、または設定 &gt; プライバシー &gt; 広告 / iOS: 設定 &gt; プライバシーとセキュリティ &gt; Appleの広告）で<strong>広告のパーソナライズをオフ</strong>にするか<strong>広告IDを削除</strong>することで、パーソナライズ広告と広告IDに基づく収集を制限できます。この場合もパーソナライズされていない一般広告は表示されることがあり、サービスの主要機能の利用には影響しません。</li>
 <li>今後、新機能の導入により収集項目が変更される場合は、本ポリシーを改定し、アプリまたは本ページで事前に告知します。</li>
 </ul>

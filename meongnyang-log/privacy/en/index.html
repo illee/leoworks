@@ -53,12 +53,12 @@
 <li><strong>Activity and health entries</strong>: entry type (walk, meal, treat, bath, play, medication, vet visit, vaccination, deworming, weight, symptom, and so on), photos, notes, mood, weight, medication and vaccination schedules and reminder settings</li>
 <li><strong>Family comments</strong>: comments (up to 300 characters) that family members leave on an entry. They are visible only to family members linked to that pet and are deleted together with the entry or the account.</li>
 <li><strong>Location information</strong>: the latitude, longitude and place name of a location you attach to an entry (only when you run “Add location”). The place name is stored down to the street and place level when you use the Service in Korea in Korean; otherwise only the city or district level is stored.</li>
-<li><strong>Payment information</strong>: for in-app purchases, the product identifier and the purchase verification token (receipt). Payment method details such as card numbers are handled by Google Play or the Apple App Store and are not stored by us.</li>
+<li><strong>Payment information</strong>: for in-app purchases, the product identifier and the purchase verification token (receipt, Android) or transaction identifier (iOS). Payment method details such as card numbers are handled by Google Play or the Apple App Store and are not stored by us.</li>
 </ul>
 <h3>c. Information collected when you link an account (optional)</h3>
 <ul>
 <li><strong>Google account email</strong>: collected only if you choose to link a Google account for data backup, to identify the link.</li>
-<li><strong>Apple account identifier and email (iOS)</strong>: collected only if you choose “Sign in with Apple” on iOS, to identify the link — your Apple user identifier and email address (if you choose “Hide My Email”, the relay address issued by Apple).</li>
+<li><strong>Apple account identifier and email (iOS)</strong>: collected only if you choose “Sign in with Apple” on iOS, to identify the link — your Apple user identifier and email address (if you choose “Hide My Email”, the relay address issued by Apple), and your name if Apple provides it. Apple authentication tokens are not stored on our servers.</li>
 </ul>
 <h3>d. Device permissions (optional — you can refuse)</h3>
 <table>
@@ -89,9 +89,9 @@
 <tr><td>Supabase Inc.</td><td>Database, file storage, authentication and server (Edge Function) hosting</td><td>The entered and automatically collected information in Section 1</td></tr>
 <tr><td>Google LLC</td><td>(Optional) AI character image generation</td><td>The pet's photo, species and personality tags</td></tr>
 <tr><td>Google LLC</td><td>In-app purchase verification (Android, Google Play)</td><td>Purchase verification token, product identifier</td></tr>
-<tr><td>Apple Inc.</td><td>In-app purchase verification (iOS, App Store)</td><td>Receipt verification token, product identifier</td></tr>
+<tr><td>Apple Inc.</td><td>In-app purchase verification (iOS, App Store)</td><td>Transaction identifier, product identifier</td></tr>
 <tr><td>Google LLC</td><td>(Optional) Google account linking</td><td>Google authentication token, email address</td></tr>
-<tr><td>Apple Inc.</td><td>(Optional) Apple account linking (iOS, Sign in with Apple)</td><td>Apple authentication token, user identifier, email address</td></tr>
+<tr><td>Apple Inc.</td><td>(Optional) Apple account linking (iOS, Sign in with Apple)</td><td>Apple authentication token, user identifier, email address, name</td></tr>
 <tr><td>Google LLC / Apple Inc. / Expo (650 Industries, Inc.)</td><td>(Optional) Push notification delivery (Firebase Cloud Messaging, Apple Push Notification service, Expo Push Service)</td><td>Push token, app display language, notification title and body</td></tr>
 <tr><td>Google LLC</td><td>Service usage analytics (Firebase Analytics)</td><td>Anonymous user identifier, app usage events and session information, device and OS type, app version, advertising ID and app instance ID</td></tr>
 <tr><td>Google LLC</td><td>Ad serving (Google AdMob)</td><td>Advertising ID, device, OS and app information, approximate region based on IP address, ad interactions</td></tr>
@@ -128,7 +128,7 @@
 <h2>7. Your rights and how to exercise them</h2>
 <ul>
 <li><strong>Access and correction</strong>: view and edit directly in the app</li>
-<li><strong>Deletion</strong>: delete a pet or an entry in the app, or delete your account and all data yourself via <strong>Settings → Delete account</strong> (<a href="../../delete/">deletion guide, Korean</a>). If you cannot use the app, contact us at the address below</li>
+<li><strong>Deletion</strong>: delete a pet or an entry in the app, or delete your account and all data yourself via <strong>Settings → Delete account</strong> (<a href="../../delete/">deletion guide, Korean</a>). If you cannot use the app, contact us at the address below. If you linked Sign in with Apple, the Apple link (authentication token) is also revoked when you delete your account</li>
 <li><strong>Restriction of processing</strong> and withdrawal of consent: turn off the permission in your device settings, or contact us</li>
 </ul>
 <p class="note">You can exercise these rights by emailing the privacy officer below, and we act on requests without delay. Depending on where you live, you may have additional rights under local law; you can exercise them through the same contact.</p>
@@ -146,7 +146,7 @@
 <ul>
 <li>We use the <strong>Firebase Analytics (Google Analytics) SDK from Google LLC</strong> for usage statistics. It collects the <strong>advertising ID</strong> together with app usage events, session information and device information, and the collected information is used for usage and retention analysis in a form that does not directly identify you. Usage statistics are also collected separately as an anonymous event log stored on our server.</li>
 <li>We show <strong>Google AdMob (Google LLC)</strong> ads on the home and memories screens so the Service can be offered free of charge. Google uses the advertising ID for ad serving, frequency capping, invalid click prevention and ad performance measurement, and may use it for <strong>personalized ads</strong> depending on your device settings. See <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google's advertising technologies policy</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> for details.</li>
-<li>On iOS, the <strong>App Tracking Transparency (ATT) prompt</strong> appears before the app shows ads for the first time. Unless you choose “Allow”, the advertising identifier (IDFA) is not collected and only non-personalized ads are shown. You can change your choice at any time in iOS Settings &gt; Privacy &amp; Security &gt; Tracking.</li>
+<li>On iOS, a notice about the advertising identifier (Google UMP) followed by the <strong>App Tracking Transparency (ATT) prompt</strong> appears before the app shows ads for the first time. Unless you choose “Allow”, the advertising identifier (IDFA) is not collected and only non-personalized ads are shown. You can change your choice at any time in iOS Settings &gt; Privacy &amp; Security &gt; Tracking.</li>
 <li>You can limit personalized ads and advertising-ID-based collection in your device settings (Android: Settings &gt; Google &gt; Ads, or Settings &gt; Privacy &gt; Ads / iOS: Settings &gt; Privacy &amp; Security &gt; Apple Advertising) by <strong>opting out of ads personalization</strong> or <strong>deleting the advertising ID</strong>. Non-personalized ads may still be shown, and core features of the Service are not affected.</li>
 <li>If new features change the items we collect, we amend this Policy and give notice in advance through the app or this page.</li>
 </ul>
