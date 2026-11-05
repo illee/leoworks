@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index,follow">
+<title>わんにゃんログ プライバシーポリシー</title>
+<style>
+  :root { --ink:#3A322A; --soft:#6E6354; --muted:#A39684; --line:#E7DFD0; --bg:#FBF7F0; --accent:#B5824D; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,Roboto,sans-serif;
+    line-height:1.7; -webkit-text-size-adjust:100%; }
+  .wrap { max-width:760px; margin:0 auto; padding:28px 20px 64px; }
+  h1 { font-size:24px; margin:8px 0 4px; }
+  h2 { font-size:18px; margin:30px 0 10px; padding-top:14px; border-top:1px solid var(--line); }
+  h3 { font-size:15px; margin:18px 0 6px; color:var(--soft); }
+  p, li { font-size:14.5px; color:var(--ink); }
+  .meta { color:var(--muted); font-size:13px; margin-bottom:8px; }
+  .intro { background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 16px; font-size:14px; }
+  table { width:100%; border-collapse:collapse; margin:10px 0; font-size:13.5px; }
+  th, td { border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top; }
+  th { background:#F0EADD; font-weight:700; }
+  ul { padding-left:20px; }
+  a { color:var(--accent); }
+  code { background:#F0EADD; padding:1px 5px; border-radius:5px; font-size:13px; }
+  .note { color:var(--soft); font-size:13px; }
+  footer { margin-top:36px; color:var(--muted); font-size:12.5px; text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>わんにゃんログ プライバシーポリシー</h1>
+<p class="meta"><a href="../">한국어</a> &middot; <a href="../en/">English</a> — この日本語版は参考訳です。正文は韓国語版であり、内容に相違がある場合は韓国語版が優先します。</p>
+<p class="meta">施行日: 2026-09-13（最初の施行日: 2026-06-14） &middot; 改定公告日: 2026-11-04 · 改定施行日: 2026-11-05（第3項の地図表示の委託先にGoogle LLCを追加） &middot; <strong>改定公告日: 2026-11-05 · 改定施行日: 2026-11-12</strong>（iOS版の公開とサービス提供国の拡大に伴う改定 — 第12項）</p>
+<p class="note">2026-11-05改定の内容: [1] iOS版の公開に伴い、Apple Inc.への委託項目（Appleでサインイン・App Store購入検証・Appleマップ・APNsプッシュ配信）とアプリのトラッキング透明性（ATT）の案内を追加 [2] プッシュ通知トークンにアプリ表示言語の値を追加 [3] 記録の場所名の保存範囲を縮小 [4] サービス提供国の拡大（日本・米国・カナダ・オーストラリア・ニュージーランド・シンガポール）と英語・日本語訳の案内。iOSに関する項目はiOS版の公開まで適用されません。</p>
+
+<p class="intro">LeoWorks（以下「当社」）は、大韓民国の「個人情報保護法」などの関係法令を遵守し、利用者の個人情報を保護するために本プライバシーポリシーを定め、公開します。本ポリシーはモバイルアプリ<strong>わんにゃんログ</strong>（以下「本サービス」、韓国語名 멍냥로그、英語名 PawMoments）に適用されます。わんにゃんログは会員登録なしに<strong>匿名</strong>で利用でき、位置情報・写真・アカウント連携など大部分の情報は<strong>利用者が自ら入力または同意した場合にのみ</strong>収集されます。本サービスはAndroid・iOSアプリとして大韓民国、日本、米国、カナダ、オーストラリア、ニュージーランド、シンガポールで提供され、どの国で利用しても本ポリシーが同じく適用されます。</p>
+
+<h2>1. 収集する個人情報の項目</h2>
+<h3>ア. 自動的に生成・収集される情報</h3>
+<ul>
+<li><strong>匿名利用者識別子</strong>: アプリの初回起動時に自動生成される匿名の識別値（UUID）。氏名・電話番号・メールアドレスは含まれません。</li>
+<li><strong>サービス利用記録（イベントログ）</strong>: 機能の利用統計（アプリ起動、記録の保存、地図・エディタの閲覧、カードの共有、AIキャラクターの生成など）とその発生時刻。個人を識別できる内容を含まない集計用データです。</li>
+<li><strong>プッシュ通知トークン</strong>: 利用者が通知の受信を許可した場合に限り、通知配信のために端末ごとに発行されるプッシュトークン。氏名・電話番号などの個人識別情報は含まず、端末設定で通知の権限を解除すると以後は収集・利用されません。トークンとともに<strong>アプリ表示言語</strong>（韓国語・英語・日本語のいずれか）の値を保存し、通知をどの言語で送るかを決めるためにのみ使用します。</li>
+<li><strong>サービス分析情報</strong>: 利用統計の分析のためにGoogle LLCのFirebase Analyticsを通じて自動収集される情報 — 上記イベントログと同じアプリ利用イベント、アプリ起動・セッション情報、端末・OSの種類、アプリのバージョン、アプリのインストール経路（キャンペーン情報）、広告ID（Google広告IDまたはiOSのIDFA。設定に従います）・アプリインスタンスID。匿名利用者識別子と結び付けられ、氏名・電話番号・メールアドレスなど個人を直接識別する情報は含みません。</li>
+<li><strong>広告関連情報</strong>: 広告（Google AdMob）の配信過程でGoogle LLCが自動収集する情報 — 広告ID、端末・OS・アプリ情報、IPアドレスから推定したおおよその地域、広告の表示・クリックなどの操作。利用者が記録に添付した位置情報（緯度・経度・場所名）は広告に渡しません。</li>
+</ul>
+<h3>イ. 利用者が入力・アップロードする情報（任意）</h3>
+<ul>
+<li><strong>ペットのプロフィール</strong>: 名前、種類（犬／猫）、品種、誕生日、性格タグ、プロフィール写真</li>
+<li><strong>活動・健康の記録</strong>: 記録の種類（散歩・食事・おやつ・入浴・遊び・投薬・通院・ワクチン・駆虫・体重・異常など）、写真、メモ、気分、体重、投薬・ワクチンの予定と通知設定</li>
+<li><strong>家族のコメント</strong>: 家族メンバーが記録に残したコメント本文（最大300文字）。そのペットに紐づく家族メンバーにのみ公開され、記録またはアカウントを削除すると一緒に削除されます。</li>
+<li><strong>位置情報</strong>: 記録に添付した位置の緯度・経度および場所名（利用者が「位置を追加」を実行した場合のみ）。場所名は、大韓民国で韓国語で利用する場合は番地・施設名まで、それ以外の場合は市・区レベルの地域名までのみ保存します。</li>
+<li><strong>決済情報</strong>: アプリ内購入時の商品識別子および購入検証トークン（レシート、Android）または取引識別子（iOS）。クレジットカード番号などの決済手段の情報はGoogle PlayまたはApple App Storeが処理し、当社は保管しません。</li>
+</ul>
+<h3>ウ. アカウント連携時に収集される情報（任意）</h3>
+<ul>
+<li><strong>Googleアカウントのメールアドレス</strong>: 利用者がデータのバックアップのためにGoogleアカウント連携を選択した場合に限り、連携の識別のために収集します。</li>
+<li><strong>Appleアカウントの識別子・メールアドレス（iOS）</strong>: iOSで「Appleでサインイン」を選択した場合に限り、連携の識別のためにAppleユーザー識別子とメールアドレス（「メールを非公開」を選択した場合はAppleが発行する中継アドレス）、およびAppleから提供された場合は氏名を収集します。Apple認証トークンは当社のサーバーに保存しません。</li>
+</ul>
+<h3>エ. 端末のアクセス権限（任意 — 拒否できます）</h3>
+<table>
+<tr><th>権限</th><th>利用目的</th><th>拒否した場合</th></tr>
+<tr><td>カメラ</td><td>ペットの写真撮影</td><td>ギャラリーから選択、または写真なしで記録</td></tr>
+<tr><td>写真／メディア</td><td>記録への写真追加、作成したカード・キャラクターのギャラリー保存</td><td>写真なしで記録可能、保存機能は利用不可</td></tr>
+<tr><td>位置情報</td><td>記録に訪れた場所を添付</td><td>住所の手入力で代替</td></tr>
+<tr><td>通知</td><td>投薬・ワクチンの予定日、週間の思い出通知、家族の共同記録の活動などのプッシュ通知の受信</td><td>通知なしで利用可能</td></tr>
+<tr><td>トラッキング（iOS）</td><td>パーソナライズ広告のための広告識別子（IDFA）の利用 — アプリのトラッキング透明性（ATT）の確認画面</td><td>パーソナライズされていない一般広告のみ表示</td></tr>
+</table>
+<p class="note">すべての権限は任意であり、拒否しても該当機能以外のサービス利用に制限はありません。</p>
+
+<h2>2. 個人情報の収集・利用目的</h2>
+<ul>
+<li>ペットの記録・タイムライン・思い出マップなどの主要機能の提供</li>
+<li>投薬・ワクチンなどの健康予定の通知（端末内のローカル通知）および家族の共同記録の活動のお知らせなどのプッシュ通知の送信（通知の受信を許可した場合）</li>
+<li>週間ハイライトカードやAIキャラクターなどのコンテンツ生成</li>
+<li>アプリ内購入（デコレーションアイテム）の決済検証および不正利用の防止</li>
+<li>（アカウント連携時）データのバックアップおよび機種変更時の復元</li>
+<li>サービス品質の改善のための匿名の利用統計分析 — 機能別の利用状況、再訪率、セッション、アプリのインストール経路（キャンペーン）の測定（Firebase Analyticsを含む）</li>
+<li>サービスを無料で提供するための広告配信、広告効果の測定および不正クリックの防止（Google AdMob）</li>
+</ul>
+<p class="note">当社は上記の目的の範囲を超えて個人情報を利用せず、目的が変更される場合は事前に同意を得ます。</p>
+
+<h2>3. 個人情報の取扱いの委託</h2>
+<table>
+<tr><th>委託先</th><th>委託業務</th><th>取り扱う情報</th></tr>
+<tr><td>Supabase Inc.</td><td>データベース・ファイルストレージ・認証・サーバー（Edge Function）のホスティング</td><td>第1項の入力情報・自動収集情報の全般</td></tr>
+<tr><td>Google LLC</td><td>（任意）AIキャラクター画像の生成</td><td>該当ペットの写真、種類、性格タグ</td></tr>
+<tr><td>Google LLC</td><td>アプリ内購入の決済検証（Android、Google Play）</td><td>購入検証トークン、商品識別子</td></tr>
+<tr><td>Apple Inc.</td><td>アプリ内購入の決済検証（iOS、App Store）</td><td>取引識別子、商品識別子</td></tr>
+<tr><td>Google LLC</td><td>（任意）Googleアカウント連携</td><td>Google認証トークン、メールアドレス</td></tr>
+<tr><td>Apple Inc.</td><td>（任意）Appleアカウント連携（iOS、Appleでサインイン）</td><td>Apple認証トークン、ユーザー識別子、メールアドレス、氏名</td></tr>
+<tr><td>Google LLC / Apple Inc. / Expo (650 Industries, Inc.)</td><td>（任意）プッシュ通知の配信（Firebase Cloud Messaging・Apple Push Notification service・Expo Push Service）</td><td>プッシュトークン、アプリ表示言語、通知のタイトル・本文</td></tr>
+<tr><td>Google LLC</td><td>サービス利用統計の分析（Firebase Analytics）</td><td>匿名利用者識別子、アプリ利用イベント・セッション情報、端末・OSの種類、アプリのバージョン、広告ID・アプリインスタンスID</td></tr>
+<tr><td>Google LLC</td><td>広告配信（Google AdMob）</td><td>広告ID、端末・OS・アプリ情報、IPに基づくおおよその地域、広告の操作</td></tr>
+<tr><td>Kakao Corp.</td><td>周辺の場所検索</td><td>検索時点の座標（緯度・経度）</td></tr>
+<tr><td>NAVER Cloud Corp.</td><td>地図画面の表示（NAVERマップ — 2026-11-05より前に公開されたアプリ版）</td><td>表示する記録の座標（緯度・経度）</td></tr>
+<tr><td>Google LLC</td><td>地図画面の表示（Googleマップ — 2026-11-05以降に公開されたアプリ版。旧版はアップデートまでNAVERマップを使用）</td><td>表示する記録の座標（緯度・経度）</td></tr>
+<tr><td>Apple Inc.</td><td>地図画面の表示（iOS、Appleマップ）</td><td>表示する記録の座標（緯度・経度）</td></tr>
+</table>
+<p class="note">AIキャラクター生成・Google／Appleアカウント連携・周辺の場所検索は利用者が該当機能を使用するときにのみ、プッシュ通知の配信は通知の受信を許可した場合にのみデータが送信されます。AI生成時に送信される情報は上記の項目に限られ、ペットの名前・位置情報・健康記録などは送信されません。サービス利用統計の分析（Firebase Analytics）と広告（Google AdMob）に関する情報は、アプリの利用中に自動的に送信されます。</p>
+
+<h2>4. 個人情報の国外移転</h2>
+<p>上記の委託先の一部は国外にサーバーを置くことがあるため、本サービスの利用の過程で個人情報が国外に移転・保管されることがあります。</p>
+<ul>
+<li><strong>移転先</strong>: Supabase Inc.、Google LLC、Apple Inc.（および上記の委託先）</li>
+<li><strong>移転先の国</strong>: 委託先が運用するクラウドインフラの所在国（米国など）</li>
+<li><strong>移転の時期・方法</strong>: サービスの利用時点でネットワーク（HTTPS暗号化）を通じて送信</li>
+<li><strong>移転する項目・目的・保有期間</strong>: 第3項の委託内容と同一</li>
+</ul>
+<p class="note">利用者は国外移転を拒否できますが、その場合は該当機能（保存・同期・AI生成など）の利用が制限されることがあります。</p>
+
+<h2>5. 個人情報の保有・利用期間と廃棄</h2>
+<ul>
+<li>当社は、収集・利用目的が達成されるか、利用者が削除を求めた場合、該当情報を遅滞なく廃棄します。</li>
+<li>アプリ内でペットまたは記録を削除すると、紐づく写真・記録・健康予定・体重・AI生成記録などが一緒に削除されます。</li>
+<li>ただし、関係法令が保存を求める場合は、その期間保管します。
+  <ul><li>大韓民国の「電子商取引等における消費者保護に関する法律」に基づく決済・購入に関する記録: <strong>5年</strong></li></ul>
+</li>
+<li>廃棄方法: 電子ファイルは復元・再生できない方法で完全に削除します。</li>
+</ul>
+
+<h2>6. 14歳未満の児童の個人情報</h2>
+<p>当社は<strong>14歳未満の児童の個人情報を収集せず</strong>、本サービスは14歳以上（利用者の国でより高い年齢が求められる場合はその年齢以上）の利用者を対象とします。その年齢未満であることが確認された場合、該当情報を遅滞なく廃棄します。</p>
+
+<h2>7. 利用者および法定代理人の権利と行使方法</h2>
+<ul>
+<li>個人情報の<strong>閲覧・訂正</strong>: アプリ内で直接確認・修正</li>
+<li>個人情報の<strong>削除</strong>: アプリ内でペット／記録を削除、または<strong>設定 → アカウント削除</strong>でアカウントとすべてのデータを自分で削除（<a href="../../delete/">削除案内・韓国語</a>）。アプリを利用できない場合は下記の連絡先へ。Appleでサインインを連携したアカウントは、アカウント削除時にApple連携（認証トークン）も併せて解除されます</li>
+<li>個人情報の<strong>処理停止</strong>および同意の撤回: 権限の解除（端末設定）または連絡先へ依頼</li>
+</ul>
+<p class="note">権利の行使は下記の個人情報保護責任者へメールで依頼でき、当社は遅滞なく対応します。居住国の法令により追加の権利がある場合も、同じ連絡先から行使できます。</p>
+
+<h2>8. 個人情報の安全性確保措置</h2>
+<ul>
+<li><strong>アクセス制御（行レベルセキュリティ、RLS）</strong>: データベースの階層で、利用者は自身のデータにのみアクセスできるよう制限</li>
+<li><strong>通信の暗号化</strong>: すべての通信はHTTPSで暗号化</li>
+<li><strong>ストレージのアクセス制限</strong>: アップロードされた写真は非公開ストレージに保管し、有効期限付きの署名URLでのみアクセス</li>
+<li><strong>機密情報のサーバー側保管</strong>: AI・決済などの外部連携の秘密鍵はサーバー（Edge Function）にのみ保管し、アプリには含めない</li>
+<li><strong>認証情報の保護</strong>: セッショントークンはアプリ専用の保存領域に保管し、他のアプリからアクセスできないようOSのアプリサンドボックスで保護</li>
+</ul>
+
+<h2>9. 自動収集ツールと広告</h2>
+<ul>
+<li>当社はサービス利用統計の分析のために<strong>Google LLCのFirebase Analytics（Googleアナリティクス）SDK</strong>を使用します。アプリ利用イベント・セッション情報・端末情報とともに<strong>広告ID</strong>を収集し、収集した情報は個人を直接識別しない形で利用統計・再訪率の分析に使用します。利用統計はこれとは別に、当社サーバーに保存される匿名イベントログとしても収集します。</li>
+<li>当社はサービスを無料で提供するために、ホーム画面と思い出画面に<strong>Google AdMob（Google LLC）</strong>の広告を表示します。Googleは広告IDを広告配信・表示頻度の制限・不正クリックの防止・広告効果の測定に使用し、端末の設定に応じて<strong>パーソナライズ広告</strong>の提供に使用することがあります。詳細は<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener">Googleの広告技術ポリシー</a>と<a href="https://policies.google.com/privacy?hl=ja" target="_blank" rel="noopener">Googleプライバシーポリシー</a>をご覧ください。</li>
+<li>iOSでは、アプリが初めて広告を表示する前に、広告識別子の利用に関する案内（Google UMP）に続いて<strong>アプリのトラッキング透明性（ATT）の確認画面</strong>が表示されます。「許可」を選択しない限り広告識別子（IDFA）は収集されず、パーソナライズされていない一般広告のみ表示されます。選択はiOSの設定 &gt; プライバシーとセキュリティ &gt; トラッキングでいつでも変更できます。</li>
+<li>利用者は端末の設定（Android: 設定 &gt; Google &gt; 広告、または設定 &gt; プライバシー &gt; 広告 / iOS: 設定 &gt; プライバシーとセキュリティ &gt; Appleの広告）で<strong>広告のパーソナライズをオフ</strong>にするか<strong>広告IDを削除</strong>することで、パーソナライズ広告と広告IDに基づく収集を制限できます。この場合もパーソナライズされていない一般広告は表示されることがあり、サービスの主要機能の利用には影響しません。</li>
+<li>今後、新機能の導入により収集項目が変更される場合は、本ポリシーを改定し、アプリまたは本ページで事前に告知します。</li>
+</ul>
+
+<h2>10. 個人情報保護責任者および問い合わせ先</h2>
+<ul>
+<li><strong>個人情報保護責任者</strong>: LeoWorks</li>
+<li><strong>メール</strong>: <a href="mailto:leodev19lee@gmail.com">leodev19lee@gmail.com</a></li>
+</ul>
+
+<h2>11. 権利侵害の救済方法</h2>
+<p>当社の所在国である大韓民国の以下の機関に相談できます。</p>
+<ul>
+<li>個人情報紛争調停委員会: +82-1833-6972 / <a href="https://www.kopico.go.kr">www.kopico.go.kr</a></li>
+<li>個人情報侵害申告センター（KISA）: +82-118 / <a href="https://privacy.kisa.or.kr">privacy.kisa.or.kr</a></li>
+<li>大検察庁 サイバー捜査課: +82-1301 / <a href="https://www.spo.go.kr">www.spo.go.kr</a></li>
+<li>警察庁 サイバー捜査局: +82-182 / <a href="https://ecrm.police.go.kr">ecrm.police.go.kr</a></li>
+</ul>
+<p class="note">日本にお住まいの方は、個人情報保護委員会（<a href="https://www.ppc.go.jp/">www.ppc.go.jp</a>）にも相談できます。その他の国の方は、居住国の個人情報保護当局に相談できます。</p>
+
+<h2>12. プライバシーポリシーの変更</h2>
+<p>本ポリシーの内容に追加・削除・修正がある場合、変更内容をアプリまたは本ページで施行の7日前まで（利用者に不利な変更は30日前まで）に告知します。</p>
+<ul><li>最初の公告日・施行日: 2026-06-14</li><li>改定公告日: 2026-07-31（プッシュ通知トークンの収集項目・利用目的・委託内容を追加）</li><li>改定施行日: 2026-08-07</li><li>訂正反映日: 2026-08-01（第8項の認証情報の保管方法に関する不正確な記述を訂正、第7項にアプリ内のアカウント削除経路の案内を追加 — 収集・利用範囲の変更なし）</li><li>改定公告・施行日: 2026-09-13（Firebase Analyticsによる利用統計分析・Google AdMob広告に関する収集項目・利用目的・委託・自動収集ツールの案内を追加し、第9項を訂正 — アプリに既に適用されている処理の告知）</li><li>改定公告日: 2026-11-04 · 改定施行日: 2026-11-05（第3項の地図表示の委託先にGoogle LLCを追加）</li><li>訂正反映日: 2026-11-05（Googleマップを使用するアプリ版が2026-11-05に公開されたため、上記改定の施行日を予告した2026-11-11から実際の公開日に繰り上げ — 同じ座標を渡す委託先の追加は利用者に不利な変更ではなく、収集・利用範囲の変更なし）</li><li>改定公告日: 2026-11-05 · 改定施行日: 2026-11-12（iOS版の公開に伴うApple Inc.への委託項目・アプリのトラッキング透明性の案内を追加、プッシュ通知トークンにアプリ表示言語の値を追加、場所名の保存範囲を縮小、サービス提供国の拡大と英語・日本語訳の案内 — iOS項目はiOS版の公開まで未適用）</li></ul>
+
+<footer>© 2026 LeoWorks · わんにゃんログ（meongnyang-log）</footer>
+</div>
+</body>
+</html>
